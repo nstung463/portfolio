@@ -244,10 +244,23 @@ export const harnessDiagramContent = {
   },
   postTraining: {
     input: "Base LLM",
+    sft: "Supervised Fine-Tuning (SFT)",
     instruction: "Instruction data",
-    preference: "Preference data",
-    toolUse: "Tool schemas",
-    tuning: "SFT + preference tuning",
-    output: "Chat / reasoning / tool LLM",
+    rewardModeling: "Reward modeling",
+    dpo: "DPO",
+    rlhf: "Reinforcement Learning from Human Feedback (RLHF)",
+    humanFeedback: "Human feedback",
+    rewardModel: "Reward model",
+    checkpoint: "RLHF checkpoint",
   },
+} as const;
+
+export const contact = {
+  label: "Let's talk",
+  heading: "Let's build something grounded.",
+  blurb: "Open to AI Engineer / LLM Application roles. I usually reply within a day.",
+  availability: "Available for new work",
+  emailHint: "Best way to reach me",
+  resumeHint: "One page, kept current",
+  resumeCta: "Read the résumé",
 } as const;

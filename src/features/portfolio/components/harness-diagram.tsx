@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useId, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { harnessDiagramContent, harnessNodes } from "../data/portfolio-content";
@@ -135,9 +136,31 @@ export function HarnessDiagram() {
 }
 
 function StackLayerDiagram({ activeIndex }: { activeIndex: number }) {
-  if (activeIndex === 0) return <ModelFoundationsDiagram />;
-  if (activeIndex === 1) return <PostTrainingDiagram />;
+  if (activeIndex === 0) {
+    return (
+      <GeneratedDiagramImage
+        src="/images/agent-stack-model-foundations.png"
+        alt="Diagram showing raw data flowing through tokenization, Transformer architecture, and pretraining into a base foundation LLM."
+      />
+    );
+  }
+  if (activeIndex === 1) {
+    return (
+      <GeneratedDiagramImage
+        src="/images/agent-stack-post-training.png"
+        alt="Diagram showing post-training flowing from supervised fine-tuning through instruction data, reward modeling, DPO, and RLHF outputs."
+      />
+    );
+  }
   return <HarnessFlow activeIndex={activeIndex} />;
+}
+
+function GeneratedDiagramImage({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="relative w-full max-w-xl overflow-hidden rounded-lg bg-[#f7f2ee] lg:ml-auto">
+      <Image src={src} alt={alt} width={1536} height={1024} className="h-auto w-full" />
+    </div>
+  );
 }
 
 function PaperDiagram({ children }: { children: React.ReactNode }) {
@@ -217,7 +240,17 @@ function ModelFoundationsDiagram() {
 }
 
 function PostTrainingDiagram() {
-  const { input, instruction, preference, toolUse, tuning, output } = harnessDiagramContent.postTraining;
+  const {
+    input,
+    sft,
+    instruction,
+    rewardModeling,
+    dpo,
+    rlhf,
+    humanFeedback,
+    rewardModel,
+    checkpoint,
+  } = harnessDiagramContent.postTraining;
 
   return (
     <PaperDiagram>
@@ -234,57 +267,71 @@ function PostTrainingDiagram() {
       <text x="28" y="38" fill="#1a1714" fontSize="11" fontFamily="ui-monospace, monospace" letterSpacing="2">
         POST-TRAINING
       </text>
-      <circle cx="64" cy="155" r="39" fill="#d9e4dc" stroke="#1a1714" strokeWidth="2" />
-      <path d="M47 158C54 145 63 165 71 151C78 140 84 157 88 153" fill="none" stroke="#1a1714" strokeWidth="1.5" />
-      <text x="64" y="211" textAnchor="middle" fill="#1a1714" fontSize="10" fontFamily="ui-monospace, monospace">
+      <path d="M260 43V57" fill="none" stroke="#e35b20" strokeWidth="2" markerEnd="url(#post-arrow)" />
+      <text x="260" y="50" textAnchor="middle" fill="#1a1714" fontSize="9" fontFamily="ui-monospace, monospace" opacity="0.7">
         {input}
       </text>
-      <path d="M104 155C122 155 126 155 145 155" fill="none" stroke="#e35b20" strokeWidth="2" markerEnd="url(#post-arrow)" />
-      <g transform="rotate(-1 220 155)">
-        <rect x="145" y="126" width="150" height="58" rx="10" fill="#f4a261" stroke="#1a1714" strokeWidth="2" />
-        <text x="220" y="151" textAnchor="middle" fill="#1a1714" fontSize="11" fontFamily="ui-monospace, monospace">
-          SFT
+      <g transform="rotate(-1 260 82)">
+        <rect x="166" y="57" width="188" height="48" rx="10" fill="#e89245" stroke="#1a1714" strokeWidth="2" />
+        <text x="260" y="80" textAnchor="middle" fill="#1a1714" fontSize="10" fontFamily="ui-monospace, monospace">
+          {sft}
         </text>
-        <text x="220" y="168" textAnchor="middle" fill="#1a1714" fontSize="9" fontFamily="ui-monospace, monospace" opacity="0.72">
-          {tuning}
-        </text>
-      </g>
-      <path d="M295 155C317 155 322 155 341 155" fill="none" stroke="#e35b20" strokeWidth="2" markerEnd="url(#post-arrow)" />
-      <g transform="rotate(2 422 155)">
-        <rect x="341" y="112" width="140" height="86" rx="12" fill="#d9e4dc" stroke="#1a1714" strokeWidth="2" />
-        <circle cx="366" cy="141" r="9" fill="#f4a261" stroke="#1a1714" strokeWidth="1.2" />
-        <path d="M361 141L365 145L372 136" fill="none" stroke="#1a1714" strokeWidth="1.4" />
-        <path d="M381 141H462" stroke="#1a1714" strokeWidth="1.2" />
-        <text x="411" y="164" textAnchor="middle" fill="#1a1714" fontSize="10" fontFamily="ui-monospace, monospace">
-          {output}
+        <text x="260" y="95" textAnchor="middle" fill="#1a1714" fontSize="9" fontFamily="ui-monospace, monospace" opacity="0.7">
+          instruction tuning
         </text>
       </g>
-      <path d="M190 126C185 104 160 89 126 84" fill="none" stroke="#1a1714" strokeWidth="1.5" markerEnd="url(#post-arrow)" />
-      <path d="M220 126C220 105 220 91 220 78" fill="none" stroke="#1a1714" strokeWidth="1.5" markerEnd="url(#post-arrow)" />
-      <path d="M250 126C260 103 284 89 314 84" fill="none" stroke="#1a1714" strokeWidth="1.5" markerEnd="url(#post-arrow)" />
-      <g transform="rotate(-2 126 70)">
-        <rect x="74" y="50" width="104" height="30" rx="7" fill="#f7f2ee" stroke="#1a1714" strokeWidth="1.5" />
-        <text x="126" y="69" textAnchor="middle" fill="#1a1714" fontSize="9" fontFamily="ui-monospace, monospace">
+      <path d="M210 105C193 119 173 123 145 128" fill="none" stroke="#1a1714" strokeWidth="1.5" markerEnd="url(#post-arrow)" />
+      <path d="M260 105V128" fill="none" stroke="#1a1714" strokeWidth="1.5" markerEnd="url(#post-arrow)" />
+      <path d="M310 105C328 118 350 123 378 128" fill="none" stroke="#1a1714" strokeWidth="1.5" markerEnd="url(#post-arrow)" />
+      <g transform="rotate(-2 100 145)">
+        <rect x="34" y="128" width="132" height="34" rx="8" fill="#f7f2ee" stroke="#1a1714" strokeWidth="1.5" />
+        <text x="100" y="149" textAnchor="middle" fill="#1a1714" fontSize="9" fontFamily="ui-monospace, monospace">
           {instruction}
         </text>
       </g>
-      <g transform="rotate(1 220 64)">
-        <rect x="184" y="49" width="72" height="30" rx="7" fill="#f7f2ee" stroke="#1a1714" strokeWidth="1.5" />
-        <text x="220" y="68" textAnchor="middle" fill="#1a1714" fontSize="9" fontFamily="ui-monospace, monospace">
-          Human feedback
+      <g transform="rotate(1 260 145)">
+        <rect x="194" y="128" width="132" height="34" rx="8" fill="#f7f2ee" stroke="#1a1714" strokeWidth="1.5" />
+        <text x="260" y="149" textAnchor="middle" fill="#1a1714" fontSize="9" fontFamily="ui-monospace, monospace">
+          {rewardModeling}
         </text>
       </g>
-      <g transform="rotate(2 335 70)">
-        <rect x="286" y="50" width="98" height="30" rx="7" fill="#f7f2ee" stroke="#1a1714" strokeWidth="1.5" />
-        <text x="335" y="69" textAnchor="middle" fill="#1a1714" fontSize="9" fontFamily="ui-monospace, monospace">
-          {preference}
+      <g transform="rotate(2 420 145)">
+        <rect x="390" y="128" width="60" height="34" rx="8" fill="#d9e4dc" stroke="#1a1714" strokeWidth="1.5" />
+        <text x="420" y="149" textAnchor="middle" fill="#1a1714" fontSize="10" fontFamily="ui-monospace, monospace">
+          {dpo}
         </text>
       </g>
-      <rect x="160" y="239" width="200" height="40" rx="10" fill="#f1c38c" stroke="#1a1714" strokeWidth="1.5" transform="rotate(-1 260 259)" />
-      <path d="M260 239V199" fill="none" stroke="#1a1714" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#post-arrow)" />
-      <text x="260" y="264" textAnchor="middle" fill="#1a1714" fontSize="10" fontFamily="ui-monospace, monospace">
-        {toolUse}
-      </text>
+      <path d="M260 162V184" fill="none" stroke="#e35b20" strokeWidth="2" markerEnd="url(#post-arrow)" />
+      <g transform="rotate(1 260 211)">
+        <rect x="126" y="184" width="268" height="54" rx="10" fill="#e35b20" stroke="#1a1714" strokeWidth="2" />
+        <text x="260" y="207" textAnchor="middle" fill="#f7f2ee" fontSize="10" fontFamily="ui-monospace, monospace">
+          Reinforcement Learning from Human Feedback
+        </text>
+        <text x="260" y="224" textAnchor="middle" fill="#f7f2ee" fontSize="9" fontFamily="ui-monospace, monospace" opacity="0.8">
+          {rlhf}
+        </text>
+      </g>
+      <path d="M190 238C175 251 151 256 126 260" fill="none" stroke="#1a1714" strokeWidth="1.5" markerEnd="url(#post-arrow)" />
+      <path d="M260 238V260" fill="none" stroke="#1a1714" strokeWidth="1.5" markerEnd="url(#post-arrow)" />
+      <path d="M330 238C345 251 369 256 394 260" fill="none" stroke="#1a1714" strokeWidth="1.5" markerEnd="url(#post-arrow)" />
+      <g transform="rotate(-1 92 280)">
+        <rect x="30" y="260" width="124" height="34" rx="8" fill="#f7f2ee" stroke="#1a1714" strokeWidth="1.5" />
+        <text x="92" y="281" textAnchor="middle" fill="#1a1714" fontSize="9" fontFamily="ui-monospace, monospace">
+          {humanFeedback}
+        </text>
+      </g>
+      <g transform="rotate(1 260 280)">
+        <rect x="194" y="260" width="132" height="34" rx="8" fill="#f7f2ee" stroke="#1a1714" strokeWidth="1.5" />
+        <text x="260" y="281" textAnchor="middle" fill="#1a1714" fontSize="9" fontFamily="ui-monospace, monospace">
+          {rewardModel}
+        </text>
+      </g>
+      <g transform="rotate(2 428 280)">
+        <rect x="362" y="260" width="132" height="34" rx="8" fill="#d9e4dc" stroke="#1a1714" strokeWidth="1.5" />
+        <text x="428" y="281" textAnchor="middle" fill="#1a1714" fontSize="9" fontFamily="ui-monospace, monospace">
+          {checkpoint}
+        </text>
+      </g>
     </PaperDiagram>
   );
 }
