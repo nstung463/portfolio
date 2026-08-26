@@ -26,14 +26,13 @@ export function HarnessSection() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-[90px]">
         <div data-reveal>
-          <p className="font-mono text-xs font-bold tracking-[0.15em] text-[#ff7a2f] uppercase">05 · Deep dive</p>
+          <p className="font-mono text-xs font-bold tracking-[0.15em] text-[#ff7a2f] uppercase">05 · Agent stack</p>
           <h2 className="mt-4 max-w-3xl text-3xl font-bold sm:text-5xl">
-            Anatomy of an agent harness
+            From model to production
           </h2>
           <p className="mt-5 max-w-2xl text-sm leading-6 text-white/70 sm:text-base">
-            An agent is only as trustworthy as the runtime underneath it. This is the layer I
-            build: the loop, the tool contract, the sandbox it executes in, the approvals that
-            gate anything irreversible, and the connectors that reach real systems.
+            An LLM is the reasoning engine. An agent adds a loop and tools. A harness gives it
+            the runtime to work safely, statefully, and at scale.
           </p>
         </div>
 

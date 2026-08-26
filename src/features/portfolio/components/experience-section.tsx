@@ -6,7 +6,9 @@ import { SectionBleed, SectionLabel } from "./section-primitives";
  * Vertical timeline. Entries alternate sides of a centre spine on large
  * screens and stack against a left rail below that. The spine fills with a
  * `view()` timeline in `globals.css`; the cards, dates and dots are revealed
- * by the observer in `scroll-reveal.tsx` as each entry scrolls up into view.
+ * by the observer in `scroll-reveal.tsx` as each entry scrolls up into view,
+ * and closed again on the way back up — `data-reveal-repeat` opts the list
+ * into that, so the section reads the same scrolled either way.
  */
 export function ExperienceSection() {
   return (
@@ -19,7 +21,7 @@ export function ExperienceSection() {
           <h2 className="mt-4 text-3xl font-bold sm:text-5xl">Recent work</h2>
         </div>
 
-        <ol className="relative mt-16 lg:mt-20">
+        <ol data-reveal-repeat className="relative mt-16 lg:mt-20">
           {/* spine */}
           <span
             aria-hidden

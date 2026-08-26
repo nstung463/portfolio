@@ -180,57 +180,57 @@ export const sections: SectionRef[] = [
 
 export const harnessNodes: HarnessNode[] = [
   {
-    id: "loop",
+    id: "model",
     step: "01",
-    title: "Agent loop",
-    short: "Plan → act → observe, until the task is actually done.",
+    title: "Model foundations",
+    short: "Data → pretraining → a base LLM.",
     detail:
-      "The loop owns the conversation state, decides when to call a tool, and feeds the result back to the model. It is resumable: a session can be interrupted, persisted, and picked up later without losing the plan.",
-    bullets: ["Streaming turn execution", "Resumable session state", "Token & cost accounting", "Sub-agent delegation"],
+      "Before an agent can act, there is a model: data becomes tokens, a Transformer learns to predict the next one, and pretraining produces a foundation LLM.",
+    bullets: ["Data + tokenization", "Transformer architecture", "Next-token prediction", "Base / foundation LLM"],
+  },
+  {
+    id: "post-training",
+    step: "02",
+    title: "Post-training",
+    short: "Turn a base model into a chat- and tool-capable LLM.",
+    detail:
+      "SFT, preference tuning, and tool-use training shape how the model follows instructions, reasons through a task, and emits structured actions.",
+    bullets: ["SFT / instruction tuning", "RLHF / DPO / RL", "Reasoning behavior", "Tool-use / function calling"],
+  },
+  {
+    id: "loop",
+    step: "03",
+    title: "Agent loop",
+    short: "LLM + tools + a loop = an agent.",
+    detail:
+      "The agent begins outside model training: it calls the LLM, decides whether to answer or act, executes a tool, observes the result, and loops until the goal is done.",
+    bullets: ["Reason → act → observe", "Tool-call decisions", "Stop conditions", "Multi-turn execution"],
   },
   {
     id: "tools",
-    step: "02",
-    title: "Tool layer",
-    short: "A typed contract between the model and everything it can touch.",
-    detail:
-      "Every capability is a schema-validated tool with a narrow surface. Bad arguments fail loudly before anything executes, and each tool declares whether it reads, writes, or reaches the network — which is what the permission layer keys on.",
-    bullets: ["JSON-schema validated args", "Read / write / network classes", "Structured tool results", "Per-tool timeouts"],
-  },
-  {
-    id: "sandbox",
-    step: "03",
-    title: "Sandbox",
-    short: "Model-authored code runs somewhere it cannot hurt anyone.",
-    detail:
-      "Shell and file operations execute inside a pluggable isolated backend rather than the host. The filesystem is scoped to the session workspace, the network is deny-by-default, and the whole environment is disposable.",
-    bullets: ["Pluggable execution backend", "Workspace-scoped filesystem", "Deny-by-default egress", "Disposable per session"],
-  },
-  {
-    id: "hitl",
     step: "04",
-    title: "HITL approvals",
-    short: "The human keeps the irreversible decisions.",
+    title: "Tool layer",
+    short: "Typed hands for the model to do real work.",
     detail:
-      "Anything destructive or outward-facing pauses for an explicit approval, showing the exact command or payload. Approvals can be granted once, for a session, or persisted as a rule — so the agent gets faster without getting riskier.",
-    bullets: ["Diff & command preview", "Once / session / always scopes", "Persisted allow rules", "Full audit trail"],
+      "Tools give the agent a narrow, testable interface to files, shells, browsers, databases, APIs, and external services.",
+    bullets: ["Bash / files / web", "Structured arguments", "Validation + timeouts", "Tool results"],
   },
   {
-    id: "memory",
+    id: "runtime",
     step: "05",
-    title: "Memory & skills",
-    short: "What the agent carries between sessions.",
+    title: "Agent harness",
+    short: "The runtime that makes an agent safe, stateful, and shippable.",
     detail:
-      "Durable facts live in a file-backed memory store with an index the agent loads each run. Skills are packaged instruction sets that load on demand, so capability grows without inflating every prompt.",
-    bullets: ["File-backed memory index", "On-demand skill loading", "Context compaction", "Project vs. user scope"],
+      "The harness wraps the agent with the environment and controls it needs to work for longer than a single turn: state, memory, context, sandboxing, permissions, and connectors.",
+    bullets: ["Sandbox + permissions", "State + memory", "Context management", "MCP connectors"],
   },
   {
-    id: "connectors",
+    id: "production",
     step: "06",
-    title: "MCP connectors",
-    short: "Where the agent meets the systems people actually work in.",
+    title: "Production systems",
+    short: "Long-running agents, task orchestration, and multi-agent workflows.",
     detail:
-      "An MCP client layer mounts external servers — Microsoft 365 among them — as first-class tools. Each connector inherits the same validation, permission, and audit path as a built-in tool; nothing gets a side door.",
-    bullets: ["MCP client transport", "Microsoft 365 tools", "OAuth token lifecycle", "Same permission path"],
+      "Once the runtime is durable, agents can manage tasks, run in the background, delegate to subagents, connect to real systems, and expose their work to evaluation and observability.",
+    bullets: ["Background tasks", "Subagents + delegation", "Observability + evals", "Audit + recovery"],
   },
 ];

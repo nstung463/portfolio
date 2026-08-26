@@ -46,24 +46,34 @@ export function ScrollReveal() {
 
     const pending = new Set(elements.filter((el) => el.dataset.reveal === "out"));
 
+    // Inside a `data-reveal-repeat` container an element plays its reveal
+    // backwards on the way out, so scrolling up undoes what scrolling down
+    // did. Everywhere else a reveal is final: re-hiding text the reader has
+    // already read, only to replay it when they scroll back to re-read a
+    // line, is the failure mode this pattern is known for.
+    const repeats = new Set(elements.filter((el) => el.closest("[data-reveal-repeat]")));
+
     const show = (el: HTMLElement) => {
       el.dataset.reveal = "in";
       pending.delete(el);
-      observer.unobserve(el);
+      if (!repeats.has(el)) observer.unobserve(el);
     };
 
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) show(entry.target as HTMLElement);
+          const el = entry.target as HTMLElement;
+          if (entry.isIntersecting) show(el);
+          else if (repeats.has(el)) el.dataset.reveal = "out";
         }
 
         // A jump — an in-page anchor, End, or a flung scroll — can carry
         // elements past the viewport without ever tripping the observer,
         // which would strand them hidden above the fold. Anything now behind
-        // the reader is shown outright.
+        // the reader is shown outright. Repeating elements are exempt: for
+        // them, off screen is meant to be hidden.
         for (const el of Array.from(pending)) {
-          if (el.getBoundingClientRect().bottom < 0) show(el);
+          if (!repeats.has(el) && el.getBoundingClientRect().bottom < 0) show(el);
         }
       },
       // Fires once the element has climbed a quarter of the way up the

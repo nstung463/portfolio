@@ -39,7 +39,7 @@ export function HarnessDiagram() {
     <div className="mt-12">
       <div
         role="tablist"
-        aria-label="Agent harness stages"
+        aria-label="AI agent stack layers"
         aria-orientation="horizontal"
         className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-6"
       >
@@ -128,13 +128,13 @@ export function HarnessDiagram() {
       </div>
 
       <p className="mt-3 font-mono text-[10px] tracking-[0.14em] text-white/40 uppercase">
-        {"// click a stage · arrow keys to step through"}
+        {"// click a layer · arrow keys to step through"}
       </p>
     </div>
   );
 }
 
-/** Schematic of the request path, with the selected stage lit up. */
+/** Schematic of the AI agent stack, with the selected layer lit up. */
 function HarnessFlow({ activeIndex }: { activeIndex: number }) {
   const rows = harnessNodes.map((node, index) => ({
     label: node.title,

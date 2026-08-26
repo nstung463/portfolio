@@ -41,12 +41,12 @@ export interface EducationItem {
 }
 
 export type HarnessNodeId =
+  | "model"
+  | "post-training"
   | "loop"
   | "tools"
-  | "sandbox"
-  | "hitl"
-  | "memory"
-  | "connectors";
+  | "runtime"
+  | "production";
 
 export interface HarnessNode {
   id: HarnessNodeId;

@@ -327,30 +327,37 @@
    so a rule here would silently replace a component's own `transition-colors`
    — the timeline cards would lose the hover fade on their border. Animations
    do not collide with it. */
+/* Leaving runs the same keyframes in reverse, so an entry closes along the
+   path it opened along — no second set of keyframes to keep in sync. Exits
+   are quicker than entrances: waiting for something to finish disappearing
+   is dead time, waiting for it to arrive is not. */
 [data-reveal="out"] {
-  opacity: 0;
+  animation: reveal-in 0.45s var(--ease-reveal) both reverse;
 }
 
 [data-reveal="in"] {
   animation: reveal-in 0.7s var(--ease-reveal) both;
 }
 
-[data-reveal="in"][data-reveal-variant="fade"] {
+/* Bound to `[data-reveal]`, not to the "in" state, so a variant governs the
+   exit as well — otherwise a card that drifted in from the left would close
+   straight downwards. */
+[data-reveal][data-reveal-variant="fade"] {
   animation-name: reveal-in-fade;
 }
 
-[data-reveal="in"][data-reveal-variant="pop"] {
+[data-reveal][data-reveal-variant="pop"] {
   animation-name: reveal-in-pop;
 }
 
 /* The alternating drift only applies once the entries sit either side of the
    spine; stacked against the left rail they all rise the same way. */
 @media (width >= 64rem) {
-  [data-reveal="in"][data-reveal-variant="left"] {
+  [data-reveal][data-reveal-variant="left"] {
     animation-name: reveal-in-left;
   }
 
-  [data-reveal="in"][data-reveal-variant="right"] {
+  [data-reveal][data-reveal-variant="right"] {
     animation-name: reveal-in-right;
   }
 }
