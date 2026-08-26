@@ -9,10 +9,6 @@ import type {
 
 export const skillGroups: SkillGroup[] = [
   {
-    label: "Languages",
-    items: ["Python", "SQL", "C/C++", "R"],
-  },
-  {
     label: "Agent & LLM",
     items: ["RAG", "LangChain", "LangGraph", "MCP", "OpenAI API", "Azure OpenAI", "Anthropic Claude", "Hugging Face", "Prompt Engineering"],
   },
@@ -48,11 +44,6 @@ export const stats: Stat[] = [
   { value: "43.2K★", label: "OSS project merged" },
   { value: "1", label: "US patent filed" },
 ];
-
-export const aboutContent = {
-  headline: "I turn messy documents into reliable, grounded LLM answers.",
-  summary: "I'm an AI Engineer at FPT Software with 3+ years building production LLM, RAG, and multi-agent systems for enterprise clients. My core specialty is agent harness engineering — designing the tools, sandbox, permissions, and connector layer an agent session runs on. I'm also a daily power user of Claude Code, Codex, and Cursor.",
-};
 
 export const experience: ExperienceItem[] = [
   {

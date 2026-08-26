@@ -4,9 +4,9 @@ export function AboutSection() {
   return (
     <section id="about" className="mx-auto max-w-5xl px-6 py-20">
       <p className="font-mono text-xs tracking-widest text-primary uppercase">{"// about"}</p>
-      <h3 className="mt-3 max-w-2xl font-mono text-3xl leading-tight font-semibold sm:text-4xl">
+      <h2 className="mt-3 max-w-2xl font-mono text-3xl leading-tight font-semibold sm:text-4xl">
         I turn messy documents into reliable, grounded LLM answers.
-      </h3>
+      </h2>
       <p className="mt-6 max-w-2xl text-muted-foreground">
         I&apos;m an AI Engineer at FPT Software with 3+ years building production LLM, RAG,
         and multi-agent systems for enterprise clients. My core specialty is{" "}
@@ -20,7 +20,7 @@ export function AboutSection() {
           <div key={stat.label} className="rounded-lg border border-border/60 bg-card p-4">
             <p className="font-mono text-2xl font-bold text-primary sm:text-3xl">{stat.value}</p>
             <p className="mt-1 text-xs text-muted-foreground">{stat.label}</p>
-            </div>
+          </div>
         ))}
       </div>
     </section>

@@ -18,6 +18,25 @@ export function FeaturedWorkSection() {
             </a>
           ))}
         </div>
+        <div className="mt-6 rounded-[10px] bg-primary p-6 text-primary-foreground sm:p-8">
+          <p className="font-mono text-[10px] font-bold tracking-[0.15em] uppercase">{"// case study · infinity"}</p>
+          <div className="mt-4 grid gap-8 lg:grid-cols-[1fr_1.15fr] lg:items-end">
+            <div>
+              <h3 className="max-w-lg text-2xl font-bold sm:text-3xl">An agent harness built for real work.</h3>
+              <p className="mt-3 max-w-lg text-sm leading-6 text-white/85">
+                A standalone runtime for agent sessions: wiring the loop to safe tools, isolated execution, approvals, memory, skills, and Microsoft 365 connectors.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
+              {["Agent loop", "Tools", "Sandbox", "HITL", "MCP connectors"].map((step, index) => (
+                <div key={step} className="rounded-md border border-white/30 bg-white/10 p-3">
+                  <p className="font-mono text-[10px] text-white/65">0{index + 1}</p>
+                  <p className="mt-2 text-xs font-semibold leading-4">{step}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

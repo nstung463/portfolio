@@ -15,7 +15,7 @@ export function HeroSection() {
           <a href="#more-projects" className="hover:opacity-70">projects</a>
           <a href="#writing" className="hover:opacity-70">writing</a>
           <a href="#about" className="hover:opacity-70">about</a>
-          <a href="/Nguyen_Son_Tung_AI_Engineer_CV.pdf" target="_blank" rel="noreferrer" className="hover:opacity-70">resume</a>
+          <a href="/resume" target="_blank" rel="noreferrer" className="hover:opacity-70">resume</a>
         </nav>
         <a href="#contact" className="hidden items-center gap-2 font-mono text-[11px] font-bold tracking-[0.15em] uppercase hover:opacity-70 lg:inline-flex">
           {"// hire me"}
@@ -38,7 +38,7 @@ export function HeroSection() {
           <a href="#more-projects" onClick={() => setMenuOpen(false)}>projects</a>
           <a href="#writing" onClick={() => setMenuOpen(false)}>writing</a>
           <a href="#about" onClick={() => setMenuOpen(false)}>about</a>
-          <a href="/Nguyen_Son_Tung_AI_Engineer_CV.pdf" target="_blank" rel="noreferrer">resume ↗</a>
+          <a href="/resume" target="_blank" rel="noreferrer">resume ↗</a>
           <a href="#contact" onClick={() => setMenuOpen(false)}>{"// hire me ↗"}</a>
         </div>
       )}
