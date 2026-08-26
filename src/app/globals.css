@@ -242,6 +242,26 @@
   }
 }
 
+@keyframes timeline-fill {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes timeline-dot-on {
+  from {
+    background-color: var(--border);
+    box-shadow: 0 0 0 0 transparent;
+  }
+  to {
+    background-color: var(--primary);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--primary) 18%, transparent);
+  }
+}
+
 @keyframes bleed-drift {
   from {
     transform: translateX(-4%);
@@ -249,6 +269,17 @@
   to {
     transform: translateX(4%);
   }
+}
+
+/* Defaults for browsers without scroll-driven animations, and for anyone who
+   prefers reduced motion: the timeline simply renders in its finished state. */
+.timeline-progress {
+  transform-origin: top;
+  transform: scaleY(1);
+}
+
+.timeline-dot {
+  background-color: var(--primary);
 }
 
 @supports (animation-timeline: view()) {
@@ -276,6 +307,21 @@
       animation: bleed-drift linear both;
       animation-timeline: view();
       animation-range: cover;
+    }
+
+    /* The spine fills as the timeline crosses the viewport... */
+    .timeline-progress {
+      transform: scaleY(0);
+      animation: timeline-fill linear both;
+      animation-timeline: view();
+      animation-range: entry 85% exit 15%;
+    }
+
+    /* ...and each dot lights up as it reaches the reading line. */
+    .timeline-dot {
+      animation: timeline-dot-on linear both;
+      animation-timeline: view();
+      animation-range: entry 80% cover 10%;
     }
 
     .scroll-progress {

@@ -43,7 +43,7 @@ export const heroTags = [
 export const stats: Stat[] = [
   { value: "3+", label: "Years in production LLM/AI" },
   { value: "20", label: "Person platform team" },
-  { value: "43.2K★", label: "OSS project merged" },
+  { value: "7", label: "Projects shipped" },
   { value: "1", label: "US patent filed" },
 ];
 
@@ -102,7 +102,7 @@ export const featuredWork: FeaturedWorkItem[] = [
   {
     tag: "OPEN SOURCE",
     title: "OmniRoute",
-    desc: "Authored a Codex apply_patch compatibility fix, ported and merged into OmniRoute (43.2K★, fork of 9Router) — credited as co-author.",
+    desc: "A small apply_patch compatibility fix for Codex, ported upstream and merged into OmniRoute. Minor in scope — it is here because I read unfamiliar code and left it working.",
     href: "https://github.com/diegosouzapw/OmniRoute/pull/4862",
   },
 ];

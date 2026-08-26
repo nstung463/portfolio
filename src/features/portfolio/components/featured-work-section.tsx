@@ -19,8 +19,8 @@ export function FeaturedWorkSection() {
             adjectives.
           </h2>
           <p className="mt-5 max-w-sm text-sm leading-6 text-muted-foreground">
-            Two pieces of work I can point at outside a CV: a filed US patent, and a fix of mine
-            merged into a repository with tens of thousands of stars.
+            Work that exists outside a CV bullet and can be checked: a filed US patent
+            application, and a patch of mine sitting in someone else&apos;s repository.
           </p>
 
           <dl className="mt-9 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-border pt-7">
