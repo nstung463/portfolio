@@ -85,7 +85,7 @@ const personJsonLd = {
   url: siteConfig.url,
   description: siteConfig.description,
   address: { "@type": "PostalAddress", addressLocality: "Ho Chi Minh City", addressCountry: "VN" },
-  sameAs: [siteConfig.links.github, siteConfig.links.linkedin],
+  sameAs: [siteConfig.links.github, siteConfig.links.linkedin, siteConfig.links.instagram],
   knowsAbout: ["Retrieval-Augmented Generation", "LLM agents", "Agent harness engineering", "Computer vision"],
 };
 

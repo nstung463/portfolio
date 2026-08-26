@@ -5,6 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Scroll-driven easing: most of the motion lands early in the range, then
+     settles — reads as momentum rather than a linear scrub. */
+  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
   --color-brand: var(--brand);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -216,11 +219,34 @@
 @keyframes reveal-up {
   from {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translate3d(0, 38px, 0) scale(0.985);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
+  }
+}
+
+/* Timeline cards drift in from their own side of the spine (large screens). */
+@keyframes reveal-from-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-48px, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes reveal-from-right {
+  from {
+    opacity: 0;
+    transform: translate3d(48px, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
@@ -242,12 +268,14 @@
   }
 }
 
+/* `scale` (not `transform`) so Tailwind's `-translate-x-1/2` on the same
+   element survives — in Tailwind v4 those are independent properties. */
 @keyframes timeline-fill {
   from {
-    transform: scaleY(0);
+    scale: 1 0;
   }
   to {
-    transform: scaleY(1);
+    scale: 1 1;
   }
 }
 
@@ -255,10 +283,17 @@
   from {
     background-color: var(--border);
     box-shadow: 0 0 0 0 transparent;
+    scale: 0.55;
+  }
+  65% {
+    background-color: var(--primary);
+    box-shadow: 0 0 0 7px color-mix(in oklab, var(--primary) 22%, transparent);
+    scale: 1.3;
   }
   to {
     background-color: var(--primary);
     box-shadow: 0 0 0 4px color-mix(in oklab, var(--primary) 18%, transparent);
+    scale: 1;
   }
 }
 
@@ -275,7 +310,7 @@
    prefers reduced motion: the timeline simply renders in its finished state. */
 .timeline-progress {
   transform-origin: top;
-  transform: scaleY(1);
+  scale: 1 1;
 }
 
 .timeline-dot {
@@ -285,7 +320,7 @@
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .reveal {
-      animation: reveal-up linear both;
+      animation: reveal-up var(--ease-reveal) both;
       animation-timeline: view();
       animation-range: entry 8% cover 26%;
     }
@@ -309,19 +344,49 @@
       animation-range: cover;
     }
 
-    /* The spine fills as the timeline crosses the viewport... */
+    /* Timeline motion is anchored to a fixed "reading line" at 60vh rather
+       than to percentages of the subject. Percentage offsets are relative to
+       the range length, which for a spine far taller than the viewport put
+       the whole fill into a short, late window — the bar looked frozen for
+       most of the section. Length offsets are absolute, so the fill tracks
+       the scroll 1:1 no matter how many entries the timeline grows to.
+
+       cover 0 = subject top at the viewport bottom, so `cover 40vh` is the
+       moment the spine's top reaches 60vh, and `calc(100% - 60vh)` is the
+       moment its bottom does. */
     .timeline-progress {
-      transform: scaleY(0);
+      scale: 1 0;
       animation: timeline-fill linear both;
       animation-timeline: view();
-      animation-range: entry 85% exit 15%;
+      animation-range: cover 40vh cover calc(100% - 60vh);
     }
 
-    /* ...and each dot lights up as it reaches the reading line. */
+    /* Each dot lights as the fill arrives at it: lit by 58vh, just under the
+       line the spine is crossing at that scroll position. */
     .timeline-dot {
-      animation: timeline-dot-on linear both;
+      animation: timeline-dot-on var(--ease-reveal) both;
       animation-timeline: view();
-      animation-range: entry 80% cover 10%;
+      animation-range: cover 30vh cover 42vh;
+    }
+
+    /* Card first, then its date column — a beat apart so the entry assembles
+       instead of snapping in as one block. */
+    .timeline-card {
+      animation-range: cover 8vh cover 38vh;
+    }
+
+    .timeline-meta {
+      animation-range: cover 13vh cover 45vh;
+    }
+
+    @media (width >= 64rem) {
+      .timeline-card-left {
+        animation-name: reveal-from-left;
+      }
+
+      .timeline-card-right {
+        animation-name: reveal-from-right;
+      }
     }
 
     .scroll-progress {

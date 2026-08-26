@@ -11,5 +11,6 @@ export const siteConfig = {
   links: {
     github: "https://github.com/nstung463",
     linkedin: "https://linkedin.com/in/nstung463",
+    instagram: "https://www.instagram.com/iwi_swn2ng",
   },
 } as const;

@@ -46,8 +46,10 @@ export function ExperienceSection() {
 
                 <article
                   className={cn(
-                    "reveal rounded-[10px] border border-border bg-card p-5 transition-colors hover:border-primary lg:row-start-1 lg:p-6",
-                    isLeft ? "lg:col-start-1" : "lg:col-start-3",
+                    "reveal timeline-card rounded-[10px] border border-border bg-card p-5 transition-colors hover:border-primary lg:row-start-1 lg:p-6",
+                    isLeft
+                      ? "timeline-card-left lg:col-start-1"
+                      : "timeline-card-right lg:col-start-3",
                   )}
                 >
                   <p className="font-mono text-xs font-bold tracking-[0.1em] text-primary uppercase">
@@ -70,7 +72,7 @@ export function ExperienceSection() {
                 {/* Outer column: index numeral + dates, pulled toward the spine. */}
                 <div
                   className={cn(
-                    "reveal order-first flex items-baseline gap-3 lg:order-none lg:row-start-1 lg:block lg:pt-1",
+                    "reveal timeline-meta order-first flex items-baseline gap-3 lg:order-none lg:row-start-1 lg:block lg:pt-1",
                     isLeft ? "lg:col-start-3 lg:pl-2" : "lg:col-start-1 lg:pr-2 lg:text-right",
                   )}
                 >
