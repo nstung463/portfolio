@@ -335,20 +335,22 @@
   animation: reveal-in 0.7s var(--ease-reveal) both;
 }
 
-[data-reveal="in"].reveal-fade {
+[data-reveal="in"][data-reveal-variant="fade"] {
   animation-name: reveal-in-fade;
 }
 
-[data-reveal="in"].timeline-dot {
+[data-reveal="in"][data-reveal-variant="pop"] {
   animation-name: reveal-in-pop;
 }
 
+/* The alternating drift only applies once the entries sit either side of the
+   spine; stacked against the left rail they all rise the same way. */
 @media (width >= 64rem) {
-  [data-reveal="in"].timeline-card-left {
+  [data-reveal="in"][data-reveal-variant="left"] {
     animation-name: reveal-in-left;
   }
 
-  [data-reveal="in"].timeline-card-right {
+  [data-reveal="in"][data-reveal-variant="right"] {
     animation-name: reveal-in-right;
   }
 }
@@ -359,7 +361,7 @@
   animation-delay: 0.12s;
 }
 
-.reveal-stagger > [data-reveal] {
+[data-reveal-stagger] > [data-reveal] {
   animation-delay: calc(var(--reveal-index, 0) * 0.07s);
 }
 

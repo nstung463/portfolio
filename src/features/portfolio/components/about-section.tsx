@@ -3,7 +3,7 @@ import { SectionLabel } from "./section-primitives";
 export function AboutSection() {
   return (
     <section id="about" className="relative mx-auto max-w-6xl px-5 py-[90px]">
-      <div className="reveal grid gap-10 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] lg:gap-16">
+      <div data-reveal className="grid gap-10 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] lg:gap-16">
         <div className="lg:sticky lg:top-24 lg:self-start">
           <SectionLabel n="01" label="About" />
           <p className="mt-6 font-mono text-[11px] leading-6 tracking-[0.08em] text-muted-foreground uppercase">

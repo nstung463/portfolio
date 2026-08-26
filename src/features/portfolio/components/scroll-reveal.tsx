@@ -3,7 +3,9 @@
 import { useEffect } from "react";
 
 /**
- * Reveals `[data-reveal]` elements as they scroll into view.
+ * Reveals `[data-reveal]` elements as they scroll into view. Mark a single
+ * element with `data-reveal`, or a container with `data-reveal-stagger` to
+ * walk its children in one by one; `data-reveal-variant` picks the motion.
  *
  * This deliberately does not use `animation-timeline: view()` like the rest of
  * the page. A scroll-driven animation runs on the compositor and holds its
@@ -19,14 +21,12 @@ import { useEffect } from "react";
 export function ScrollReveal() {
   useEffect(() => {
     const elements = Array.from(
-      document.querySelectorAll<HTMLElement>(
-        "[data-reveal], .reveal, .reveal-fade, .reveal-stagger > *",
-      ),
+      document.querySelectorAll<HTMLElement>("[data-reveal], [data-reveal-stagger] > *"),
     );
     if (elements.length === 0) return;
 
     // Children of a stagger container walk in one after another.
-    for (const container of document.querySelectorAll(".reveal-stagger")) {
+    for (const container of document.querySelectorAll("[data-reveal-stagger]")) {
       Array.from(container.children).forEach((child, index) => {
         (child as HTMLElement).style.setProperty("--reveal-index", String(index));
       });

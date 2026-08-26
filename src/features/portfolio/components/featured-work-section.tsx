@@ -12,7 +12,7 @@ export function FeaturedWorkSection() {
 
       <div className="mx-auto max-w-[1400px] px-5 py-[90px] lg:px-10">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
-          <div className="reveal lg:sticky lg:top-24 lg:self-start">
+          <div data-reveal className="lg:sticky lg:top-24 lg:self-start">
             <SectionLabel n="06" label="Work" />
             <h2 className="mt-4 text-3xl leading-[1.05] font-bold sm:text-5xl lg:text-6xl">
               Proof, not
@@ -35,7 +35,7 @@ export function FeaturedWorkSection() {
             </dl>
           </div>
 
-          <ol className="reveal-stagger flex flex-col lg:h-full">
+          <ol data-reveal-stagger className="flex flex-col lg:h-full">
             {featuredWork.map((work, index) => (
               <li key={work.title} className="lg:flex lg:flex-1">
                 <a

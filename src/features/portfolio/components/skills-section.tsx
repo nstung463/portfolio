@@ -7,8 +7,8 @@ export function SkillsSection() {
       <SectionBleed text="Stack" />
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-[90px]">
         <SectionLabel n="02" label="Skills" />
-        <h2 className="reveal mt-4 text-3xl font-bold sm:text-5xl">What I build with</h2>
-        <div className="reveal-stagger mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <h2 data-reveal className="mt-4 text-3xl font-bold sm:text-5xl">What I build with</h2>
+        <div data-reveal-stagger className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {skillGroups.map((group) => (
             <div key={group.label} className="rounded-[10px] border border-border bg-background p-5">
               <p className="font-mono text-xs font-bold tracking-[0.1em] text-primary uppercase">{group.label}</p>

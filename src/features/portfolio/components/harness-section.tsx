@@ -25,7 +25,7 @@ export function HarnessSection() {
       />
 
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-[90px]">
-        <div className="reveal">
+        <div data-reveal>
           <p className="font-mono text-xs font-bold tracking-[0.15em] text-[#ff7a2f] uppercase">05 · Deep dive</p>
           <h2 className="mt-4 max-w-3xl text-3xl font-bold sm:text-5xl">
             Anatomy of an agent harness

@@ -14,7 +14,7 @@ export function ExperienceSection() {
       <SectionBleed text="Experience" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-5">
-        <div className="reveal">
+        <div data-reveal>
           <SectionLabel n="03" label="Experience" />
           <h2 className="mt-4 text-3xl font-bold sm:text-5xl">Recent work</h2>
         </div>
@@ -47,16 +47,16 @@ export function ExperienceSection() {
                 <span
                   aria-hidden
                   data-reveal
-                  className="timeline-dot absolute top-2 left-2 size-3.5 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_16px_2px_var(--primary)] lg:left-1/2"
+                  data-reveal-variant="pop"
+                  className="absolute top-2 left-2 size-3.5 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_16px_2px_var(--primary)] lg:left-1/2"
                 />
 
                 <article
                   data-reveal
+                  data-reveal-variant={isLeft ? "left" : "right"}
                   className={cn(
-                    "timeline-card rounded-[10px] border border-border bg-card p-5 transition-colors hover:border-primary lg:row-start-1 lg:p-6",
-                    isLeft
-                      ? "timeline-card-left lg:col-start-1"
-                      : "timeline-card-right lg:col-start-3",
+                    "rounded-[10px] border border-border bg-card p-5 transition-colors hover:border-primary lg:row-start-1 lg:p-6",
+                    isLeft ? "lg:col-start-1" : "lg:col-start-3",
                   )}
                 >
                   <p className="font-mono text-xs font-bold tracking-[0.1em] text-primary uppercase">
@@ -81,7 +81,7 @@ export function ExperienceSection() {
                   data-reveal
                   data-reveal-delay
                   className={cn(
-                    "timeline-meta order-first flex items-baseline gap-3 lg:order-none lg:row-start-1 lg:block lg:pt-1",
+                    "order-first flex items-baseline gap-3 lg:order-none lg:row-start-1 lg:block lg:pt-1",
                     isLeft ? "lg:col-start-3 lg:pl-2" : "lg:col-start-1 lg:pr-2 lg:text-right",
                   )}
                 >
