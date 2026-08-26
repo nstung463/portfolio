@@ -99,12 +99,6 @@ export const featuredWork: FeaturedWorkItem[] = [
     desc: "LLM system answering questions over live AI-camera feeds. Underlying method filed as US patent application US20260189519A1.",
     href: "https://eureka.patsnap.com/patent/US20260189519A1",
   },
-  {
-    tag: "OPEN SOURCE",
-    title: "OmniRoute",
-    desc: "A small apply_patch compatibility fix for Codex, ported upstream and merged into OmniRoute. Minor in scope — it is here because I read unfamiliar code and left it working.",
-    href: "https://github.com/diegosouzapw/OmniRoute/pull/4862",
-  },
 ];
 
 export const moreProjects: ProjectItem[] = [
@@ -177,12 +171,11 @@ export const sections: SectionRef[] = [
   { id: "about", n: "01", label: "About" },
   { id: "skills", n: "02", label: "Skills" },
   { id: "experience", n: "03", label: "Experience" },
-  { id: "harness", n: "04", label: "Harness" },
-  { id: "work", n: "05", label: "Work" },
-  { id: "more-projects", n: "06", label: "Projects" },
-  { id: "writing", n: "07", label: "Writing" },
-  { id: "education", n: "08", label: "Education" },
-  { id: "contact", n: "09", label: "Contact" },
+  { id: "more-projects", n: "04", label: "Projects" },
+  { id: "harness", n: "05", label: "Harness" },
+  { id: "work", n: "06", label: "Work" },
+  { id: "education", n: "07", label: "Education" },
+  { id: "contact", n: "08", label: "Contact" },
 ];
 
 export const harnessNodes: HarnessNode[] = [

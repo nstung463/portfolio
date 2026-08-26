@@ -5,9 +5,12 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* Scroll-driven easing: most of the motion lands early in the range, then
-     settles — reads as momentum rather than a linear scrub. */
-  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Scroll-driven easing has to stay gentle. A steep ease-out (easeOutExpo
+     and friends) is ~55% done at 8% of its range, so a scrubbed animation
+     using one appears finished the instant it starts — no motion is visible
+     at all. This is a mild ease-out: it settles at the end without stealing
+     the whole animation into the first few pixels of scroll. */
+  --ease-reveal: cubic-bezier(0.22, 0.61, 0.36, 1);
   --color-brand: var(--brand);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -210,46 +213,6 @@
   }
 }
 
-/* ---------------------------------------------------------------------------
-   Scroll-driven motion — native CSS, no JS observers, no animation library.
-   Everything degrades to "already visible" when `animation-timeline` is
-   unsupported or when the visitor prefers reduced motion.
---------------------------------------------------------------------------- */
-
-@keyframes reveal-up {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 38px, 0) scale(0.985);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* Timeline cards drift in from their own side of the spine (large screens). */
-@keyframes reveal-from-left {
-  from {
-    opacity: 0;
-    transform: translate3d(-48px, 16px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes reveal-from-right {
-  from {
-    opacity: 0;
-    transform: translate3d(48px, 16px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 @keyframes reveal-fade {
   from {
     opacity: 0;
@@ -279,24 +242,6 @@
   }
 }
 
-@keyframes timeline-dot-on {
-  from {
-    background-color: var(--border);
-    box-shadow: 0 0 0 0 transparent;
-    scale: 0.55;
-  }
-  65% {
-    background-color: var(--primary);
-    box-shadow: 0 0 0 7px color-mix(in oklab, var(--primary) 22%, transparent);
-    scale: 1.3;
-  }
-  to {
-    background-color: var(--primary);
-    box-shadow: 0 0 0 4px color-mix(in oklab, var(--primary) 18%, transparent);
-    scale: 1;
-  }
-}
-
 @keyframes bleed-drift {
   from {
     transform: translateX(-4%);
@@ -313,80 +258,95 @@
   scale: 1 1;
 }
 
-.timeline-dot {
-  background-color: var(--primary);
+/* ---------------------------------------------------------------------------
+   Observer-driven reveals (see `scroll-reveal.tsx`).
+
+   `[data-reveal]` with no value is the rendered default, so the content is
+   visible with JavaScript off and before hydration. The script only ever sets
+   "out" on elements that are still below the fold, then flips them to "in" as
+   they scroll up into the reader's view.
+--------------------------------------------------------------------------- */
+
+[data-reveal] {
+  transition:
+    opacity 0.55s ease-out,
+    translate 0.7s var(--ease-reveal),
+    scale 0.7s var(--ease-reveal);
+}
+
+[data-reveal="out"] {
+  opacity: 0;
+  translate: 0 34px;
+}
+
+/* `.reveal-fade` fades without travelling; `.reveal-stagger` walks its own
+   children in one after another. */
+[data-reveal="out"].reveal-fade {
+  translate: none;
+}
+
+.reveal-stagger > [data-reveal] {
+  transition-delay: calc(var(--reveal-index, 0) * 0.07s);
+}
+
+[data-reveal="in"] {
+  opacity: 1;
+  translate: none;
+}
+
+/* The date column follows its card rather than arriving with it. */
+[data-reveal-delay] {
+  transition-delay: 0.12s;
+}
+
+/* Dots pop rather than slide, and sit on top of an always-present unlit dot,
+   so they read as the spine lighting them up one by one. */
+[data-reveal="out"].timeline-dot {
+  translate: none;
+  scale: 0.3;
+}
+
+[data-reveal="in"].timeline-dot {
+  scale: 1;
+}
+
+/* On wide screens each card drifts in from its own side of the spine. */
+@media (width >= 64rem) {
+  [data-reveal="out"].timeline-card-left {
+    translate: -48px 16px;
+  }
+
+  [data-reveal="out"].timeline-card-right {
+    translate: 48px 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    transition: none;
+  }
 }
 
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .reveal {
-      animation: reveal-up var(--ease-reveal) both;
-      animation-timeline: view();
-      animation-range: entry 8% cover 26%;
-    }
-
-    .reveal-fade {
-      animation: reveal-fade linear both;
-      animation-timeline: view();
-      animation-range: entry 4% cover 22%;
-    }
-
-    /* Staggers children of a grid/stack without per-item classes. */
-    .reveal-stagger > * {
-      animation: reveal-up linear both;
-      animation-timeline: view();
-      animation-range: entry 6% cover 30%;
-    }
-
     .drift {
       animation: bleed-drift linear both;
       animation-timeline: view();
       animation-range: cover;
     }
 
-    /* Timeline motion is anchored to a fixed "reading line" at 60vh rather
-       than to percentages of the subject. Percentage offsets are relative to
-       the range length, which for a spine far taller than the viewport put
-       the whole fill into a short, late window — the bar looked frozen for
-       most of the section. Length offsets are absolute, so the fill tracks
-       the scroll 1:1 no matter how many entries the timeline grows to.
-
-       cover 0 = subject top at the viewport bottom, so `cover 40vh` is the
-       moment the spine's top reaches 60vh, and `calc(100% - 60vh)` is the
-       moment its bottom does. */
+    /* The spine fills across its whole pass through the viewport. Anything
+       fancier was tried and rejected: `cover <length>` offsets and a
+       scrollport inset both pinned the fill to a reading line correctly in
+       the middle of the section, but left it collapsed to empty over the last
+       entries — a subject several times taller than the viewport does not
+       resolve either form the way the arithmetic suggests. The plain range is
+       the one that stays correct end to end. */
     .timeline-progress {
       scale: 1 0;
       animation: timeline-fill linear both;
       animation-timeline: view();
-      animation-range: cover 40vh cover calc(100% - 60vh);
-    }
-
-    /* Each dot lights as the fill arrives at it: lit by 58vh, just under the
-       line the spine is crossing at that scroll position. */
-    .timeline-dot {
-      animation: timeline-dot-on var(--ease-reveal) both;
-      animation-timeline: view();
-      animation-range: cover 30vh cover 42vh;
-    }
-
-    /* Card first, then its date column — a beat apart so the entry assembles
-       instead of snapping in as one block. */
-    .timeline-card {
-      animation-range: cover 8vh cover 38vh;
-    }
-
-    .timeline-meta {
-      animation-range: cover 13vh cover 45vh;
-    }
-
-    @media (width >= 64rem) {
-      .timeline-card-left {
-        animation-name: reveal-from-left;
-      }
-
-      .timeline-card-right {
-        animation-name: reveal-from-right;
-      }
+      animation-range: cover 0% cover 100%;
     }
 
     .scroll-progress {

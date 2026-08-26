@@ -4,9 +4,9 @@ import { SectionBleed, SectionLabel } from "./section-primitives";
 
 /**
  * Vertical timeline. Entries alternate sides of a centre spine on large
- * screens and stack against a left rail below that. The spine fills and the
- * dots light up as you scroll — driven by `view()` timelines in `globals.css`,
- * so there is no JavaScript here at all.
+ * screens and stack against a left rail below that. The spine fills with a
+ * `view()` timeline in `globals.css`; the cards, dates and dots are revealed
+ * by the observer in `scroll-reveal.tsx` as each entry scrolls up into view.
  */
 export function ExperienceSection() {
   return (
@@ -27,7 +27,7 @@ export function ExperienceSection() {
           />
           <span
             aria-hidden
-            className="timeline-progress absolute top-2 bottom-2 left-2 w-px bg-primary lg:left-1/2 lg:-translate-x-1/2"
+            className="timeline-progress absolute top-2 bottom-2 left-2 w-px bg-primary shadow-[0_0_12px_1px_var(--primary)] lg:left-1/2 lg:-translate-x-1/2"
           />
 
           {experience.map((job, index) => {
@@ -39,14 +39,21 @@ export function ExperienceSection() {
                 key={job.org}
                 className="relative grid gap-3 pb-14 pl-10 last:pb-0 lg:grid-cols-[1fr_6rem_1fr] lg:gap-0 lg:pb-20 lg:pl-0"
               >
+                {/* Unlit dot underneath, lit dot popping in over it. */}
                 <span
                   aria-hidden
-                  className="timeline-dot absolute top-2 left-2 size-3.5 -translate-x-1/2 rounded-full ring-4 ring-background lg:left-1/2"
+                  className="absolute top-2 left-2 size-3.5 -translate-x-1/2 rounded-full bg-border ring-4 ring-background lg:left-1/2"
+                />
+                <span
+                  aria-hidden
+                  data-reveal
+                  className="timeline-dot absolute top-2 left-2 size-3.5 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_16px_2px_var(--primary)] lg:left-1/2"
                 />
 
                 <article
+                  data-reveal
                   className={cn(
-                    "reveal timeline-card rounded-[10px] border border-border bg-card p-5 transition-colors hover:border-primary lg:row-start-1 lg:p-6",
+                    "timeline-card rounded-[10px] border border-border bg-card p-5 transition-colors hover:border-primary lg:row-start-1 lg:p-6",
                     isLeft
                       ? "timeline-card-left lg:col-start-1"
                       : "timeline-card-right lg:col-start-3",
@@ -71,8 +78,10 @@ export function ExperienceSection() {
 
                 {/* Outer column: index numeral + dates, pulled toward the spine. */}
                 <div
+                  data-reveal
+                  data-reveal-delay
                   className={cn(
-                    "reveal timeline-meta order-first flex items-baseline gap-3 lg:order-none lg:row-start-1 lg:block lg:pt-1",
+                    "timeline-meta order-first flex items-baseline gap-3 lg:order-none lg:row-start-1 lg:block lg:pt-1",
                     isLeft ? "lg:col-start-3 lg:pl-2" : "lg:col-start-1 lg:pr-2 lg:text-right",
                   )}
                 >

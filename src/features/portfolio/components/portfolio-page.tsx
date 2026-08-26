@@ -8,23 +8,23 @@ import { HeroSection } from "./hero-section";
 import { PortfolioFooter } from "./portfolio-footer";
 import { ProjectsSection } from "./projects-section";
 import { ScrollProgress } from "./scroll-progress";
+import { ScrollReveal } from "./scroll-reveal";
 import { SectionIndex } from "./section-index";
 import { SkillsSection } from "./skills-section";
-import { WritingSection } from "./writing-section";
 
 export function PortfolioPage() {
   return (
     <main className="flex-1 bg-background text-foreground">
       <ScrollProgress />
+      <ScrollReveal />
       <SectionIndex />
       <HeroSection />
       <AboutSection />
       <SkillsSection />
       <ExperienceSection />
+      <ProjectsSection />
       <HarnessSection />
       <FeaturedWorkSection />
-      <ProjectsSection />
-      <WritingSection />
       <EducationSection />
       <ContactSection />
       <PortfolioFooter />

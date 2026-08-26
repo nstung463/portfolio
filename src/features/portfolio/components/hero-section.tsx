@@ -58,7 +58,7 @@ export function HeroSection() {
       )}
 
       <div className="relative flex min-h-0 flex-1 flex-col items-center overflow-hidden">
-        <h1 aria-label="AI Engineer" className="relative z-20 mt-3 w-full shrink-0 text-center font-[family-name:var(--font-display)] text-[18vw] leading-[0.82] tracking-[-0.025em] select-none">
+        <h1 aria-label="AI Engineer" className="relative z-20 mt-3 w-full shrink-0 text-center font-[family-name:var(--font-display)] text-[18vw] leading-[0.82] tracking-[-0.025em] text-white dark:text-black select-none">
           AI ENGINEER
         </h1>
 
@@ -112,7 +112,7 @@ export function HeroSection() {
       <div className="relative z-30 shrink-0 overflow-hidden border-t border-white/25 pt-[22px] pb-[26px] lg:-mt-[68px]" style={{ background: "linear-gradient(rgba(255,106,26,0), rgba(255,106,26,0.1))" }}>
         <div className="flex animate-[marquee_8s_linear_infinite] items-center gap-14 whitespace-nowrap">
           {[...heroTags, ...heroTags].map((tag, index) => (
-            <span key={`${tag}-${index}`} className="flex items-center gap-14 font-[family-name:var(--font-display)] text-[5.5vw] leading-none tracking-[-0.01em] uppercase">
+            <span key={`${tag}-${index}`} className="flex items-center gap-14 font-[family-name:var(--font-display)] text-[5.5vw] leading-none tracking-[-0.01em] text-white uppercase dark:text-black">
               <span aria-hidden className="text-[clamp(9px,1.25vw,18px)] leading-none">◆</span>
               {tag}
             </span>

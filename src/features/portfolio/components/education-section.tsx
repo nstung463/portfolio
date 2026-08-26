@@ -6,7 +6,7 @@ export function EducationSection() {
     <section id="education" className="relative overflow-hidden bg-card">
       <SectionBleed text="Education" />
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-[90px]">
-        <SectionLabel n="08" label="Education & Certs" />
+        <SectionLabel n="07" label="Education & Certs" />
         <h2 className="mt-4 text-3xl font-bold sm:text-5xl">Education</h2>
         <div className="reveal-stagger mt-12 space-y-6">
           {education.map((item) => (
