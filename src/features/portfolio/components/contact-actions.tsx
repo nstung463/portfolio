@@ -31,12 +31,15 @@ export function EmailCard() {
 
   return (
     <div className="rounded-2xl bg-white/10 p-1.5 ring-1 ring-white/25 backdrop-blur-sm">
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-        <div className="min-w-0 flex-1 px-4 py-3 text-left">
+      <div className="flex flex-col gap-2 sm:h-[4.25rem] sm:flex-row sm:items-center">
+        <div className="min-w-0 flex-1 px-3.5 py-2.5 text-left sm:py-0">
           <p className="font-mono text-[0.6875rem] tracking-[0.14em] text-white/70 uppercase">
             Email
           </p>
-          <p className="mt-1 truncate font-mono text-base text-white sm:text-lg">
+          {/* Same size as the label on every tile beside it — this used to run
+              noticeably larger, which made the panel read as a headline
+              rather than one entry in the row. */}
+          <p className="mt-0.5 truncate font-mono text-sm font-semibold text-white">
             {siteConfig.email}
           </p>
         </div>
@@ -46,21 +49,21 @@ export function EmailCard() {
             type="button"
             onClick={copy}
             aria-label={copied ? "Email address copied" : "Copy email address"}
-            className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-xl px-4 text-sm font-semibold text-white ring-1 ring-white/30 transition-colors hover:bg-white/15 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none sm:flex-none"
+            className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-xl px-3.5 text-sm font-semibold text-white ring-1 ring-white/30 transition-colors hover:bg-white/15 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none sm:flex-none"
           >
             {copied ? (
-              <Check aria-hidden className="size-4" />
+              <Check aria-hidden className="size-3.5" />
             ) : (
-              <Copy aria-hidden className="size-4" />
+              <Copy aria-hidden className="size-3.5" />
             )}
             <span className="tabular-nums">{copied ? "Copied" : "Copy"}</span>
           </button>
 
           <a
             href={`mailto:${siteConfig.email}`}
-            className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-xl bg-white px-5 text-sm font-semibold text-brand transition-colors hover:bg-white/90 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand focus-visible:outline-none sm:flex-none"
+            className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-xl bg-white px-4 text-sm font-semibold text-brand transition-colors hover:bg-white/90 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand focus-visible:outline-none sm:flex-none"
           >
-            <Mail aria-hidden className="size-4" />
+            <Mail aria-hidden className="size-3.5" />
             Write
           </a>
         </div>
