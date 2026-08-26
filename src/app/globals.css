@@ -258,118 +258,70 @@
   scale: 1 1;
 }
 
-/* ---------------------------------------------------------------------------
-   Observer-driven reveals (see `scroll-reveal.tsx`).
+/* A transition, not an animation. Entries open on the way down and close on
+   the way back up, and only a transition interpolates a state change in both
+   directions. An animation whose `animation-name` does not change is never
+   restarted when its other properties do — flipping `animation-direction` to
+   reverse on one that had already finished just jumped it to the end state,
+   so closing snapped instead of playing.
 
-   `[data-reveal]` with no value is the rendered default, so the content is
-   visible with JavaScript off and before hydration. The script only ever sets
-   "out" on elements that are still below the fold, then flips them to "in" as
-   they scroll up into the reader's view.
---------------------------------------------------------------------------- */
-
-@keyframes reveal-in {
-  from {
-    opacity: 0;
-    translate: 0 34px;
-  }
-  to {
-    opacity: 1;
-    translate: none;
-  }
+   `transition` is one shorthand per element and this replaces whatever the
+   element declared, so `border-color` is re-stated here at the duration
+   Tailwind's `transition-colors` uses: the timeline cards fade their border
+   on hover and would otherwise lose it. */
+[data-reveal] {
+  transition:
+    opacity 0.5s var(--ease-reveal),
+    translate 0.65s var(--ease-reveal),
+    scale 0.65s var(--ease-reveal),
+    border-color 0.15s ease;
 }
 
-@keyframes reveal-in-fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Timeline cards drift in from their own side of the spine. */
-@keyframes reveal-in-left {
-  from {
-    opacity: 0;
-    translate: -48px 16px;
-  }
-  to {
-    opacity: 1;
-    translate: none;
-  }
-}
-
-@keyframes reveal-in-right {
-  from {
-    opacity: 0;
-    translate: 48px 16px;
-  }
-  to {
-    opacity: 1;
-    translate: none;
-  }
-}
-
-/* Dots pop instead of sliding, over an always-present unlit dot, so they read
-   as the spine lighting them up one by one. */
-@keyframes reveal-in-pop {
-  from {
-    opacity: 0;
-    scale: 0.3;
-  }
-  to {
-    opacity: 1;
-    scale: 1;
-  }
-}
-
-/* An animation, not a transition. `transition` is one shorthand per element,
-   so a rule here would silently replace a component's own `transition-colors`
-   — the timeline cards would lose the hover fade on their border. Animations
-   do not collide with it. */
-/* Leaving runs the same keyframes in reverse, so an entry closes along the
-   path it opened along — no second set of keyframes to keep in sync. Exits
-   are quicker than entrances: waiting for something to finish disappearing
-   is dead time, waiting for it to arrive is not. */
+/* Leaving is quicker than arriving — waiting for something to finish
+   disappearing is dead time, waiting for it to arrive is not. */
 [data-reveal="out"] {
-  animation: reveal-in 0.45s var(--ease-reveal) both reverse;
+  transition-duration: 0.35s, 0.4s, 0.4s, 0.15s;
+  opacity: 0;
+  translate: 0 34px;
 }
 
 [data-reveal="in"] {
-  animation: reveal-in 0.7s var(--ease-reveal) both;
+  opacity: 1;
+  translate: none;
+  scale: 1;
 }
 
-/* Bound to `[data-reveal]`, not to the "in" state, so a variant governs the
-   exit as well — otherwise a card that drifted in from the left would close
-   straight downwards. */
-[data-reveal][data-reveal-variant="fade"] {
-  animation-name: reveal-in-fade;
+/* Variants set the hidden end of the travel, so each element closes back
+   along the path it opened along. */
+[data-reveal="out"][data-reveal-variant="fade"] {
+  translate: none;
 }
 
-[data-reveal][data-reveal-variant="pop"] {
-  animation-name: reveal-in-pop;
+[data-reveal="out"][data-reveal-variant="pop"] {
+  translate: none;
+  scale: 0.3;
 }
 
 /* The alternating drift only applies once the entries sit either side of the
    spine; stacked against the left rail they all rise the same way. */
 @media (width >= 64rem) {
-  [data-reveal][data-reveal-variant="left"] {
-    animation-name: reveal-in-left;
+  [data-reveal="out"][data-reveal-variant="left"] {
+    translate: -48px 16px;
   }
 
-  [data-reveal][data-reveal-variant="right"] {
-    animation-name: reveal-in-right;
+  [data-reveal="out"][data-reveal-variant="right"] {
+    translate: 48px 16px;
   }
 }
 
 /* The date column follows its card rather than arriving with it, and the
    children of a stagger container walk in one after another. */
 [data-reveal-delay] {
-  animation-delay: 0.12s;
+  transition-delay: 0.12s;
 }
 
 [data-reveal-stagger] > [data-reveal] {
-  animation-delay: calc(var(--reveal-index, 0) * 0.07s);
+  transition-delay: calc(var(--reveal-index, 0) * 0.07s);
 }
 
 @supports (animation-timeline: view()) {
