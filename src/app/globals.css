@@ -267,64 +267,100 @@
    they scroll up into the reader's view.
 --------------------------------------------------------------------------- */
 
-[data-reveal] {
-  transition:
-    opacity 0.55s ease-out,
-    translate 0.7s var(--ease-reveal),
-    scale 0.7s var(--ease-reveal);
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    translate: 0 34px;
+  }
+  to {
+    opacity: 1;
+    translate: none;
+  }
 }
 
+@keyframes reveal-in-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Timeline cards drift in from their own side of the spine. */
+@keyframes reveal-in-left {
+  from {
+    opacity: 0;
+    translate: -48px 16px;
+  }
+  to {
+    opacity: 1;
+    translate: none;
+  }
+}
+
+@keyframes reveal-in-right {
+  from {
+    opacity: 0;
+    translate: 48px 16px;
+  }
+  to {
+    opacity: 1;
+    translate: none;
+  }
+}
+
+/* Dots pop instead of sliding, over an always-present unlit dot, so they read
+   as the spine lighting them up one by one. */
+@keyframes reveal-in-pop {
+  from {
+    opacity: 0;
+    scale: 0.3;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+/* An animation, not a transition. `transition` is one shorthand per element,
+   so a rule here would silently replace a component's own `transition-colors`
+   — the timeline cards would lose the hover fade on their border. Animations
+   do not collide with it. */
 [data-reveal="out"] {
   opacity: 0;
-  translate: 0 34px;
-}
-
-/* `.reveal-fade` fades without travelling; `.reveal-stagger` walks its own
-   children in one after another. */
-[data-reveal="out"].reveal-fade {
-  translate: none;
-}
-
-.reveal-stagger > [data-reveal] {
-  transition-delay: calc(var(--reveal-index, 0) * 0.07s);
 }
 
 [data-reveal="in"] {
-  opacity: 1;
-  translate: none;
+  animation: reveal-in 0.7s var(--ease-reveal) both;
 }
 
-/* The date column follows its card rather than arriving with it. */
-[data-reveal-delay] {
-  transition-delay: 0.12s;
-}
-
-/* Dots pop rather than slide, and sit on top of an always-present unlit dot,
-   so they read as the spine lighting them up one by one. */
-[data-reveal="out"].timeline-dot {
-  translate: none;
-  scale: 0.3;
+[data-reveal="in"].reveal-fade {
+  animation-name: reveal-in-fade;
 }
 
 [data-reveal="in"].timeline-dot {
-  scale: 1;
+  animation-name: reveal-in-pop;
 }
 
-/* On wide screens each card drifts in from its own side of the spine. */
 @media (width >= 64rem) {
-  [data-reveal="out"].timeline-card-left {
-    translate: -48px 16px;
+  [data-reveal="in"].timeline-card-left {
+    animation-name: reveal-in-left;
   }
 
-  [data-reveal="out"].timeline-card-right {
-    translate: 48px 16px;
+  [data-reveal="in"].timeline-card-right {
+    animation-name: reveal-in-right;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  [data-reveal] {
-    transition: none;
-  }
+/* The date column follows its card rather than arriving with it, and the
+   children of a stagger container walk in one after another. */
+[data-reveal-delay] {
+  animation-delay: 0.12s;
+}
+
+.reveal-stagger > [data-reveal] {
+  animation-delay: calc(var(--reveal-index, 0) * 0.07s);
 }
 
 @supports (animation-timeline: view()) {

@@ -16,7 +16,7 @@ Personal portfolio for Nguyen Son Tung, AI Engineer (LLM / RAG / agent harness).
 - **Framework:** Next.js 16 (App Router, React 19, TypeScript strict)
 - **UI:** shadcn/ui (Base UI primitives, Tailwind CSS v4, `cn()` utility)
 - **Icons:** Lucide React + hand-authored SVG illustrations
-- **Motion:** native CSS scroll-driven animations (`animation-timeline: view()`), no JS animation library
+- **Motion:** CSS only, no animation library. Continuous scroll-linked effects (progress bar, timeline fill) use `animation-timeline: view()`; one-shot reveals use an IntersectionObserver that flips `data-reveal` (`scroll-reveal.tsx`) — scroll-driven ranges proved unreliable for those
 - **Deployment:** Vercel
 
 ## Commands
