@@ -152,6 +152,38 @@ function StackLayerDiagram({ activeIndex }: { activeIndex: number }) {
       />
     );
   }
+  if (activeIndex === 2) {
+    return (
+      <GeneratedDiagramImage
+        src="/images/agent-stack-agent-loop.png"
+        alt="Diagram showing an agent loop connecting a user interface, permissions, tools, execution environment, and persistent state."
+      />
+    );
+  }
+  if (activeIndex === 3) {
+    return (
+      <GeneratedDiagramImage
+        src="/images/agent-stack-tool-layer.png"
+        alt="Diagram showing an agent tool call flowing through a tool registry into files, shell, browser, database, APIs, and MCP before returning a structured result."
+      />
+    );
+  }
+  if (activeIndex === 4) {
+    return (
+      <GeneratedDiagramImage
+        src="/images/agent-stack-agent-harness.png"
+        alt="Diagram showing an agent harness with instructions and skills, task planning, state and memory, context, tools and MCP, sandboxing, permissions, background tasks, subagent delegation, and observability."
+      />
+    );
+  }
+  if (activeIndex === 5) {
+    return (
+      <GeneratedDiagramImage
+        src="/images/agent-stack-loop-engineer.jpg"
+        alt="Diagram showing loop engineering through agent, verification, event-driven, and improvement loops for reliable production systems."
+      />
+    );
+  }
   return <HarnessFlow activeIndex={activeIndex} />;
 }
 

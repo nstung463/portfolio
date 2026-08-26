@@ -219,19 +219,31 @@ export const harnessNodes: HarnessNode[] = [
     id: "runtime",
     step: "05",
     title: "Agent harness",
-    short: "The runtime that makes an agent safe, stateful, and shippable.",
+    short: "The machinery that turns an agent into a durable work system.",
     detail:
-      "The harness wraps the agent with the environment and controls it needs to work for longer than a single turn: state, memory, context, sandboxing, permissions, and connectors.",
-    bullets: ["Sandbox + permissions", "State + memory", "Context management", "MCP connectors"],
+      "A harness is every non-model layer that shapes the agent's work: instructions and skills, planning and task state, memory and context management, tools and MCP, sandboxed execution, permissions, background runs, and subagent delegation.",
+    bullets: [
+      "Instructions + skills",
+      "Plans + task graphs",
+      "State + memory",
+      "Background tasks",
+      "Subagents + delegation",
+      "Sandbox + HITL",
+    ],
   },
   {
     id: "production",
     step: "06",
-    title: "Production systems",
-    short: "Long-running agents, task orchestration, and multi-agent workflows.",
+    title: "Loop Engineer",
+    short: "Stacked loops for reliable work and continuous improvement.",
     detail:
-      "Once the runtime is durable, agents can manage tasks, run in the background, delegate to subagents, connect to real systems, and expose their work to evaluation and observability.",
-    bullets: ["Background tasks", "Subagents + delegation", "Observability + evals", "Audit + recovery"],
+      "Loop engineering is how an agent becomes a production system: define what done means, execute, verify the result, stop or escalate safely, and use traces to improve the next run.",
+    bullets: [
+      "Plan → execute → verify",
+      "Done + stop conditions",
+      "Retry, escalate, recover",
+      "Traces → better loops",
+    ],
   },
 ];
 

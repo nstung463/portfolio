@@ -33,18 +33,26 @@ export function ContactSection() {
             </p>
           </div>
 
-          <div data-reveal data-reveal-delay className="flex flex-col gap-3">
-            <p className="font-mono text-[0.6875rem] tracking-[0.14em] text-white/70 uppercase">
+          {/* One six-column grid for everything on this side, so the tiles
+              line up in even runs — two halves, then three thirds — instead of
+              each being sized by the length of its own label. */}
+          <div data-reveal data-reveal-delay className="grid grid-cols-6 gap-3">
+            <p className="col-span-6 font-mono text-[0.6875rem] tracking-[0.14em] text-white/70 uppercase">
               {contact.emailHint}
             </p>
-            <EmailCard />
 
-            <div className="mt-2 grid gap-3 sm:grid-cols-2">
-              <ResumeLink hint={contact.resumeHint} cta={contact.resumeCta} />
-              <PhoneLink />
+            <div className="col-span-6">
+              <EmailCard />
             </div>
 
-            <SocialLinks className="mt-4" />
+            <ResumeLink
+              hint={contact.resumeHint}
+              cta={contact.resumeCta}
+              className="col-span-6 sm:col-span-3"
+            />
+            <PhoneLink className="col-span-6 sm:col-span-3" />
+
+            <SocialLinks />
           </div>
         </div>
       </div>

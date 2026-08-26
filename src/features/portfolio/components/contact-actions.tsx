@@ -70,17 +70,35 @@ export function EmailCard() {
 }
 
 /**
+ * Every tile under the email panel is built from these, so the row of two and
+ * the row of three share a radius, a height, an icon plate and a hover. They
+ * were three different shapes before — rounded cards beside rounded-full
+ * pills, each sized by its own text — which is what made the block look
+ * unsettled.
+ */
+const tileClass =
+  "group flex h-full min-h-[4.25rem] items-center gap-3.5 rounded-2xl px-4 py-3.5 ring-1 ring-white/25 transition-colors hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none";
+
+const plateClass =
+  "flex size-10 shrink-0 items-center justify-center rounded-xl bg-white/15 ring-1 ring-white/20";
+
+/**
  * The résumé is a page on this site, so it is a link that reads as one: a
  * straight arrow, no `target="_blank"`. It used to sit in the row of social
  * pills wearing the outbound mark, which promised a different site.
  */
-export function ResumeLink({ hint, cta }: { hint: string; cta: string }) {
+export function ResumeLink({
+  hint,
+  cta,
+  className,
+}: {
+  hint: string;
+  cta: string;
+  className?: string;
+}) {
   return (
-    <a
-      href="/resume"
-      className="group flex items-center gap-4 rounded-2xl px-4 py-3.5 ring-1 ring-white/25 transition-colors hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
-    >
-      <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-white/15 ring-1 ring-white/20">
+    <a href="/resume" className={cn(tileClass, className)}>
+      <span className={plateClass}>
         <FileText aria-hidden className="size-[1.125rem]" />
       </span>
       <span className="min-w-0 flex-1 text-left">
@@ -95,13 +113,10 @@ export function ResumeLink({ hint, cta }: { hint: string; cta: string }) {
   );
 }
 
-export function PhoneLink() {
+export function PhoneLink({ className }: { className?: string }) {
   return (
-    <a
-      href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
-      className="group flex items-center gap-4 rounded-2xl px-4 py-3.5 ring-1 ring-white/25 transition-colors hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
-    >
-      <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-white/15 ring-1 ring-white/20">
+    <a href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`} className={cn(tileClass, className)}>
+      <span className={plateClass}>
         <Phone aria-hidden className="size-[1.125rem]" />
       </span>
       <span className="min-w-0 flex-1 text-left">
@@ -143,26 +158,31 @@ const socials = [
 ];
 
 /** These genuinely are references elsewhere, so these keep the outbound mark. */
-export function SocialLinks({ className }: { className?: string }) {
+export function SocialLinks() {
   return (
-    <ul className={cn("flex flex-wrap gap-2", className)}>
+    <>
       {socials.map(({ href, label, Icon }) => (
-        <li key={label}>
-          <a
-            href={href}
-            target="_blank"
-            rel="noreferrer"
-            className="group inline-flex items-center gap-2 rounded-full py-2 pr-3 pl-3.5 text-sm text-white/90 ring-1 ring-white/25 transition-colors hover:bg-white/10 hover:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
-          >
+        <a
+          key={label}
+          href={href}
+          target="_blank"
+          rel="noreferrer"
+          // A third of the column is not wide enough for the plate, the full
+          // name and the arrow at the spacing the wider tiles use.
+          className={cn(tileClass, "col-span-6 gap-2.5 px-3 sm:col-span-2")}
+        >
+          <span className={cn(plateClass, "size-9")}>
             <Icon />
+          </span>
+          <span className="min-w-0 flex-1 truncate text-[0.8125rem] font-semibold text-white">
             {label}
-            <ArrowUpRight
-              aria-hidden
-              className="size-3.5 text-white/50 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            />
-          </a>
-        </li>
+          </span>
+          <ArrowUpRight
+            aria-hidden
+            className="size-3.5 shrink-0 text-white/50 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          />
+        </a>
       ))}
-    </ul>
+    </>
   );
 }
