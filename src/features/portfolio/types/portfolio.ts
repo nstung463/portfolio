@@ -39,3 +39,26 @@ export interface EducationItem {
   title: string;
   org: string;
 }
+
+export type HarnessNodeId =
+  | "loop"
+  | "tools"
+  | "sandbox"
+  | "hitl"
+  | "memory"
+  | "connectors";
+
+export interface HarnessNode {
+  id: HarnessNodeId;
+  step: string;
+  title: string;
+  short: string;
+  detail: string;
+  bullets: string[];
+}
+
+export interface SectionRef {
+  id: string;
+  n: string;
+  label: string;
+}

@@ -1,42 +1,75 @@
-import { featuredWork } from "../data/portfolio-content";
-import { SectionBleed, SectionLabel, Stamp } from "./section-primitives";
+import { featuredWork, stats } from "../data/portfolio-content";
+import { SectionLabel, Stamp } from "./section-primitives";
 
+/**
+ * Full-bleed split. Left column is a sticky editorial header, right column is
+ * the evidence — no card grid, no section bleed watermark.
+ */
 export function FeaturedWorkSection() {
   return (
-    <section id="work" className="relative overflow-hidden bg-card">
-      <SectionBleed text="Work" />
+    <section id="work" className="relative overflow-hidden border-y border-border bg-card">
       <Stamp className="top-10 right-[6%]">{"// patent + open source"}</Stamp>
-      <div className="relative z-10 mx-auto max-w-6xl px-5 py-[70px]">
-        <SectionLabel n="04" label="Work" />
-        <h2 className="mt-4 text-3xl font-bold sm:text-5xl">Patent &amp; open source</h2>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2">
-          {featuredWork.map((work) => (
-            <a key={work.title} href={work.href} target="_blank" rel="noreferrer" className="group flex flex-col rounded-[10px] border border-border bg-background p-5 transition-colors hover:border-primary">
-              <span className="w-fit rounded-full bg-primary/10 px-2.5 py-1 font-mono text-[10px] font-bold tracking-[0.1em] text-primary uppercase">{work.tag}</span>
-              <p className="mt-3 text-lg font-bold group-hover:text-primary">{work.title} ↗</p>
-              <p className="mt-2 text-sm text-muted-foreground">{work.desc}</p>
-            </a>
-          ))}
+
+      <div className="mx-auto grid max-w-[1400px] gap-10 px-5 py-[90px] lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16 lg:px-10">
+        <div className="reveal lg:sticky lg:top-24 lg:self-start">
+          <SectionLabel n="05" label="Work" />
+          <h2 className="mt-4 text-3xl leading-[1.05] font-bold sm:text-5xl lg:text-6xl">
+            Proof, not
+            <br />
+            adjectives.
+          </h2>
+          <p className="mt-5 max-w-sm text-sm leading-6 text-muted-foreground">
+            Two pieces of work I can point at outside a CV: a filed US patent, and a fix of mine
+            merged into a repository with tens of thousands of stars.
+          </p>
+
+          <dl className="mt-9 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-border pt-7">
+            {stats.map((stat) => (
+              <div key={stat.label}>
+                <dt className="sr-only">{stat.label}</dt>
+                <dd className="font-mono text-2xl font-bold text-primary">{stat.value}</dd>
+                <p className="mt-1 text-[11px] leading-4 text-muted-foreground">{stat.label}</p>
+              </div>
+            ))}
+          </dl>
         </div>
-        <div className="mt-6 rounded-[10px] bg-primary p-6 text-primary-foreground sm:p-8">
-          <p className="font-mono text-[10px] font-bold tracking-[0.15em] uppercase">{"// case study · infinity"}</p>
-          <div className="mt-4 grid gap-8 lg:grid-cols-[1fr_1.15fr] lg:items-end">
-            <div>
-              <h3 className="max-w-lg text-2xl font-bold sm:text-3xl">An agent harness built for real work.</h3>
-              <p className="mt-3 max-w-lg text-sm leading-6 text-white/85">
-                A standalone runtime for agent sessions: wiring the loop to safe tools, isolated execution, approvals, memory, skills, and Microsoft 365 connectors.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
-              {["Agent loop", "Tools", "Sandbox", "HITL", "MCP connectors"].map((step, index) => (
-                <div key={step} className="rounded-md border border-white/30 bg-white/10 p-3">
-                  <p className="font-mono text-[10px] text-white/65">0{index + 1}</p>
-                  <p className="mt-2 text-xs font-semibold leading-4">{step}</p>
+
+        <ol className="reveal-stagger flex flex-col">
+          {featuredWork.map((work, index) => (
+            <li key={work.title}>
+              <a
+                href={work.href}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex flex-col border-t border-border py-8 transition-colors last:border-b hover:border-primary"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="font-mono text-[10px] font-bold tracking-[0.14em] text-muted-foreground">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="rounded-full bg-primary/10 px-2.5 py-1 font-mono text-[10px] font-bold tracking-[0.1em] text-primary uppercase">
+                    {work.tag}
+                  </span>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
+
+                <h3 className="mt-4 flex items-baseline gap-3 text-2xl font-bold transition-colors group-hover:text-primary sm:text-4xl">
+                  {work.title}
+                  <span
+                    aria-hidden
+                    className="text-lg transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                  >
+                    ↗
+                  </span>
+                </h3>
+                <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">{work.desc}</p>
+                <span
+                  aria-hidden
+                  className="mt-5 h-px w-0 bg-primary transition-all duration-500 group-hover:w-full"
+                />
+              </a>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );

@@ -1,15 +1,24 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { education, experience, skillGroups } from "@/features/portfolio/data/portfolio-content";
 
 export const metadata: Metadata = {
-  title: "Nguyen Son Tung — Resume",
+  title: "Resume",
   description: "Resume of Nguyen Son Tung, AI Engineer specializing in LLM, RAG, and agent systems.",
+  alternates: { canonical: "/resume" },
 };
 
 export default function ResumePage() {
   return (
     <main className="mx-auto min-h-screen max-w-4xl px-6 py-12 text-foreground sm:px-10 sm:py-16">
       <header className="border-b border-border pb-8">
+        <div className="mb-8 flex items-center justify-between">
+          <Link href="/" className="font-mono text-[11px] tracking-[0.14em] text-muted-foreground uppercase hover:text-primary">
+            ← back to portfolio
+          </Link>
+          <ThemeToggle className="text-muted-foreground" />
+        </div>
         <p className="font-mono text-xs tracking-[0.18em] text-primary uppercase">AI Engineer · LLM / RAG / Agent Systems</p>
         <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-6xl">Nguyen Son Tung</h1>
         <p className="mt-4 text-sm text-muted-foreground">nstung463@gmail.com · 0335 955 790 · Ho Chi Minh City, Vietnam</p>

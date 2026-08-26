@@ -14,7 +14,7 @@ export function SectionBleed({ text, tone = "dark" }: { text: string; tone?: "da
     <div aria-hidden className="pointer-events-none absolute inset-0 z-0 flex items-center overflow-hidden select-none">
       <div
         className={cn(
-          "whitespace-nowrap font-[family-name:var(--font-display)] text-[10rem] leading-none uppercase",
+          "drift whitespace-nowrap font-[family-name:var(--font-display)] text-[10rem] leading-none uppercase",
           tone === "dark" ? "text-foreground/5" : "text-white/10",
         )}
       >

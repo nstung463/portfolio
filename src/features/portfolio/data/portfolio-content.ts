@@ -2,7 +2,9 @@ import type {
   EducationItem,
   ExperienceItem,
   FeaturedWorkItem,
+  HarnessNode,
   ProjectItem,
+  SectionRef,
   SkillGroup,
   Stat,
 } from "../types/portfolio";
@@ -47,17 +49,6 @@ export const stats: Stat[] = [
 
 export const experience: ExperienceItem[] = [
   {
-    period: "Jul 2025 — Present",
-    org: "ITOCHU GPT",
-    role: "AI Engineer",
-    meta: "Client: Itochu Corporation · Team of ~20",
-    points: [
-      "Own the \"file agent\" subsystem: PPTX/DOCX/XLSX generation & editing, sandboxed code execution, document-conversion pipelines.",
-      "Delivered video-analytics Q&A and streaming voice (TTS) features.",
-      "Leading the platform's migration from workflow-based automation to a fully agentic architecture.",
-    ],
-  },
-  {
     period: "May 2026 — Present",
     org: "Infinity",
     role: "Lead Engineer",
@@ -66,6 +57,17 @@ export const experience: ExperienceItem[] = [
       "Designed and built an AI agent harness end-to-end — tools, permissions, sandbox, skills, and connector layer.",
       "Integrated OpenSandbox as a pluggable, isolated execution backend for agent-generated shell/file operations.",
       "Built a human-in-the-loop (HITL) tool-approval system and MCP connector layer for Microsoft 365 tools.",
+    ],
+  },
+  {
+    period: "Jul 2025 — Present",
+    org: "ITOCHU GPT",
+    role: "AI Engineer",
+    meta: "Client: Itochu Corporation · Team of ~20",
+    points: [
+      "Own the \"file agent\" subsystem: PPTX/DOCX/XLSX generation & editing, sandboxed code execution, document-conversion pipelines.",
+      "Delivered video-analytics Q&A and streaming voice (TTS) features.",
+      "Leading the platform's migration from workflow-based automation to a fully agentic architecture.",
     ],
   },
   {
@@ -168,5 +170,74 @@ export const education: EducationItem[] = [
     period: "2020 — 2024",
     title: "B.Sc. in Artificial Intelligence",
     org: "FPT University · GPA 8.45/10",
+  },
+];
+
+export const sections: SectionRef[] = [
+  { id: "about", n: "01", label: "About" },
+  { id: "skills", n: "02", label: "Skills" },
+  { id: "experience", n: "03", label: "Experience" },
+  { id: "harness", n: "04", label: "Harness" },
+  { id: "work", n: "05", label: "Work" },
+  { id: "more-projects", n: "06", label: "Projects" },
+  { id: "writing", n: "07", label: "Writing" },
+  { id: "education", n: "08", label: "Education" },
+  { id: "contact", n: "09", label: "Contact" },
+];
+
+export const harnessNodes: HarnessNode[] = [
+  {
+    id: "loop",
+    step: "01",
+    title: "Agent loop",
+    short: "Plan → act → observe, until the task is actually done.",
+    detail:
+      "The loop owns the conversation state, decides when to call a tool, and feeds the result back to the model. It is resumable: a session can be interrupted, persisted, and picked up later without losing the plan.",
+    bullets: ["Streaming turn execution", "Resumable session state", "Token & cost accounting", "Sub-agent delegation"],
+  },
+  {
+    id: "tools",
+    step: "02",
+    title: "Tool layer",
+    short: "A typed contract between the model and everything it can touch.",
+    detail:
+      "Every capability is a schema-validated tool with a narrow surface. Bad arguments fail loudly before anything executes, and each tool declares whether it reads, writes, or reaches the network — which is what the permission layer keys on.",
+    bullets: ["JSON-schema validated args", "Read / write / network classes", "Structured tool results", "Per-tool timeouts"],
+  },
+  {
+    id: "sandbox",
+    step: "03",
+    title: "Sandbox",
+    short: "Model-authored code runs somewhere it cannot hurt anyone.",
+    detail:
+      "Shell and file operations execute inside a pluggable isolated backend rather than the host. The filesystem is scoped to the session workspace, the network is deny-by-default, and the whole environment is disposable.",
+    bullets: ["Pluggable execution backend", "Workspace-scoped filesystem", "Deny-by-default egress", "Disposable per session"],
+  },
+  {
+    id: "hitl",
+    step: "04",
+    title: "HITL approvals",
+    short: "The human keeps the irreversible decisions.",
+    detail:
+      "Anything destructive or outward-facing pauses for an explicit approval, showing the exact command or payload. Approvals can be granted once, for a session, or persisted as a rule — so the agent gets faster without getting riskier.",
+    bullets: ["Diff & command preview", "Once / session / always scopes", "Persisted allow rules", "Full audit trail"],
+  },
+  {
+    id: "memory",
+    step: "05",
+    title: "Memory & skills",
+    short: "What the agent carries between sessions.",
+    detail:
+      "Durable facts live in a file-backed memory store with an index the agent loads each run. Skills are packaged instruction sets that load on demand, so capability grows without inflating every prompt.",
+    bullets: ["File-backed memory index", "On-demand skill loading", "Context compaction", "Project vs. user scope"],
+  },
+  {
+    id: "connectors",
+    step: "06",
+    title: "MCP connectors",
+    short: "Where the agent meets the systems people actually work in.",
+    detail:
+      "An MCP client layer mounts external servers — Microsoft 365 among them — as first-class tools. Each connector inherits the same validation, permission, and audit path as a built-in tool; nothing gets a side door.",
+    bullets: ["MCP client transport", "Microsoft 365 tools", "OAuth token lifecycle", "Same permission path"],
   },
 ];

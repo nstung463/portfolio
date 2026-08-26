@@ -1,43 +1,57 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 import { heroTags } from "../data/portfolio-content";
+
+const navLinks = [
+  { href: "#more-projects", label: "projects" },
+  { href: "#harness", label: "harness" },
+  { href: "#about", label: "about" },
+];
 
 export function HeroSection() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <section id="top" className="relative flex h-dvh min-h-[440px] flex-col overflow-hidden bg-primary text-primary-foreground">
-      <div className="sticky top-0 z-30 grid shrink-0 grid-cols-[1fr_auto] items-center gap-4 bg-primary px-5 py-3.5 lg:grid-cols-[auto_1fr_auto]">
+    <section id="top" className="relative flex h-dvh min-h-[440px] flex-col overflow-hidden bg-brand text-white">
+      <div className="sticky top-0 z-30 grid shrink-0 grid-cols-[1fr_auto] items-center gap-4 bg-brand px-5 py-3.5 lg:grid-cols-[auto_1fr_auto]">
         <a href="#top" className="font-mono text-[11px] font-bold tracking-[0.18em]">◆ NST</a>
         <nav className="hidden gap-6 font-mono text-[11px] font-normal tracking-[0.15em] uppercase lg:flex lg:justify-center">
-          <a href="#more-projects" className="hover:opacity-70">projects</a>
-          <a href="#writing" className="hover:opacity-70">writing</a>
-          <a href="#about" className="hover:opacity-70">about</a>
+          {navLinks.map((link) => (
+            <a key={link.href} href={link.href} className="hover:opacity-70">{link.label}</a>
+          ))}
           <a href="/resume" target="_blank" rel="noreferrer" className="hover:opacity-70">resume</a>
         </nav>
-        <a href="#contact" className="hidden items-center gap-2 font-mono text-[11px] font-bold tracking-[0.15em] uppercase hover:opacity-70 lg:inline-flex">
-          {"// hire me"}
-          <span className="flex size-5 items-center justify-center rounded-full border border-current text-[10px]">↗</span>
-        </a>
-        <button
-          aria-label="Open menu"
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((value) => !value)}
-          className="flex size-11 flex-col items-center justify-center gap-1.5 justify-self-end lg:hidden"
-        >
-          <span className={cn("h-0.5 w-5 bg-current transition-transform", menuOpen && "translate-y-2 rotate-45")} />
-          <span className={cn("h-0.5 w-5 bg-current transition-opacity", menuOpen && "opacity-0")} />
-          <span className={cn("h-0.5 w-5 bg-current transition-transform", menuOpen && "-translate-y-2 -rotate-45")} />
-        </button>
+        <div className="hidden items-center gap-4 lg:flex">
+          <a href="#contact" className="inline-flex items-center gap-2 font-mono text-[11px] font-bold tracking-[0.15em] uppercase hover:opacity-70">
+            {"// hire me"}
+            <span className="flex size-5 items-center justify-center rounded-full border border-current text-[10px]">↗</span>
+          </a>
+          <ThemeToggle />
+        </div>
+        <div className="flex items-center gap-2 justify-self-end lg:hidden">
+          <ThemeToggle />
+          <button
+            aria-label="Open menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((value) => !value)}
+            className="flex size-11 flex-col items-center justify-center gap-1.5"
+          >
+            <span className={cn("h-0.5 w-5 bg-current transition-transform", menuOpen && "translate-y-2 rotate-45")} />
+            <span className={cn("h-0.5 w-5 bg-current transition-opacity", menuOpen && "opacity-0")} />
+            <span className={cn("h-0.5 w-5 bg-current transition-transform", menuOpen && "-translate-y-2 -rotate-45")} />
+          </button>
+        </div>
       </div>
 
       {menuOpen && (
-        <div className="relative z-30 flex flex-col gap-5 bg-primary px-5 pt-2 pb-6 font-mono text-xs font-bold tracking-[0.15em] uppercase lg:hidden">
-          <a href="#more-projects" onClick={() => setMenuOpen(false)}>projects</a>
-          <a href="#writing" onClick={() => setMenuOpen(false)}>writing</a>
-          <a href="#about" onClick={() => setMenuOpen(false)}>about</a>
+        <div className="relative z-30 flex flex-col gap-5 bg-brand px-5 pt-2 pb-6 font-mono text-xs font-bold tracking-[0.15em] uppercase lg:hidden">
+          {navLinks.map((link) => (
+            <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>{link.label}</a>
+          ))}
           <a href="/resume" target="_blank" rel="noreferrer">resume ↗</a>
           <a href="#contact" onClick={() => setMenuOpen(false)}>{"// hire me ↗"}</a>
         </div>
@@ -53,17 +67,23 @@ export function HeroSection() {
             <span className="block origin-center scale-y-[0.66] whitespace-nowrap font-[family-name:var(--font-watermark)] text-[28vw] leading-[0.85] tracking-[-0.045em] text-white/30 select-none [-webkit-text-stroke:0px_transparent] [animation:watermark-pulse_2s_steps(2,jump-none)_1.2s_infinite]">TUNG</span>
           </div>
 
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/avatar.png"
-            alt="Nguyen Son Tung"
-            className="pointer-events-none relative z-10 h-full w-auto max-w-full origin-bottom scale-[1.08] object-contain"
+          <div
+            className="pointer-events-none relative z-10 h-full w-full origin-bottom scale-[1.08]"
             style={{
-              filter: "drop-shadow(0 0 70px rgba(255,130,50,0.42))",
               maskImage: "linear-gradient(#000 0%, #000 93%, rgba(0,0,0,0.65) 97%, rgba(0,0,0,0) 100%)",
               WebkitMaskImage: "linear-gradient(#000 0%, #000 93%, rgba(0,0,0,0.65) 97%, rgba(0,0,0,0) 100%)",
             }}
-          />
+          >
+            <Image
+              src="/images/avatar.webp"
+              alt="Nguyen Son Tung"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 60vw"
+              className="object-contain"
+              style={{ filter: "drop-shadow(0 0 70px rgba(255,130,50,0.42))" }}
+            />
+          </div>
 
           <div aria-hidden className="pointer-events-none absolute inset-0 z-[15]" style={{ background: "linear-gradient(rgba(255,106,26,0) 65%, rgba(255,106,26,0.3) 88%, rgba(255,106,26,0.7) 100%)" }} />
 

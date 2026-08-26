@@ -20,15 +20,15 @@ const buildNotes = [
 
 export function WritingSection() {
   return (
-    <section id="writing" className="relative mx-auto max-w-6xl overflow-hidden px-5 py-[70px]">
+    <section id="writing" className="relative mx-auto max-w-6xl overflow-hidden px-5 py-[90px]">
       <SectionBleed text="Writing" />
-      <div className="relative z-10">
-        <SectionLabel n="06" label="Writing" />
+      <div className="relative z-10 reveal">
+        <SectionLabel n="07" label="Writing" />
         <h2 className="mt-4 text-3xl font-bold sm:text-5xl">Systems I think about</h2>
         <p className="mt-4 max-w-xl text-muted-foreground">
           Short field notes from building reliable LLM applications, agent runtimes, and the infrastructure around them.
         </p>
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        <div className="reveal-stagger mt-10 grid gap-4 md:grid-cols-3">
           {buildNotes.map((note) => (
             <article key={note.label} className="rounded-[10px] border border-border bg-card p-5">
               <p className="font-mono text-[10px] font-bold tracking-[0.1em] text-primary">{note.label}</p>
