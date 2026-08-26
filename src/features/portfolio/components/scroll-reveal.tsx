@@ -56,15 +56,16 @@ export function ScrollReveal() {
     const show = (el: HTMLElement) => {
       el.dataset.reveal = "in";
       pending.delete(el);
-      if (!repeats.has(el)) observer.unobserve(el);
+      if (!repeats.has(el)) opening.unobserve(el);
     };
 
-    const observer = new IntersectionObserver(
+    // Arriving: an element opens once it has climbed a quarter of the way up
+    // the screen, so it appears where the reader is looking rather than at the
+    // very bottom edge.
+    const opening = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          const el = entry.target as HTMLElement;
-          if (entry.isIntersecting) show(el);
-          else if (repeats.has(el)) el.dataset.reveal = "out";
+          if (entry.isIntersecting) show(entry.target as HTMLElement);
         }
 
         // A jump — an in-page anchor, End, or a flung scroll — can carry
@@ -76,15 +77,40 @@ export function ScrollReveal() {
           if (!repeats.has(el) && el.getBoundingClientRect().bottom < 0) show(el);
         }
       },
-      // Fires once the element has climbed a quarter of the way up the
-      // screen, so it appears where the reader is looking rather than at
-      // the very bottom edge.
       { rootMargin: "0px 0px -25% 0px", threshold: 0 },
     );
 
-    for (const el of pending) observer.observe(el);
+    // Leaving: closing is measured against the halfway line rather than the
+    // quarter line it opened on. Sharing one line meant a card had to sink
+    // almost to the bottom edge before it closed, which read as far too late
+    // on the way back up.
+    //
+    // The gap between the two lines is deliberate, and it is what makes this
+    // work without tracking which way the reader is scrolling: an observer
+    // only reports a *change*, so a card that opened at the quarter line and
+    // is still short of the halfway line is never told to close — the closing
+    // observer last spoke when the card was below that line, and says nothing
+    // more until the card crosses it. Coming back up, that crossing is exactly
+    // the moment to close.
+    const closing = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const el = entry.target as HTMLElement;
+          if (!entry.isIntersecting && repeats.has(el)) el.dataset.reveal = "out";
+        }
+      },
+      { rootMargin: "0px 0px -50% 0px", threshold: 0 },
+    );
 
-    return () => observer.disconnect();
+    // Repeating elements are watched for arrival even when they start open,
+    // since they will close and have to be able to open again.
+    for (const el of new Set([...pending, ...repeats])) opening.observe(el);
+    for (const el of repeats) closing.observe(el);
+
+    return () => {
+      opening.disconnect();
+      closing.disconnect();
+    };
   }, []);
 
   return null;

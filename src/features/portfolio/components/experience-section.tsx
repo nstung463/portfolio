@@ -1,11 +1,12 @@
 import { cn } from "@/lib/utils";
 import { experience } from "../data/portfolio-content";
 import { SectionBleed, SectionLabel } from "./section-primitives";
+import { TimelineSpine } from "./timeline-spine";
 
 /**
  * Vertical timeline. Entries alternate sides of a centre spine on large
- * screens and stack against a left rail below that. The spine fills with a
- * `view()` timeline in `globals.css`; the cards, dates and dots are revealed
+ * screens and stack against a left rail below that. The spine fills with the
+ * scroll position (`timeline-spine.tsx`); the cards, dates and dots are revealed
  * by the observer in `scroll-reveal.tsx` as each entry scrolls up into view,
  * and closed again on the way back up — `data-reveal-repeat` opts the list
  * into that, so the section reads the same scrolled either way.
@@ -22,15 +23,7 @@ export function ExperienceSection() {
         </div>
 
         <ol data-reveal-repeat className="relative mt-16 lg:mt-20">
-          {/* spine */}
-          <span
-            aria-hidden
-            className="absolute top-2 bottom-2 left-2 w-px bg-border lg:left-1/2 lg:-translate-x-1/2"
-          />
-          <span
-            aria-hidden
-            className="timeline-progress absolute top-2 bottom-2 left-2 w-px bg-primary shadow-[0_0_12px_1px_var(--primary)] lg:left-1/2 lg:-translate-x-1/2"
-          />
+          <TimelineSpine />
 
           {experience.map((job, index) => {
             const isLeft = index % 2 === 0;

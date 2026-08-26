@@ -231,17 +231,6 @@
   }
 }
 
-/* `scale` (not `transform`) so Tailwind's `-translate-x-1/2` on the same
-   element survives — in Tailwind v4 those are independent properties. */
-@keyframes timeline-fill {
-  from {
-    scale: 1 0;
-  }
-  to {
-    scale: 1 1;
-  }
-}
-
 @keyframes bleed-drift {
   from {
     transform: translateX(-4%);
@@ -251,8 +240,9 @@
   }
 }
 
-/* Defaults for browsers without scroll-driven animations, and for anyone who
-   prefers reduced motion: the timeline simply renders in its finished state. */
+/* The fill is scrubbed from `timeline-spine.tsx`, which scales this from the
+   top edge. Full is the resting default: that is what shows with JavaScript
+   off, and what stays for a visitor who asked for reduced motion. */
 .timeline-progress {
   transform-origin: top;
   scale: 1 1;
@@ -330,20 +320,6 @@
       animation: bleed-drift linear both;
       animation-timeline: view();
       animation-range: cover;
-    }
-
-    /* The spine fills across its whole pass through the viewport. Anything
-       fancier was tried and rejected: `cover <length>` offsets and a
-       scrollport inset both pinned the fill to a reading line correctly in
-       the middle of the section, but left it collapsed to empty over the last
-       entries — a subject several times taller than the viewport does not
-       resolve either form the way the arithmetic suggests. The plain range is
-       the one that stays correct end to end. */
-    .timeline-progress {
-      scale: 1 0;
-      animation: timeline-fill linear both;
-      animation-timeline: view();
-      animation-range: cover 0% cover 100%;
     }
 
     .scroll-progress {

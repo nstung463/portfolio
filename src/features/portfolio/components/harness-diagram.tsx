@@ -2,7 +2,7 @@
 
 import { useId, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { harnessNodes } from "../data/portfolio-content";
+import { harnessDiagramContent, harnessNodes } from "../data/portfolio-content";
 import type { HarnessNodeId } from "../types/portfolio";
 
 export function HarnessDiagram() {
@@ -124,13 +124,168 @@ export function HarnessDiagram() {
           </ul>
         </div>
 
-        <HarnessFlow activeIndex={activeIndex} />
+        <StackLayerDiagram activeIndex={activeIndex} />
       </div>
 
       <p className="mt-3 font-mono text-[10px] tracking-[0.14em] text-white/40 uppercase">
         {"// click a layer · arrow keys to step through"}
       </p>
     </div>
+  );
+}
+
+function StackLayerDiagram({ activeIndex }: { activeIndex: number }) {
+  if (activeIndex === 0) return <ModelFoundationsDiagram />;
+  if (activeIndex === 1) return <PostTrainingDiagram />;
+  return <HarnessFlow activeIndex={activeIndex} />;
+}
+
+function PaperDiagram({ children }: { children: React.ReactNode }) {
+  return (
+    <div aria-hidden className="relative w-full max-w-xl lg:ml-auto">
+      <svg viewBox="0 0 520 330" className="h-auto w-full">
+        {children}
+      </svg>
+    </div>
+  );
+}
+
+function ModelFoundationsDiagram() {
+  const { sources, tokenization, transformer, output } = harnessDiagramContent.model;
+
+  return (
+    <PaperDiagram>
+      <defs>
+        <pattern id="model-paper-dots" width="18" height="18" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="0.8" fill="#1a1714" opacity="0.14" />
+        </pattern>
+        <marker id="model-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <path d="M0 0L8 4L0 8Z" fill="#e35b20" />
+        </marker>
+      </defs>
+      <rect x="4" y="4" width="512" height="322" rx="18" fill="#f7f2ee" />
+      <rect x="4" y="4" width="512" height="322" rx="18" fill="url(#model-paper-dots)" />
+      <text x="28" y="38" fill="#1a1714" fontSize="11" fontFamily="ui-monospace, monospace" letterSpacing="2">
+        MODEL FOUNDATIONS
+      </text>
+      {sources.map((source, index) => {
+        const y = 72 + index * 49;
+        const rotations = [-2, 1.5, -1, 2];
+        return (
+          <g key={source} transform={`rotate(${rotations[index]} 62 ${y + 16})`}>
+            <rect x="28" y={y} width="82" height="32" rx="7" fill={index % 2 ? "#d9e4dc" : "#f1c38c"} stroke="#1a1714" strokeWidth="1.5" />
+            <text x="69" y={y + 20} textAnchor="middle" fill="#1a1714" fontSize="11" fontFamily="ui-monospace, monospace">
+              {source}
+            </text>
+          </g>
+        );
+      })}
+      <path d="M120 88C145 88 142 126 164 138" fill="none" stroke="#1a1714" strokeWidth="1.5" markerEnd="url(#model-arrow)" />
+      <path d="M120 137C146 137 142 148 164 151" fill="none" stroke="#1a1714" strokeWidth="1.5" markerEnd="url(#model-arrow)" />
+      <path d="M120 186C146 186 142 171 164 165" fill="none" stroke="#1a1714" strokeWidth="1.5" markerEnd="url(#model-arrow)" />
+      <path d="M120 235C145 235 143 188 164 178" fill="none" stroke="#1a1714" strokeWidth="1.5" markerEnd="url(#model-arrow)" />
+      <rect x="164" y="132" width="92" height="52" rx="10" fill="#f4a261" stroke="#1a1714" strokeWidth="2" transform="rotate(-2 210 158)" />
+      <text x="210" y="154" textAnchor="middle" fill="#1a1714" fontSize="11" fontFamily="ui-monospace, monospace">
+        {tokenization}
+      </text>
+      <text x="210" y="170" textAnchor="middle" fill="#1a1714" fontSize="9" fontFamily="ui-monospace, monospace" opacity="0.7">
+        tokens → vectors
+      </text>
+      <path d="M260 158C276 158 278 158 292 158" fill="none" stroke="#e35b20" strokeWidth="2" markerEnd="url(#model-arrow)" />
+      <g transform="rotate(1 350 158)">
+        <rect x="292" y="83" width="116" height="150" rx="14" fill="#f7f2ee" stroke="#1a1714" strokeWidth="2" />
+        <text x="350" y="106" textAnchor="middle" fill="#1a1714" fontSize="11" fontFamily="ui-monospace, monospace">
+          {transformer}
+        </text>
+        {[0, 1, 2].map((index) => (
+          <g key={index}>
+            <rect x="312" y={122 + index * 31} width="76" height="20" rx="6" fill={index === 1 ? "#d9e4dc" : "#f1c38c"} stroke="#1a1714" strokeWidth="1.2" />
+            <circle cx="326" cy={132 + index * 31} r="3" fill="#e35b20" />
+            <circle cx="338" cy={132 + index * 31} r="3" fill="#1a1714" opacity="0.6" />
+            <circle cx="350" cy={132 + index * 31} r="3" fill="#78a89a" />
+          </g>
+        ))}
+      </g>
+      <path d="M412 158C425 158 427 158 440 158" fill="none" stroke="#e35b20" strokeWidth="2" markerEnd="url(#model-arrow)" />
+      <circle cx="466" cy="158" r="39" fill="#f4a261" stroke="#1a1714" strokeWidth="2" />
+      <path d="M445 162L456 151L467 161L478 146L488 157" fill="none" stroke="#1a1714" strokeWidth="1.5" />
+      <text x="466" y="205" textAnchor="middle" fill="#1a1714" fontSize="10" fontFamily="ui-monospace, monospace">
+        {output}
+      </text>
+    </PaperDiagram>
+  );
+}
+
+function PostTrainingDiagram() {
+  const { input, instruction, preference, toolUse, tuning, output } = harnessDiagramContent.postTraining;
+
+  return (
+    <PaperDiagram>
+      <defs>
+        <pattern id="post-paper-dots" width="18" height="18" patternUnits="userSpaceOnUse">
+          <circle cx="3" cy="3" r="0.8" fill="#1a1714" opacity="0.14" />
+        </pattern>
+        <marker id="post-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <path d="M0 0L8 4L0 8Z" fill="#e35b20" />
+        </marker>
+      </defs>
+      <rect x="4" y="4" width="512" height="322" rx="18" fill="#f7f2ee" />
+      <rect x="4" y="4" width="512" height="322" rx="18" fill="url(#post-paper-dots)" />
+      <text x="28" y="38" fill="#1a1714" fontSize="11" fontFamily="ui-monospace, monospace" letterSpacing="2">
+        POST-TRAINING
+      </text>
+      <circle cx="64" cy="155" r="39" fill="#d9e4dc" stroke="#1a1714" strokeWidth="2" />
+      <path d="M47 158C54 145 63 165 71 151C78 140 84 157 88 153" fill="none" stroke="#1a1714" strokeWidth="1.5" />
+      <text x="64" y="211" textAnchor="middle" fill="#1a1714" fontSize="10" fontFamily="ui-monospace, monospace">
+        {input}
+      </text>
+      <path d="M104 155C122 155 126 155 145 155" fill="none" stroke="#e35b20" strokeWidth="2" markerEnd="url(#post-arrow)" />
+      <g transform="rotate(-1 220 155)">
+        <rect x="145" y="126" width="150" height="58" rx="10" fill="#f4a261" stroke="#1a1714" strokeWidth="2" />
+        <text x="220" y="151" textAnchor="middle" fill="#1a1714" fontSize="11" fontFamily="ui-monospace, monospace">
+          SFT
+        </text>
+        <text x="220" y="168" textAnchor="middle" fill="#1a1714" fontSize="9" fontFamily="ui-monospace, monospace" opacity="0.72">
+          {tuning}
+        </text>
+      </g>
+      <path d="M295 155C317 155 322 155 341 155" fill="none" stroke="#e35b20" strokeWidth="2" markerEnd="url(#post-arrow)" />
+      <g transform="rotate(2 422 155)">
+        <rect x="341" y="112" width="140" height="86" rx="12" fill="#d9e4dc" stroke="#1a1714" strokeWidth="2" />
+        <circle cx="366" cy="141" r="9" fill="#f4a261" stroke="#1a1714" strokeWidth="1.2" />
+        <path d="M361 141L365 145L372 136" fill="none" stroke="#1a1714" strokeWidth="1.4" />
+        <path d="M381 141H462" stroke="#1a1714" strokeWidth="1.2" />
+        <text x="411" y="164" textAnchor="middle" fill="#1a1714" fontSize="10" fontFamily="ui-monospace, monospace">
+          {output}
+        </text>
+      </g>
+      <path d="M190 126C185 104 160 89 126 84" fill="none" stroke="#1a1714" strokeWidth="1.5" markerEnd="url(#post-arrow)" />
+      <path d="M220 126C220 105 220 91 220 78" fill="none" stroke="#1a1714" strokeWidth="1.5" markerEnd="url(#post-arrow)" />
+      <path d="M250 126C260 103 284 89 314 84" fill="none" stroke="#1a1714" strokeWidth="1.5" markerEnd="url(#post-arrow)" />
+      <g transform="rotate(-2 126 70)">
+        <rect x="74" y="50" width="104" height="30" rx="7" fill="#f7f2ee" stroke="#1a1714" strokeWidth="1.5" />
+        <text x="126" y="69" textAnchor="middle" fill="#1a1714" fontSize="9" fontFamily="ui-monospace, monospace">
+          {instruction}
+        </text>
+      </g>
+      <g transform="rotate(1 220 64)">
+        <rect x="184" y="49" width="72" height="30" rx="7" fill="#f7f2ee" stroke="#1a1714" strokeWidth="1.5" />
+        <text x="220" y="68" textAnchor="middle" fill="#1a1714" fontSize="9" fontFamily="ui-monospace, monospace">
+          Human feedback
+        </text>
+      </g>
+      <g transform="rotate(2 335 70)">
+        <rect x="286" y="50" width="98" height="30" rx="7" fill="#f7f2ee" stroke="#1a1714" strokeWidth="1.5" />
+        <text x="335" y="69" textAnchor="middle" fill="#1a1714" fontSize="9" fontFamily="ui-monospace, monospace">
+          {preference}
+        </text>
+      </g>
+      <rect x="160" y="239" width="200" height="40" rx="10" fill="#f1c38c" stroke="#1a1714" strokeWidth="1.5" transform="rotate(-1 260 259)" />
+      <path d="M260 239V199" fill="none" stroke="#1a1714" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#post-arrow)" />
+      <text x="260" y="264" textAnchor="middle" fill="#1a1714" fontSize="10" fontFamily="ui-monospace, monospace">
+        {toolUse}
+      </text>
+    </PaperDiagram>
   );
 }
 

@@ -234,3 +234,20 @@ export const harnessNodes: HarnessNode[] = [
     bullets: ["Background tasks", "Subagents + delegation", "Observability + evals", "Audit + recovery"],
   },
 ];
+
+export const harnessDiagramContent = {
+  model: {
+    sources: ["Web", "Books", "Code", "Papers"],
+    tokenization: "Tokenize",
+    transformer: "Transformer",
+    output: "Base LLM",
+  },
+  postTraining: {
+    input: "Base LLM",
+    instruction: "Instruction data",
+    preference: "Preference data",
+    toolUse: "Tool schemas",
+    tuning: "SFT + preference tuning",
+    output: "Chat / reasoning / tool LLM",
+  },
+} as const;
