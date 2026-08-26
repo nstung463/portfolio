@@ -1,20 +1,32 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Space_Grotesk, Archivo_Black } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
+const inter = Inter({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
+const jetbrainsMono = JetBrains_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-display-face",
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+});
+
+const archivoBlack = Archivo_Black({
+  variable: "--font-watermark-face",
+  weight: "400",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
-  title: "Website Clone",
-  description: "Pixel-perfect website clone",
+  title: "Nguyen Son Tung — AI Engineer",
+  description: "AI Engineer specializing in RAG, LLM agents, and agent harness engineering.",
 };
 
 export default function RootLayout({
@@ -25,7 +37,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} ${archivoBlack.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
