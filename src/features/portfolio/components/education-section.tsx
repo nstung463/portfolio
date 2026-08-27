@@ -15,7 +15,10 @@ export function EducationSection() {
             <div
               key={item.title}
               data-reveal
-              className="group flex flex-col gap-4 rounded-[10px] border border-border bg-background p-5 transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-primary hover:shadow-[0_16px_32px_-14px_rgba(0,0,0,0.3)] sm:flex-row sm:items-center sm:gap-5 sm:p-6"
+              // `translate`, not `transform`: Tailwind v4's `-translate-y-*`
+              // sets the standalone `translate` property, so this has to
+              // name that or the lift jumps instead of easing in.
+              className="group flex flex-col gap-4 rounded-[10px] border border-border bg-background p-5 transition-[translate,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-primary hover:shadow-[0_16px_32px_-14px_rgba(0,0,0,0.3)] sm:flex-row sm:items-center sm:gap-5 sm:p-6"
             >
               <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
                 <GraduationCap aria-hidden className="size-6" />

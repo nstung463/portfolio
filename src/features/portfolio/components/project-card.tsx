@@ -10,9 +10,16 @@ export function ProjectCard({ project }: { project: ProjectItem }) {
         // on the art — three signals landing together read as one card
         // rising, rather than a border simply changing colour under the
         // pointer.
+        //
+        // The transitioned property is named `translate`, not `transform`:
+        // Tailwind v4 puts `-translate-y-*` on the standalone CSS `translate`
+        // property, so listing `transform` here left it out of the animation
+        // and the lift jumped straight to its end position instead of easing
+        // there — only the border and shadow, which were in the list, moved
+        // smoothly.
         "flex h-full flex-col overflow-hidden rounded-[10px] border border-border bg-card " +
         "shadow-[0_1px_2px_rgba(0,0,0,0.04)] " +
-        "transition-[transform,box-shadow,border-color] duration-300 ease-out " +
+        "transition-[translate,box-shadow,border-color] duration-300 ease-out " +
         "group-hover:-translate-y-1.5 group-hover:border-primary group-hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.35)] " +
         "group-focus-visible:-translate-y-1.5 group-focus-visible:border-primary group-focus-visible:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.35)]"
       }
