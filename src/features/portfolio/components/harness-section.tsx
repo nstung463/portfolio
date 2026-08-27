@@ -26,13 +26,14 @@ export function HarnessSection() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-[90px]">
         <div data-reveal>
-          <p className="font-mono text-xs font-bold tracking-[0.15em] text-[#ff7a2f] uppercase">05 · Agent stack</p>
+          <p className="font-mono text-xs font-bold tracking-[0.15em] text-[#ff7a2f] uppercase">06 · Agent stack</p>
           <h2 className="mt-4 max-w-3xl text-3xl font-bold sm:text-5xl">
-            From model to production
+            How I think about this stack
           </h2>
           <p className="mt-5 max-w-2xl text-sm leading-6 text-white/70 sm:text-base">
             An LLM is the reasoning engine. An agent adds a loop and tools. A harness gives it
-            the runtime to work safely, statefully, and at scale.
+            the runtime to work safely, statefully, and at scale — the mental model behind
+            everything in Experience and Work above.
           </p>
         </div>
 

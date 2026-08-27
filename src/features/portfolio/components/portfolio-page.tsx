@@ -23,8 +23,12 @@ export function PortfolioPage() {
       <SkillsSection />
       <ExperienceSection />
       <ProjectsSection />
-      <HarnessSection />
+      {/* Proof (patent, numbers) before the deep dive: a skimmer should hit
+          the strongest evidence while they're still reading closely, not
+          after a long conceptual section. Harness closes as "here's how I
+          think about the domain", one beat before Education/Contact. */}
       <FeaturedWorkSection />
+      <HarnessSection />
       <EducationSection />
       <ContactSection />
       <PortfolioFooter />

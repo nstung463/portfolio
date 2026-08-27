@@ -174,8 +174,8 @@ export const sections: SectionRef[] = [
   { id: "skills", n: "02", label: "Skills" },
   { id: "experience", n: "03", label: "Experience" },
   { id: "more-projects", n: "04", label: "Projects" },
-  { id: "harness", n: "05", label: "Harness" },
-  { id: "work", n: "06", label: "Work" },
+  { id: "work", n: "05", label: "Work" },
+  { id: "harness", n: "06", label: "Harness" },
   { id: "education", n: "07", label: "Education" },
   { id: "contact", n: "08", label: "Contact" },
 ];
