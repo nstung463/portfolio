@@ -158,12 +158,14 @@ export const education: EducationItem[] = [
   {
     period: "2026 — Present",
     title: "Master of Software Engineering (MSE), Artificial Intelligence",
-    org: "FPT University · In Progress",
+    org: "FPT University",
+    inProgress: true,
   },
   {
     period: "2020 — 2024",
     title: "B.Sc. in Artificial Intelligence",
-    org: "FPT University · GPA 8.45/10",
+    org: "FPT University",
+    detail: "GPA 8.45/10",
   },
 ];
 

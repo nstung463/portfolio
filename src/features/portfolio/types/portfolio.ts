@@ -38,6 +38,10 @@ export interface EducationItem {
   period: string;
   title: string;
   org: string;
+  /** GPA, honours, or similar — shown as a plain detail line. */
+  detail?: string;
+  /** True while still enrolled — shown as a status badge instead of `detail`. */
+  inProgress?: boolean;
 }
 
 export type HarnessNodeId =

@@ -3,8 +3,25 @@ import { ProjectArt } from "../illustrations/project-art";
 
 export function ProjectCard({ project }: { project: ProjectItem }) {
   const card = (
-    <div className="flex h-full flex-col overflow-hidden rounded-[10px] border border-border bg-card transition-colors group-hover:border-primary">
-      <div className="aspect-[5/3] w-full"><ProjectArt variant={project.art} /></div>
+    <div
+      className={
+        // Lift + shadow on the card, a faster border fade so the outline
+        // catches up before the card has finished moving, and a slight zoom
+        // on the art — three signals landing together read as one card
+        // rising, rather than a border simply changing colour under the
+        // pointer.
+        "flex h-full flex-col overflow-hidden rounded-[10px] border border-border bg-card " +
+        "shadow-[0_1px_2px_rgba(0,0,0,0.04)] " +
+        "transition-[transform,box-shadow,border-color] duration-300 ease-out " +
+        "group-hover:-translate-y-1.5 group-hover:border-primary group-hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.35)] " +
+        "group-focus-visible:-translate-y-1.5 group-focus-visible:border-primary group-focus-visible:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.35)]"
+      }
+    >
+      <div className="aspect-[5/3] w-full overflow-hidden">
+        <div className="size-full transition-transform duration-300 ease-out group-hover:scale-[1.04] group-focus-visible:scale-[1.04]">
+          <ProjectArt variant={project.art} />
+        </div>
+      </div>
       <div className="flex flex-1 flex-col p-5">
         <p className="font-mono text-[10px] font-bold tracking-[0.1em] text-muted-foreground uppercase">{project.date}</p>
         <p className="mt-2 font-bold">{project.title}</p>
@@ -18,5 +35,16 @@ export function ProjectCard({ project }: { project: ProjectItem }) {
     </div>
   );
 
-  return project.href ? <a href={project.href} target="_blank" rel="noreferrer" className="group">{card}</a> : <div className="group">{card}</div>;
+  return project.href ? (
+    <a
+      href={project.href}
+      target="_blank"
+      rel="noreferrer"
+      className="group rounded-[10px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+    >
+      {card}
+    </a>
+  ) : (
+    <div className="group">{card}</div>
+  );
 }
