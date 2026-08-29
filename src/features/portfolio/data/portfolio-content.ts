@@ -55,8 +55,7 @@ export const experience: ExperienceItem[] = [
     meta: "Multi-Agent AI Platform · Client: ITOCHU Corporation · Team of ~20",
     points: [
       "Own the File Agent subsystem — PPTX/DOCX/XLSX generation inside isolated sandboxes.",
-      "Delivered video-analytics Q&A and streaming text-to-speech, serving ~4,000 users.",
-      "Leading the migration to a ReAct-style agent architecture with persistent session state.",
+      "Delivered video-analytics Q&A and streaming text-to-speech capabilities integrated into the platform.",
     ],
   },
   {
