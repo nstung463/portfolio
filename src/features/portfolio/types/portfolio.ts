@@ -16,6 +16,7 @@ export interface ExperienceItem {
   role: string;
   meta: string;
   points: string[];
+  tech?: string[];
 }
 
 export interface FeaturedWorkItem {

@@ -1,3 +1,4 @@
+import { RevealWords } from "./reveal-words";
 import { SectionLabel } from "./section-primitives";
 
 export function AboutSection() {
@@ -16,8 +17,18 @@ export function AboutSection() {
         </div>
 
         <div>
-          <h2 className="max-w-2xl text-3xl leading-[1.12] font-bold text-balance sm:text-[2.75rem]">
-            I turn messy documents into reliable, grounded LLM answers.
+          <h2 className="max-w-2xl font-[family-name:var(--font-display)] text-[2rem] leading-[1.06] font-bold tracking-[-0.03em] sm:text-[3.25rem] lg:text-[3.6rem]">
+            <RevealWords text="I build AI agents that" />
+            <br />
+            {/* The middle line carries the emphasis: brand orange, and a real
+                serif italic rather than a slanted grotesk. */}
+            <RevealWords
+              text="do the boring things"
+              startDelay={400}
+              className="font-[family-name:var(--font-editorial)] text-[1.06em] font-normal tracking-[-0.005em] text-primary italic"
+            />
+            <br />
+            <RevealWords text="so humans don’t have to." startDelay={800} />
           </h2>
           <p className="mt-7 max-w-2xl leading-7 text-muted-foreground">
             I&apos;m an AI Engineer at FPT Software with 3+ years building production LLM, RAG,

@@ -17,6 +17,7 @@
   --font-sans: var(--font-geist-sans), "Inter", system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --font-display: var(--font-display-face), "Space Grotesk", system-ui, sans-serif;
+  --font-editorial: var(--font-editorial-face), "Instrument Serif", Georgia, serif;
   --font-watermark: var(--font-watermark-face), "Archivo Black", system-ui, sans-serif;
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -184,6 +185,18 @@
   }
 }
 
+/* Outlined numerals, big enough to read as a graphic rather than as a label.
+   Only from the large breakpoint: the stroke is a fixed 1.5px, which is right
+   against a 7rem numeral and turns to mud against the 1.5rem one the stacked
+   layout uses. There is no unprefixed form of either property — this is one of
+   the few places a `-webkit-` prefix is the whole feature, not a fallback. */
+@media (width >= 64rem) {
+  .numeral-outline {
+    -webkit-text-stroke: 1.5px currentColor;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
 @keyframes watermark-pulse {
   0% {
     color: rgba(255, 255, 255, 0.3);
@@ -201,6 +214,103 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+/* --- Hero intro -------------------------------------------------------- */
+/* The hero used to arrive in one piece, which read as a wall. These stage it:
+   bar, wordmark, portrait, watermark, notes, marquee, each on its own delay
+   set inline as `--intro-delay`. Every rule lives inside the reduced-motion
+   query and the elements are visible by default, so a visitor who asked for
+   less motion — or anyone before the CSS lands — just gets the finished hero. */
+
+@keyframes intro-drop {
+  from {
+    opacity: 0;
+    translate: 0 -14px;
+  }
+}
+
+@keyframes intro-letter {
+  from {
+    opacity: 0;
+    translate: 0 0.42em;
+    scale: 0.94;
+    filter: blur(9px);
+  }
+}
+
+/* Opacity and translate only — deliberately no `scale`. The portrait carries
+   a mask and a 70px drop-shadow, and scaling it forces the browser to
+   re-rasterise both every frame, which is what made the entrance stutter.
+   A translate is handed to the compositor and costs nothing per frame. */
+@keyframes intro-portrait {
+  0% {
+    opacity: 0;
+    translate: 0 3.5vh;
+  }
+  60% {
+    opacity: 1;
+  }
+}
+
+@keyframes intro-rise {
+  from {
+    opacity: 0;
+    translate: 0 14px;
+  }
+}
+
+@keyframes intro-band {
+  from {
+    opacity: 0;
+    translate: 0 100%;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .intro-drop,
+  .intro-letter,
+  .intro-portrait,
+  .intro-rise,
+  .intro-band {
+    animation-delay: var(--intro-delay, 0s);
+    animation-fill-mode: both;
+  }
+
+  .intro-drop {
+    animation-name: intro-drop;
+    animation-duration: 1s;
+    animation-timing-function: var(--ease-reveal);
+  }
+
+  /* Letters carry a blur out of the entrance: it reads as the type resolving
+     into focus rather than sliding, and it hides the fact that nothing is
+     masking them. */
+  .intro-letter {
+    display: inline-block;
+    animation-name: intro-letter;
+    animation-duration: 1.25s;
+    animation-timing-function: cubic-bezier(0.16, 0.84, 0.28, 1);
+  }
+
+  .intro-portrait {
+    animation-name: intro-portrait;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0.16, 0.72, 0.24, 1);
+    will-change: opacity, translate;
+  }
+
+  .intro-rise {
+    animation-name: intro-rise;
+    animation-duration: 0.9s;
+    animation-timing-function: var(--ease-reveal);
+  }
+
+  .intro-band {
+    animation-name: intro-band;
+    animation-duration: 0.75s;
+    animation-timing-function: cubic-bezier(0.22, 0.68, 0.24, 1);
   }
 }
 
@@ -258,19 +368,23 @@
    `transition` is one shorthand per element and this replaces whatever the
    element declared, so `border-color` is re-stated here at the duration
    Tailwind's `transition-colors` uses: the timeline cards fade their border
-   on hover and would otherwise lose it. */
+   on hover and would otherwise lose it. `box-shadow` is here for the same
+   reason — the cards lift into a shadow on hover, and a `transition-*` utility
+   naming it on the card itself is discarded by this shorthand, so the shadow
+   would snap on while the lift eased. */
 [data-reveal] {
   transition:
     opacity 0.5s var(--ease-reveal),
     translate 0.65s var(--ease-reveal),
     scale 0.65s var(--ease-reveal),
-    border-color 0.15s ease;
+    border-color 0.15s ease,
+    box-shadow 0.3s ease;
 }
 
 /* Leaving is quicker than arriving — waiting for something to finish
    disappearing is dead time, waiting for it to arrive is not. */
 [data-reveal="out"] {
-  transition-duration: 0.35s, 0.4s, 0.4s, 0.15s;
+  transition-duration: 0.35s, 0.4s, 0.4s, 0.15s, 0.3s;
   opacity: 0;
   translate: 0 34px;
 }
@@ -290,6 +404,19 @@
 [data-reveal="out"][data-reveal-variant="pop"] {
   translate: none;
   scale: 0.3;
+}
+
+/* Words of a headline rise one after another. They have to be inline-block:
+   `translate` does nothing to a bare inline box. The travel is set in `em` so
+   a 3.6rem headline and a 1.5rem one move proportionally, not by the same
+   34px the block-level reveal uses. */
+[data-reveal-variant="word"] {
+  display: inline-block;
+  transition-duration: 0.75s, 0.95s, 0.95s, 0.15s;
+}
+
+[data-reveal="out"][data-reveal-variant="word"] {
+  translate: 0 0.42em;
 }
 
 /* The alternating drift only applies once the entries sit either side of the

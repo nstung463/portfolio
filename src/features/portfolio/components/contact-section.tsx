@@ -1,6 +1,7 @@
 import { contact } from "../data/portfolio-content";
 import { EmailCard, PhoneLink, ResumeLink, SocialLinks } from "./contact-actions";
 import { SectionBleed } from "./section-primitives";
+import { RevealWords } from "./reveal-words";
 
 /**
  * Two columns on wide screens: what I am open to on the left, how to reach me
@@ -19,7 +20,7 @@ export function ContactSection() {
             <p className="font-mono text-xs font-bold tracking-[0.15em] uppercase">08 · Contact</p>
 
             <h2 className="mt-5 text-4xl font-bold text-balance sm:text-5xl lg:text-6xl">
-              {contact.heading}
+              <RevealWords text={contact.heading} />
             </h2>
 
             <p className="mt-5 max-w-md text-white/85">{contact.blurb}</p>

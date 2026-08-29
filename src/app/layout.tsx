@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono, Space_Grotesk, Archivo_Black } from "next/font/google";
+import { Inter, JetBrains_Mono, Space_Grotesk, Archivo_Black, Instrument_Serif } from "next/font/google";
 import { ThemeScript } from "@/components/theme-script";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
@@ -17,6 +17,15 @@ const jetbrainsMono = JetBrains_Mono({
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-display-face",
   weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+});
+
+// Space Grotesk ships no italic, so the emphasized line in the About headline
+// would get a synthetic slant. This is the real italic that runs there instead.
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-editorial-face",
+  weight: "400",
+  style: "italic",
   subsets: ["latin"],
 });
 
@@ -98,7 +107,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} ${archivoBlack.variable} h-full antialiased`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} ${instrumentSerif.variable} ${archivoBlack.variable} h-full antialiased`}
     >
       <head>
         <ThemeScript />

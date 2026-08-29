@@ -1,6 +1,7 @@
 import { GraduationCap } from "lucide-react";
 import { education } from "../data/portfolio-content";
 import { SectionBleed, SectionLabel } from "./section-primitives";
+import { RevealWords } from "./reveal-words";
 
 export function EducationSection() {
   return (
@@ -8,7 +9,9 @@ export function EducationSection() {
       <SectionBleed text="Education" />
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-[90px]">
         <SectionLabel n="07" label="Education & Certs" />
-        <h2 className="mt-4 text-3xl font-bold sm:text-5xl">Education</h2>
+        <h2 className="mt-4 text-3xl font-bold sm:text-5xl">
+          <RevealWords text="Education" />
+        </h2>
 
         <div data-reveal-stagger className="mt-12 space-y-4">
           {education.map((item) => (

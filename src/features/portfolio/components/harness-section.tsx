@@ -1,4 +1,5 @@
 import { HarnessDiagram } from "./harness-diagram";
+import { RevealWords } from "./reveal-words";
 
 /**
  * Full-bleed dark band. Deliberately breaks the light card-grid rhythm of the
@@ -28,7 +29,7 @@ export function HarnessSection() {
         <div data-reveal>
           <p className="font-mono text-xs font-bold tracking-[0.15em] text-[#ff7a2f] uppercase">06 · Agent stack</p>
           <h2 className="mt-4 max-w-3xl text-3xl font-bold sm:text-5xl">
-            How I think about this stack
+            <RevealWords text="How I think about this stack" />
           </h2>
           <p className="mt-5 max-w-2xl text-sm leading-6 text-white/70 sm:text-base">
             An LLM is the reasoning engine. An agent adds a loop and tools. A harness gives it

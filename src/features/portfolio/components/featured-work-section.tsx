@@ -1,5 +1,6 @@
 import { featuredWork, stats } from "../data/portfolio-content";
 import { SectionLabel, Stamp } from "./section-primitives";
+import { RevealWords } from "./reveal-words";
 
 /**
  * Full-bleed split. Left column is a sticky editorial header, right column is
@@ -15,9 +16,9 @@ export function FeaturedWorkSection() {
           <div data-reveal className="lg:sticky lg:top-24 lg:self-start">
             <SectionLabel n="05" label="Work" />
             <h2 className="mt-4 text-3xl leading-[1.05] font-bold sm:text-5xl lg:text-6xl">
-              Proof, not
+              <RevealWords text="Proof, not" />
               <br />
-              adjectives.
+              <RevealWords text="adjectives." startDelay={220} />
             </h2>
             <p className="mt-5 max-w-sm text-sm leading-6 text-muted-foreground">
               Work that exists outside a CV bullet and can be checked: a filed US patent

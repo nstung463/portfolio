@@ -1,10 +1,30 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { type CSSProperties, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 import { heroTags } from "../data/portfolio-content";
+
+const WORDMARK = "AI ENGINEER".split(" ");
+
+/**
+ * The site's mark: the browser-tab favicon's diamond, redrawn as a hollow
+ * ring in a single colour instead of white-on-orange. The nav bar is always
+ * on the brand-orange background, so a second copy of the favicon's own
+ * orange square would just disappear into it — this keeps the same geometry
+ * the tab already taught the visitor to recognise, in a form that reads
+ * against that background. `fillRule="evenodd"` is what punches the hole:
+ * two nested diamond paths in one fill, the inner one carved out of the
+ * outer regardless of winding order.
+ */
+function BrandMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 64 64" fill="currentColor" fillRule="evenodd" aria-hidden className={className}>
+      <path d="M32 8 L47 32 L32 56 L17 32 Z M32 19 L38.5 32 L32 45 L25.5 32 Z" />
+    </svg>
+  );
+}
 
 const navLinks = [
   { href: "#more-projects", label: "projects" },
@@ -17,8 +37,11 @@ export function HeroSection() {
 
   return (
     <section id="top" className="relative flex h-dvh min-h-[440px] flex-col overflow-hidden bg-brand text-white">
-      <div className="sticky top-0 z-30 grid shrink-0 grid-cols-[1fr_auto] items-center gap-4 bg-brand px-5 py-3.5 lg:grid-cols-[auto_1fr_auto]">
-        <a href="#top" className="font-mono text-[11px] font-bold tracking-[0.18em]">◆ NST</a>
+      <div className="intro-drop sticky top-0 z-30 grid shrink-0 grid-cols-[1fr_auto] items-center gap-4 bg-brand px-5 py-3.5 lg:grid-cols-[auto_1fr_auto]">
+        <a href="#top" className="flex items-center gap-2 font-mono text-[11px] font-bold tracking-[0.18em]">
+          <BrandMark className="size-3.5" />
+          NST
+        </a>
         <nav className="hidden gap-6 font-mono text-[11px] font-normal tracking-[0.15em] uppercase lg:flex lg:justify-center">
           {navLinks.map((link) => (
             <a key={link.href} href={link.href} className="hover:opacity-70">{link.label}</a>
@@ -58,40 +81,80 @@ export function HeroSection() {
       )}
 
       <div className="relative flex min-h-0 flex-1 flex-col items-center overflow-hidden">
+        {/* Letters resolve one after another out of a blur. `aria-label` on the
+            heading already replaces its contents for a screen reader, so the
+            split costs nothing in the accessibility tree. */}
         <h1 aria-label="AI Engineer" className="relative z-20 mt-3 w-full shrink-0 text-center font-[family-name:var(--font-display)] text-[18vw] leading-[0.82] tracking-[-0.025em] text-white dark:text-black select-none">
-          AI ENGINEER
+          {WORDMARK.map((word, wordIndex) => {
+            const priorChars = wordIndex === 0 ? 0 : WORDMARK[0].length + 1;
+            return (
+              <span key={wordIndex} className="inline-block">
+                {wordIndex > 0 ? <span className="inline-block w-[0.28em]" /> : null}
+                {/* `whitespace-nowrap` per word, not on the heading as a
+                    whole: a narrow viewport needs "AI" / "ENGINEER" to wrap
+                    between the words, just never inside one. Without this
+                    the letters are independent inline spans with no space
+                    between them, so the line broke wherever it ran out of
+                    room — mid-word, stranding a lone "R" on its own line. */}
+                <span className="whitespace-nowrap">
+                  {[...word].map((char, charIndex) => (
+                    <span
+                      key={charIndex}
+                      className="intro-letter"
+                      style={{ "--intro-delay": `${260 + (priorChars + charIndex) * 90}ms` } as CSSProperties}
+                    >
+                      {char}
+                    </span>
+                  ))}
+                </span>
+              </span>
+            );
+          })}
         </h1>
 
         <div className="relative z-10 -mt-[6vh] flex min-h-0 w-full flex-1 items-center justify-center">
-          <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 z-0 flex justify-center overflow-hidden">
-            <span className="block origin-center scale-y-[0.66] whitespace-nowrap font-[family-name:var(--font-watermark)] text-[28vw] leading-[0.85] tracking-[-0.045em] text-white/30 select-none [-webkit-text-stroke:0px_transparent] [animation:watermark-pulse_2s_steps(2,jump-none)_1.2s_infinite]">TUNG</span>
+          <div
+            aria-hidden
+            className="intro-rise pointer-events-none absolute inset-x-0 top-0 z-0 flex justify-center overflow-hidden"
+            style={{ "--intro-delay": "850ms" } as CSSProperties}
+          >
+            <span className="block origin-center scale-y-[0.66] whitespace-nowrap font-[family-name:var(--font-watermark)] text-[28vw] leading-[0.85] tracking-[-0.045em] text-white/30 select-none [-webkit-text-stroke:0px_transparent] [animation:watermark-pulse_2s_steps(2,jump-none)_2s_infinite]">TUNG</span>
           </div>
 
+          {/* Two elements on purpose: the outer one is the only thing that
+              moves, the inner one holds the mask and the shadow and never
+              changes. Animating the masked element itself made the entrance
+              stutter. */}
           <div
-            className="pointer-events-none relative z-10 h-full w-full origin-bottom scale-[1.08]"
-            style={{
-              maskImage: "linear-gradient(#000 0%, #000 93%, rgba(0,0,0,0.65) 97%, rgba(0,0,0,0) 100%)",
-              WebkitMaskImage: "linear-gradient(#000 0%, #000 93%, rgba(0,0,0,0.65) 97%, rgba(0,0,0,0) 100%)",
-            }}
+            className="intro-portrait pointer-events-none relative z-10 h-full w-full"
+            style={{ "--intro-delay": "1700ms" } as CSSProperties}
           >
-            <Image
-              src="/images/avatar.webp"
-              alt="Nguyen Son Tung"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 60vw"
-              className="object-contain"
-              style={{ filter: "drop-shadow(0 0 70px rgba(255,130,50,0.42))" }}
-            />
+            <div
+              className="absolute inset-0 origin-bottom scale-[1.08]"
+              style={{
+                maskImage: "linear-gradient(#000 0%, #000 93%, rgba(0,0,0,0.65) 97%, rgba(0,0,0,0) 100%)",
+                WebkitMaskImage: "linear-gradient(#000 0%, #000 93%, rgba(0,0,0,0.65) 97%, rgba(0,0,0,0) 100%)",
+              }}
+            >
+              <Image
+                src="/images/avatar.webp"
+                alt="Nguyen Son Tung"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                className="object-contain"
+                style={{ filter: "drop-shadow(0 0 70px rgba(255,130,50,0.42))" }}
+              />
+            </div>
           </div>
 
           <div aria-hidden className="pointer-events-none absolute inset-0 z-[15]" style={{ background: "linear-gradient(rgba(255,106,26,0) 65%, rgba(255,106,26,0.3) 88%, rgba(255,106,26,0.7) 100%)" }} />
 
-          <div className="absolute top-[26%] right-5 z-20 hidden text-right font-mono text-[13px] leading-[1.6] tracking-[0.08em] uppercase [animation:fade-in_0.6s_ease_1s_both] lg:block">
+          <div className="absolute top-[26%] right-5 z-20 hidden text-right font-mono text-[13px] leading-[1.6] tracking-[0.08em] uppercase intro-rise [--intro-delay:2100ms] [animation-duration:0.55s] lg:block">
             <div>{"// grounded answers, not guesses"}</div>
             <div className="pr-4">not vibes</div>
           </div>
-          <div className="absolute bottom-[30%] left-5 z-20 hidden font-mono text-[13px] leading-[1.6] tracking-[0.08em] uppercase [animation:fade-in_0.6s_ease_1.2s_both] lg:block">
+          <div className="absolute bottom-[30%] left-5 z-20 hidden font-mono text-[13px] leading-[1.6] tracking-[0.08em] uppercase intro-rise [--intro-delay:2250ms] [animation-duration:0.55s] lg:block">
             <div>{"// I'm Tung — an AI engineer building RAG"}</div>
             <div className="pl-6">pipelines &amp; agent harnesses,</div>
             <div>shipped to production. Open to projects.</div>
@@ -99,17 +162,20 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="shrink-0 px-5 pt-2 font-mono text-[11px] font-normal tracking-wide uppercase [animation:fade-in_0.6s_ease_1s_both] lg:hidden">
+      <div className="shrink-0 px-5 pt-2 font-mono text-[11px] font-normal tracking-wide uppercase intro-rise [--intro-delay:2100ms] [animation-duration:0.55s] lg:hidden">
         <div>{"// grounded answers, not guesses"}</div>
         <div className="pl-6">not vibes</div>
       </div>
-      <div className="shrink-0 px-5 pt-2 pb-3 font-mono text-xs font-normal tracking-wide uppercase [animation:fade-in_0.6s_ease_1.2s_both] lg:hidden">
+      <div className="shrink-0 px-5 pt-2 pb-3 font-mono text-xs font-normal tracking-wide uppercase intro-rise [--intro-delay:2250ms] [animation-duration:0.55s] lg:hidden">
         <div>{"// I'm Tung — an AI engineer building RAG"}</div>
         <div className="pl-6">pipelines &amp; agent harnesses,</div>
         <div>shipped to production. Open to projects.</div>
       </div>
 
-      <div className="relative z-30 shrink-0 overflow-hidden border-t border-white/25 pt-[22px] pb-[26px] lg:-mt-[68px]" style={{ background: "linear-gradient(rgba(255,106,26,0), rgba(255,106,26,0.1))" }}>
+      <div
+        className="intro-band relative z-30 shrink-0 overflow-hidden border-t border-white/25 pt-[22px] pb-[26px] lg:-mt-[68px]"
+        style={{ "--intro-delay": "2450ms", background: "linear-gradient(rgba(255,106,26,0), rgba(255,106,26,0.1))" } as CSSProperties}
+      >
         <div className="flex animate-[marquee_8s_linear_infinite] items-center gap-14 whitespace-nowrap">
           {[...heroTags, ...heroTags].map((tag, index) => (
             <span key={`${tag}-${index}`} className="flex items-center gap-14 font-[family-name:var(--font-display)] text-[5.5vw] leading-none tracking-[-0.01em] text-white uppercase dark:text-black">

@@ -49,26 +49,28 @@ export const stats: Stat[] = [
 
 export const experience: ExperienceItem[] = [
   {
-    period: "May 2026 — Present",
-    org: "Infinity",
-    role: "Lead Engineer",
-    meta: "Agent Harness & Sandbox Platform · Independent codebase",
-    points: [
-      "Designed and built an AI agent harness end-to-end — tools, permissions, sandbox, skills, and connector layer.",
-      "Integrated OpenSandbox as a pluggable, isolated execution backend for agent-generated shell/file operations.",
-      "Built a human-in-the-loop (HITL) tool-approval system and MCP connector layer for Microsoft 365 tools.",
-    ],
-  },
-  {
     period: "Jul 2025 — Present",
     org: "ITOCHU GPT",
     role: "AI Engineer",
-    meta: "Client: Itochu Corporation · Team of ~20",
+    meta: "Multi-Agent AI Platform · Client: ITOCHU Corporation · Team of ~20",
     points: [
-      "Own the \"file agent\" subsystem: PPTX/DOCX/XLSX generation & editing, sandboxed code execution, document-conversion pipelines.",
-      "Delivered video-analytics Q&A and streaming voice (TTS) features.",
-      "Leading the platform's migration from workflow-based automation to a fully agentic architecture.",
+      "Own the File Agent subsystem — PPTX/DOCX/XLSX generation inside isolated sandboxes.",
+      "Delivered video-analytics Q&A and streaming text-to-speech, serving ~4,000 users.",
+      "Leading the migration to a ReAct-style agent architecture with persistent session state.",
     ],
+    tech: ["LangChain", "LangGraph", "FastAPI", "Azure OpenAI", "Docker"],
+  },
+  {
+    period: "May 2026 — Present",
+    org: "Infinity",
+    role: "AI Engineer",
+    meta: "Agent Harness & Sandbox Platform · Independent codebase · Technical Lead",
+    points: [
+      "Built the agent harness end-to-end: runtime, tool execution, permissions, and sandbox orchestration.",
+      "Integrated OpenSandbox to isolate LLM-generated code and file-processing workloads.",
+      "Designed a human-in-the-loop tool-approval system with pause, persist, and resume.",
+    ],
+    tech: ["FastAPI", "LangGraph", "OpenSandbox", "MCP", "Docker"],
   },
   {
     period: "Feb 2025 — Apr 2025",
