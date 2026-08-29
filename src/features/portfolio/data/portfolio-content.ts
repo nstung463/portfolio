@@ -56,6 +56,7 @@ export const experience: ExperienceItem[] = [
     points: [
       "Own the File Agent subsystem — PPTX/DOCX/XLSX generation inside isolated sandboxes.",
       "Delivered video-analytics Q&A and streaming text-to-speech capabilities integrated into the platform.",
+      "Collaborated across backend, frontend, AI, and infrastructure teams to bring agent capabilities from architecture through production deployment.",
     ],
   },
   {
