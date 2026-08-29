@@ -58,7 +58,6 @@ export const experience: ExperienceItem[] = [
       "Delivered video-analytics Q&A and streaming text-to-speech, serving ~4,000 users.",
       "Leading the migration to a ReAct-style agent architecture with persistent session state.",
     ],
-    tech: ["LangChain", "LangGraph", "FastAPI", "Azure OpenAI", "Docker"],
   },
   {
     period: "May 2026 — Present",
@@ -70,7 +69,6 @@ export const experience: ExperienceItem[] = [
       "Integrated OpenSandbox to isolate LLM-generated code and file-processing workloads.",
       "Designed a human-in-the-loop tool-approval system with pause, persist, and resume.",
     ],
-    tech: ["FastAPI", "LangGraph", "OpenSandbox", "MCP", "Docker"],
   },
   {
     period: "Feb 2025 — Apr 2025",
@@ -164,7 +162,7 @@ export const education: EducationItem[] = [
     inProgress: true,
   },
   {
-    period: "2020 — 2024",
+    period: "2021 — 2025",
     title: "B.Sc. in Artificial Intelligence",
     org: "FPT University",
     detail: "GPA 8.45/10",
