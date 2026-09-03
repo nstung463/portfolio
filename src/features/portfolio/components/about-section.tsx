@@ -3,8 +3,11 @@ import { SectionLabel } from "./section-primitives";
 
 export function AboutSection() {
   return (
-    <section id="about" className="relative mx-auto max-w-6xl px-5 py-[90px]">
-      <div data-reveal className="grid gap-10 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] lg:gap-16">
+    <section id="about" className="starfield-surface relative overflow-hidden">
+      <div
+        data-reveal
+        className="mx-auto grid max-w-6xl gap-10 px-5 py-[90px] lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] lg:gap-16"
+      >
         <div className="lg:sticky lg:top-24 lg:self-start">
           <SectionLabel n="01" label="About" />
           <p className="mt-6 font-mono text-[11px] leading-6 tracking-[0.08em] text-muted-foreground uppercase">
@@ -20,8 +23,8 @@ export function AboutSection() {
           <h2 className="max-w-2xl font-[family-name:var(--font-display)] text-[2rem] leading-[1.06] font-bold tracking-[-0.03em] sm:text-[3.25rem] lg:text-[3.6rem]">
             <RevealWords text="I build AI agents that" />
             <br />
-            {/* The middle line carries the emphasis: brand orange, and a real
-                serif italic rather than a slanted grotesk. */}
+            {/* The middle line carries the emphasis: ochre-gold primary, and a
+                real serif italic rather than a slanted grotesk. */}
             <RevealWords
               text="do the boring things"
               startDelay={400}

@@ -37,7 +37,7 @@ export function HarnessDiagram() {
   };
 
   return (
-    <div className="mt-12">
+    <div className="starry-diagram mt-12">
       <div
         role="tablist"
         aria-label="AI agent stack layers"
@@ -55,7 +55,7 @@ export function HarnessDiagram() {
                   aria-hidden
                   className={cn(
                     "absolute top-1/2 -left-2.5 hidden h-px w-2.5 lg:block",
-                    isPast || isActive ? "bg-[#ff7a2f]" : "bg-white/20",
+                    isPast || isActive ? "bg-[#f4c84a]" : "bg-white/20",
                   )}
                 />
               )}
@@ -73,16 +73,16 @@ export function HarnessDiagram() {
                 onKeyDown={(event) => onKeyDown(event, index)}
                 className={cn(
                   "group relative flex h-full w-full flex-col items-start gap-1.5 rounded-md border p-3.5 text-left transition-all duration-200 outline-none",
-                  "focus-visible:ring-2 focus-visible:ring-[#ff7a2f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#140c07]",
+                  "focus-visible:ring-2 focus-visible:ring-[#f4c84a] focus-visible:ring-offset-2 focus-visible:ring-offset-[#07152b]",
                   isActive
-                    ? "-translate-y-0.5 border-[#ff7a2f] bg-[#ff7a2f]/12 shadow-[0_10px_30px_-12px_rgba(255,122,47,0.6)]"
+                    ? "-translate-y-0.5 border-[#f4c84a] bg-[#f4c84a]/12 shadow-[0_10px_30px_-12px_rgba(244,200,74,0.5)]"
                     : "border-white/15 bg-white/[0.03] hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/[0.06]",
                 )}
               >
                 <span
                   className={cn(
                     "font-mono text-[10px] tracking-[0.14em]",
-                    isActive ? "text-[#ff7a2f]" : "text-white/45",
+                    isActive ? "text-[#f4c84a]" : "text-white/45",
                   )}
                 >
                   {node.step}
@@ -92,7 +92,7 @@ export function HarnessDiagram() {
                   aria-hidden
                   className={cn(
                     "mt-1 h-0.5 w-full origin-left rounded-full transition-transform duration-300",
-                    isActive ? "scale-x-100 bg-[#ff7a2f]" : "scale-x-0 bg-white/40 group-hover:scale-x-100",
+                    isActive ? "scale-x-100 bg-[#f4c84a]" : "scale-x-0 bg-white/40 group-hover:scale-x-100",
                   )}
                 />
               </button>
@@ -108,7 +108,7 @@ export function HarnessDiagram() {
         className="mt-4 grid gap-6 rounded-lg border border-white/12 bg-white/[0.04] p-6 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center"
       >
         <div key={active.id} className="[animation:reveal-fade_0.35s_ease_both]">
-          <p className="font-mono text-[10px] tracking-[0.16em] text-[#ff7a2f] uppercase">
+          <p className="font-mono text-[10px] tracking-[0.16em] text-[#f4c84a] uppercase">
             {active.step} · {active.title}
           </p>
           <p className="mt-3 text-xl leading-7 font-semibold sm:text-2xl">{active.short}</p>
@@ -116,7 +116,7 @@ export function HarnessDiagram() {
           <ul className="mt-5 grid gap-2 sm:grid-cols-2">
             {active.bullets.map((bullet) => (
               <li key={bullet} className="flex items-start gap-2 font-mono text-[11px] tracking-wide text-white/75">
-                <span aria-hidden className="mt-[3px] text-[#ff7a2f]">
+                <span aria-hidden className="mt-[3px] text-[#f4c84a]">
                   ▪
                 </span>
                 {bullet}
@@ -381,9 +381,9 @@ function HarnessFlow({ activeIndex }: { activeIndex: number }) {
       <svg viewBox="0 0 260 210" className="h-auto w-full max-w-sm lg:ml-auto">
         <defs>
           <linearGradient id="harness-beam" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#ff7a2f" stopOpacity="0" />
-            <stop offset="50%" stopColor="#ff7a2f" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#ff7a2f" stopOpacity="0" />
+            <stop offset="0%" stopColor="#f4c84a" stopOpacity="0" />
+            <stop offset="50%" stopColor="#f4c84a" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#f4c84a" stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -393,7 +393,7 @@ function HarnessFlow({ activeIndex }: { activeIndex: number }) {
           y1="14"
           x2="26"
           y2={14 + (182 * (activeIndex + 1)) / rows.length}
-          stroke="#ff7a2f"
+          stroke="#f4c84a"
           strokeWidth="1.5"
           style={{ transition: "all .4s ease" }}
         />
@@ -407,7 +407,7 @@ function HarnessFlow({ activeIndex }: { activeIndex: number }) {
                 y1={y}
                 x2="52"
                 y2={y}
-                stroke={row.active || row.passed ? "#ff7a2f" : "rgba(255,255,255,0.18)"}
+                stroke={row.active || row.passed ? "#f4c84a" : "rgba(255,255,255,0.18)"}
                 strokeWidth="1"
                 strokeDasharray={row.active ? undefined : "3 3"}
               />
@@ -417,15 +417,15 @@ function HarnessFlow({ activeIndex }: { activeIndex: number }) {
                 width="188"
                 height="22"
                 rx="4"
-                fill={row.active ? "rgba(255,122,47,0.16)" : "rgba(255,255,255,0.035)"}
-                stroke={row.active ? "#ff7a2f" : "rgba(255,255,255,0.14)"}
+                fill={row.active ? "rgba(244,200,74,0.16)" : "rgba(255,255,255,0.035)"}
+                stroke={row.active ? "#f4c84a" : "rgba(255,255,255,0.14)"}
                 strokeWidth="1"
                 style={{ transition: "all .35s ease" }}
               />
               <text
                 x="64"
                 y={y + 4}
-                fill={row.active ? "#ffd9c2" : "rgba(255,255,255,0.6)"}
+                fill={row.active ? "#fbe7b6" : "rgba(255,255,255,0.6)"}
                 fontSize="9.5"
                 fontFamily="ui-monospace, monospace"
                 letterSpacing="0.8"
@@ -436,7 +436,7 @@ function HarnessFlow({ activeIndex }: { activeIndex: number }) {
                 cx="26"
                 cy={y}
                 r={row.active ? 4 : 2.4}
-                fill={row.active || row.passed ? "#ff7a2f" : "rgba(255,255,255,0.3)"}
+                fill={row.active || row.passed ? "#f4c84a" : "rgba(255,255,255,0.3)"}
                 style={{ transition: "all .35s ease" }}
               />
               {row.active && (

@@ -59,76 +59,76 @@
 }
 
 :root {
-  /* Signature orange. Intentionally identical in both themes — the hero and
-     contact bands are brand surfaces, not theme surfaces. */
-  --brand: #ff6a1a;
+  /* Starry Night: warm canvas surfaces framed by nocturnal blue, with a
+     restrained ochre-gold accent instead of the old flat orange. */
+  --brand: #0b2347;
 
-  --background: #ffffff;
-  --foreground: #0e0e13;
-  --card: #f6f5f1;
-  --card-foreground: #0e0e13;
-  --popover: #ffffff;
-  --popover-foreground: #0e0e13;
-  --primary: #ff6a1a;
-  --primary-foreground: #ffffff;
-  --secondary: #f6f5f1;
-  --secondary-foreground: #0e0e13;
-  --muted: #f6f5f1;
-  --muted-foreground: #5a5a66;
-  --accent: #ff6a1a;
-  --accent-foreground: #ffffff;
+  --background: #f4edd9;
+  --foreground: #10213b;
+  --card: #e9e0c8;
+  --card-foreground: #10213b;
+  --popover: #f8f2e2;
+  --popover-foreground: #10213b;
+  --primary: #c78f1f;
+  --primary-foreground: #07152b;
+  --secondary: #dfe5df;
+  --secondary-foreground: #10213b;
+  --muted: #e6dfcd;
+  --muted-foreground: #596476;
+  --accent: #c78f1f;
+  --accent-foreground: #07152b;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: rgba(0, 0, 0, 0.08);
-  --input: rgba(0, 0, 0, 0.08);
-  --ring: #ff6a1a;
+  --border: rgba(16, 33, 59, 0.14);
+  --input: rgba(16, 33, 59, 0.12);
+  --ring: #c78f1f;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: #f4edd9;
+  --sidebar-foreground: #10213b;
+  --sidebar-primary: #0b2347;
+  --sidebar-primary-foreground: #f7f0dc;
+  --sidebar-accent: #e9e0c8;
+  --sidebar-accent-foreground: #10213b;
+  --sidebar-border: rgba(16, 33, 59, 0.14);
+  --sidebar-ring: #c78f1f;
 }
 
 .dark {
-  --background: #0d0907;
-  --foreground: #f7f2ee;
-  --card: #17110d;
-  --card-foreground: #f7f2ee;
-  --popover: #17110d;
-  --popover-foreground: #f7f2ee;
-  --primary: #ff7a2f;
-  --primary-foreground: #1a0d04;
-  --secondary: #1f1712;
-  --secondary-foreground: #f7f2ee;
-  --muted: #1f1712;
-  --muted-foreground: #a89a90;
-  --accent: #ff7a2f;
-  --accent-foreground: #1a0d04;
+  --background: #07152b;
+  --foreground: #f4edd9;
+  --card: #0d2342;
+  --card-foreground: #f4edd9;
+  --popover: #0d2342;
+  --popover-foreground: #f4edd9;
+  --primary: #f0c24b;
+  --primary-foreground: #07152b;
+  --secondary: #143158;
+  --secondary-foreground: #f4edd9;
+  --muted: #112b4e;
+  --muted-foreground: #aebbd0;
+  --accent: #f0c24b;
+  --accent-foreground: #07152b;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: rgba(255, 255, 255, 0.11);
-  --input: rgba(255, 255, 255, 0.14);
-  --ring: #ff7a2f;
+  --border: rgba(244, 237, 217, 0.16);
+  --input: rgba(244, 237, 217, 0.18);
+  --ring: #f0c24b;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --sidebar: #17110d;
-  --sidebar-foreground: #f7f2ee;
-  --sidebar-primary: #ff7a2f;
-  --sidebar-primary-foreground: #1a0d04;
-  --sidebar-accent: #1f1712;
-  --sidebar-accent-foreground: #f7f2ee;
-  --sidebar-border: rgba(255, 255, 255, 0.11);
-  --sidebar-ring: #ff7a2f;
+  --sidebar: #0d2342;
+  --sidebar-foreground: #f4edd9;
+  --sidebar-primary: #f0c24b;
+  --sidebar-primary-foreground: #07152b;
+  --sidebar-accent: #143158;
+  --sidebar-accent-foreground: #f4edd9;
+  --sidebar-border: rgba(244, 237, 217, 0.16);
+  --sidebar-ring: #f0c24b;
 }
 
 /* Same palette, applied when the visitor's OS asks for dark and they have not
@@ -136,38 +136,248 @@
    Keep these two blocks in sync. */
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
-    --background: #0d0907;
-    --foreground: #f7f2ee;
-    --card: #17110d;
-    --card-foreground: #f7f2ee;
-    --popover: #17110d;
-    --popover-foreground: #f7f2ee;
-    --primary: #ff7a2f;
-    --primary-foreground: #1a0d04;
-    --secondary: #1f1712;
-    --secondary-foreground: #f7f2ee;
-    --muted: #1f1712;
-    --muted-foreground: #a89a90;
-    --accent: #ff7a2f;
-    --accent-foreground: #1a0d04;
+    --background: #07152b;
+    --foreground: #f4edd9;
+    --card: #0d2342;
+    --card-foreground: #f4edd9;
+    --popover: #0d2342;
+    --popover-foreground: #f4edd9;
+    --primary: #f0c24b;
+    --primary-foreground: #07152b;
+    --secondary: #143158;
+    --secondary-foreground: #f4edd9;
+    --muted: #112b4e;
+    --muted-foreground: #aebbd0;
+    --accent: #f0c24b;
+    --accent-foreground: #07152b;
     --destructive: oklch(0.704 0.191 22.216);
-    --border: rgba(255, 255, 255, 0.11);
-    --input: rgba(255, 255, 255, 0.14);
-    --ring: #ff7a2f;
+    --border: rgba(244, 237, 217, 0.16);
+    --input: rgba(244, 237, 217, 0.18);
+    --ring: #f0c24b;
     --chart-1: oklch(0.87 0 0);
     --chart-2: oklch(0.556 0 0);
     --chart-3: oklch(0.439 0 0);
     --chart-4: oklch(0.371 0 0);
     --chart-5: oklch(0.269 0 0);
-    --sidebar: #17110d;
-    --sidebar-foreground: #f7f2ee;
-    --sidebar-primary: #ff7a2f;
-    --sidebar-primary-foreground: #1a0d04;
-    --sidebar-accent: #1f1712;
-    --sidebar-accent-foreground: #f7f2ee;
-    --sidebar-border: rgba(255, 255, 255, 0.11);
-    --sidebar-ring: #ff7a2f;
+    --sidebar: #0d2342;
+    --sidebar-foreground: #f4edd9;
+    --sidebar-primary: #f0c24b;
+    --sidebar-primary-foreground: #07152b;
+    --sidebar-accent: #143158;
+    --sidebar-accent-foreground: #f4edd9;
+    --sidebar-border: rgba(244, 237, 217, 0.16);
+    --sidebar-ring: #f0c24b;
   }
+}
+
+/* Sparse points and soft directional colour fields carry the night-sky idea
+   through the quieter sections without turning text surfaces into paintings. */
+.starfield-surface {
+  background-image:
+    radial-gradient(circle at 14% 22%, color-mix(in srgb, var(--primary) 26%, transparent) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 78% 66%, color-mix(in srgb, var(--primary) 18%, transparent) 0 1.2px, transparent 2px),
+    linear-gradient(135deg, color-mix(in srgb, var(--card) 74%, transparent), transparent 58%);
+  background-size: 173px 149px, 211px 187px, 100% 100%;
+}
+
+.dark .painterly-page {
+  background-image:
+    radial-gradient(circle at 14% 22%, rgba(240, 194, 75, 0.38) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 78% 66%, rgba(240, 194, 75, 0.25) 0 1.2px, transparent 2px),
+    linear-gradient(rgba(7, 21, 43, 0.46), rgba(7, 21, 43, 0.62)),
+    url("/images/painterly-night-texture.webp");
+  background-position: 0 0, 0 0, center, center;
+  background-size: 173px 149px, 211px 187px, 100% 100%, cover;
+  background-repeat: repeat, repeat, no-repeat, no-repeat;
+  background-attachment: fixed;
+}
+
+.dark .starfield-surface {
+  background-color: transparent;
+  background-image: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) .painterly-page {
+    background-image:
+      radial-gradient(circle at 14% 22%, rgba(240, 194, 75, 0.38) 0 1px, transparent 1.7px),
+      radial-gradient(circle at 78% 66%, rgba(240, 194, 75, 0.25) 0 1.2px, transparent 2px),
+      linear-gradient(rgba(7, 21, 43, 0.46), rgba(7, 21, 43, 0.62)),
+      url("/images/painterly-night-texture.webp");
+    background-position: 0 0, 0 0, center, center;
+    background-size: 173px 149px, 211px 187px, 100% 100%, cover;
+    background-repeat: repeat, repeat, no-repeat, no-repeat;
+    background-attachment: fixed;
+  }
+
+  :root:not(.light) .starfield-surface {
+    background-color: transparent;
+    background-image: none;
+  }
+}
+
+/* Fixed backgrounds are expensive and inconsistently painted by mobile
+   browsers. A slightly denser veil also keeps long copy legible without
+   flattening the brush texture. */
+@media (width < 48rem) {
+  .dark .painterly-page {
+    background-image:
+      radial-gradient(circle at 14% 22%, rgba(240, 194, 75, 0.32) 0 1px, transparent 1.7px),
+      radial-gradient(circle at 78% 66%, rgba(240, 194, 75, 0.2) 0 1.2px, transparent 2px),
+      linear-gradient(rgba(7, 21, 43, 0.58), rgba(7, 21, 43, 0.72)),
+      url("/images/painterly-night-texture.webp");
+    background-attachment: scroll;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) and (width < 48rem) {
+  :root:not(.light) .painterly-page {
+    background-image:
+      radial-gradient(circle at 14% 22%, rgba(240, 194, 75, 0.32) 0 1px, transparent 1.7px),
+      radial-gradient(circle at 78% 66%, rgba(240, 194, 75, 0.2) 0 1.2px, transparent 2px),
+      linear-gradient(rgba(7, 21, 43, 0.58), rgba(7, 21, 43, 0.72)),
+      url("/images/painterly-night-texture.webp");
+    background-attachment: scroll;
+  }
+}
+
+.night-surface {
+  background-color: #07152b;
+  background-image:
+    radial-gradient(circle at 20% 22%, rgba(244, 200, 74, 0.7) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 76% 64%, rgba(244, 200, 74, 0.38) 0 1.2px, transparent 2px),
+    radial-gradient(ellipse at 50% -10%, rgba(40, 91, 148, 0.72), transparent 58%);
+  background-size: 181px 157px, 223px 193px, 100% 100%;
+}
+
+/* Liquid Glass belongs to the control layer, not the page surface. Large,
+   text-heavy controls use the denser regular variant; compact actions use a
+   clearer variant so the star field remains visibly grounded beneath them. */
+.liquid-glass {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(31, 64, 101, 0.34);
+  box-shadow:
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.36),
+    inset 1px 0 1px rgba(255, 255, 255, 0.12),
+    inset 0 -1.5px 2px rgba(0, 8, 24, 0.48),
+    0 12px 34px -18px rgba(0, 5, 18, 0.86);
+  backdrop-filter: blur(28px) saturate(140%) brightness(0.96);
+  -webkit-backdrop-filter: blur(28px) saturate(140%) brightness(0.96);
+}
+
+.liquid-glass::before {
+  position: absolute;
+  inset: -1px;
+  z-index: 0;
+  border-radius: inherit;
+  background: linear-gradient(115deg, rgba(116, 166, 216, 0.1), transparent 38%, rgba(102, 164, 222, 0.07) 72%, transparent);
+  content: "";
+  pointer-events: none;
+}
+
+.liquid-glass::after {
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(180deg, rgba(7, 25, 51, 0.08), rgba(4, 18, 40, 0.24)),
+    radial-gradient(ellipse at 50% 115%, rgba(4, 20, 47, 0.34), transparent 62%);
+  content: "";
+  pointer-events: none;
+}
+
+.liquid-glass > * {
+  position: relative;
+  z-index: 1;
+}
+
+.liquid-glass-regular {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(25, 55, 88, 0.52);
+  backdrop-filter: blur(34px) saturate(135%) brightness(0.92);
+  -webkit-backdrop-filter: blur(34px) saturate(135%) brightness(0.92);
+}
+
+.liquid-glass-interactive {
+  transition:
+    scale 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    translate 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 220ms ease;
+}
+
+.liquid-glass-interactive:hover {
+  translate: 0 -1px;
+  border-color: rgba(255, 255, 255, 0.28);
+  background-color: rgba(43, 82, 120, 0.46);
+  box-shadow:
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.46),
+    inset 0 -1.5px 2px rgba(0, 8, 24, 0.42),
+    0 16px 38px -18px rgba(0, 5, 18, 0.94);
+}
+
+.liquid-glass-interactive:active {
+  translate: 0 1px;
+  scale: 0.985;
+}
+
+.liquid-glass-plate {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.105);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 1px rgba(0, 8, 24, 0.24);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+}
+
+/* Existing technical diagrams keep their information architecture while
+   their cyan/orange ink is recoloured into the shared cobalt/gold palette. */
+.project-art [stroke="#f97316"] {
+  stroke: #f4c84a;
+}
+
+.project-art [fill="#f97316"] {
+  fill: #f4c84a;
+}
+
+.project-art [stroke="#22d3ee"] {
+  stroke: #78a7d8;
+}
+
+.project-art [fill="#22d3ee"] {
+  fill: #78a7d8;
+}
+
+.project-art > rect:first-child {
+  fill: #07152b;
+}
+
+.starry-diagram [stroke="#ff7a2f"],
+.starry-diagram [stroke="#e35b20"] {
+  stroke: #f4c84a;
+}
+
+.starry-diagram [fill="#ff7a2f"],
+.starry-diagram [fill="#e35b20"] {
+  fill: #d9a52c;
+}
+
+.starry-diagram [fill="#f4a261"],
+.starry-diagram [fill="#e89245"],
+.starry-diagram [fill="#f1c38c"] {
+  fill: #e9c75d;
+}
+
+.starry-diagram [fill="#d9e4dc"],
+.starry-diagram [fill="#78a89a"] {
+  fill: #a9c7dd;
 }
 
 @layer base {
@@ -439,6 +649,13 @@
 
 [data-reveal-stagger] > [data-reveal] {
   transition-delay: calc(var(--reveal-index, 0) * 0.07s);
+}
+
+@media (width < 48rem) {
+  [data-reveal-variant="word"] {
+    transition-duration: 0.38s, 0.48s, 0.48s, 0.15s;
+    transition-delay: 0ms !important;
+  }
 }
 
 @supports (animation-timeline: view()) {

@@ -30,7 +30,9 @@ export function EmailCard() {
   };
 
   return (
-    <div className="rounded-2xl bg-white/10 p-1.5 ring-1 ring-white/25 backdrop-blur-sm">
+    <div
+      className="liquid-glass liquid-glass-regular rounded-[1.35rem] p-1.5"
+    >
       <div className="flex flex-col gap-2 sm:h-[4.25rem] sm:flex-row sm:items-center">
         <div className="min-w-0 flex-1 px-3.5 py-2.5 text-left sm:py-0">
           <p className="font-mono text-[0.6875rem] tracking-[0.14em] text-white/70 uppercase">
@@ -49,7 +51,7 @@ export function EmailCard() {
             type="button"
             onClick={copy}
             aria-label={copied ? "Email address copied" : "Copy email address"}
-            className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-xl px-3.5 text-sm font-semibold text-white ring-1 ring-white/30 transition-colors hover:bg-white/15 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none sm:flex-none"
+            className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-xl bg-white/[0.045] px-3.5 text-sm font-semibold text-white ring-1 ring-white/25 backdrop-blur-md transition-colors hover:bg-white/15 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none sm:flex-none"
           >
             {copied ? (
               <Check aria-hidden className="size-3.5" />
@@ -61,7 +63,7 @@ export function EmailCard() {
 
           <a
             href={`mailto:${siteConfig.email}`}
-            className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-xl bg-white px-4 text-sm font-semibold text-brand transition-colors hover:bg-white/90 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand focus-visible:outline-none sm:flex-none"
+            className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-xl bg-[linear-gradient(145deg,rgba(255,255,255,0.98),rgba(238,231,210,0.9))] px-4 text-sm font-semibold text-[#07152b] shadow-[inset_0_1px_0_white,0_6px_18px_-10px_rgba(1,7,18,0.9)] transition-[translate,filter] hover:-translate-y-px hover:brightness-105 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#07152b] focus-visible:outline-none sm:flex-none"
           >
             <Mail aria-hidden className="size-3.5" />
             Write
@@ -80,10 +82,10 @@ export function EmailCard() {
  * unsettled.
  */
 const tileClass =
-  "group flex h-full min-h-[4.25rem] items-center gap-3.5 rounded-2xl px-4 py-3.5 ring-1 ring-white/25 transition-colors hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none";
+  "liquid-glass liquid-glass-interactive group flex h-full min-h-[4.25rem] items-center gap-3.5 rounded-[1.35rem] px-4 py-3.5 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none";
 
 const plateClass =
-  "flex size-10 shrink-0 items-center justify-center rounded-xl bg-white/15 ring-1 ring-white/20";
+  "liquid-glass-plate flex size-10 shrink-0 items-center justify-center rounded-xl";
 
 /**
  * The résumé is a page on this site, so it is a link that reads as one: a
@@ -100,7 +102,10 @@ export function ResumeLink({
   className?: string;
 }) {
   return (
-    <a href="/resume" className={cn(tileClass, className)}>
+    <a
+      href="/resume"
+      className={cn(tileClass, className)}
+    >
       <span className={plateClass}>
         <FileText aria-hidden className="size-[1.125rem]" />
       </span>
@@ -118,7 +123,10 @@ export function ResumeLink({
 
 export function PhoneLink({ className }: { className?: string }) {
   return (
-    <a href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`} className={cn(tileClass, className)}>
+    <a
+      href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
+      className={cn(tileClass, className)}
+    >
       <span className={plateClass}>
         <Phone aria-hidden className="size-[1.125rem]" />
       </span>

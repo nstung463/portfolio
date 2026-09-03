@@ -5,7 +5,7 @@ import { RevealWords } from "./reveal-words";
 
 export function EducationSection() {
   return (
-    <section id="education" className="relative overflow-hidden bg-card">
+    <section id="education" className="starfield-surface relative overflow-hidden border-t border-border bg-card">
       <SectionBleed text="Education" />
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-[90px]">
         <SectionLabel n="07" label="Education & Certs" />
@@ -21,7 +21,7 @@ export function EducationSection() {
               // `translate`, not `transform`: Tailwind v4's `-translate-y-*`
               // sets the standalone `translate` property, so this has to
               // name that or the lift jumps instead of easing in.
-              className="group flex flex-col gap-4 rounded-[10px] border border-border bg-background p-5 transition-[translate,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-primary hover:shadow-[0_16px_32px_-14px_rgba(0,0,0,0.3)] sm:flex-row sm:items-center sm:gap-5 sm:p-6"
+              className="group flex flex-col gap-4 rounded-[10px] border border-border bg-background/90 p-5 shadow-[0_8px_28px_-22px_rgba(7,21,43,0.75)] backdrop-blur-sm transition-[translate,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-primary hover:shadow-[0_18px_38px_-20px_rgba(7,21,43,0.9)] sm:flex-row sm:items-center sm:gap-5 sm:p-6"
             >
               <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
                 <GraduationCap aria-hidden className="size-6" />

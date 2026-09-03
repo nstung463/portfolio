@@ -17,11 +17,11 @@ export function ProjectCard({ project }: { project: ProjectItem }) {
         // and the lift jumped straight to its end position instead of easing
         // there — only the border and shadow, which were in the list, moved
         // smoothly.
-        "flex h-full flex-col overflow-hidden rounded-[10px] border border-border bg-card " +
-        "shadow-[0_1px_2px_rgba(0,0,0,0.04)] " +
+        "flex h-full flex-col overflow-hidden rounded-[10px] border border-border bg-card/95 " +
+        "shadow-[0_8px_28px_-22px_rgba(7,21,43,0.8)] backdrop-blur-sm " +
         "transition-[translate,box-shadow,border-color] duration-300 ease-out " +
-        "group-hover:-translate-y-1.5 group-hover:border-primary group-hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.35)] " +
-        "group-focus-visible:-translate-y-1.5 group-focus-visible:border-primary group-focus-visible:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.35)]"
+        "group-hover:-translate-y-1.5 group-hover:border-primary group-hover:shadow-[0_20px_44px_-18px_rgba(7,21,43,0.8)] " +
+        "group-focus-visible:-translate-y-1.5 group-focus-visible:border-primary group-focus-visible:shadow-[0_20px_44px_-18px_rgba(7,21,43,0.8)]"
       }
     >
       <div className="aspect-[5/3] w-full overflow-hidden">

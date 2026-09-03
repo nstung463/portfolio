@@ -14,7 +14,7 @@ import { RevealWords } from "./reveal-words";
  */
 export function ExperienceSection() {
   return (
-    <section id="experience" className="relative overflow-hidden py-[90px]">
+    <section id="experience" className="starfield-surface relative overflow-hidden py-[90px]">
       <SectionBleed text="Experience" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-5">
@@ -66,7 +66,7 @@ export function ExperienceSection() {
                     // radius. The lift is named `translate` in the reveal
                     // shorthand in globals.css, not here — a `transition-*`
                     // utility on this element would be discarded by it.
-                    "group relative overflow-hidden rounded-xl bg-card p-5 shadow-[0_1px_2px_rgba(0,0,0,0.05)] hover:-translate-y-1 hover:shadow-[0_18px_38px_-16px_rgba(0,0,0,0.28)] lg:row-start-1 lg:p-6",
+                    "group relative overflow-hidden rounded-xl border border-border bg-card/90 p-5 shadow-[0_8px_28px_-22px_rgba(7,21,43,0.75)] backdrop-blur-sm hover:-translate-y-1 hover:border-primary/60 hover:shadow-[0_20px_42px_-22px_rgba(7,21,43,0.9)] lg:row-start-1 lg:p-6",
                     isLeft ? "lg:col-start-1" : "lg:col-start-3",
                   )}
                 >

@@ -11,10 +11,11 @@ import { ScrollProgress } from "./scroll-progress";
 import { ScrollReveal } from "./scroll-reveal";
 import { SectionIndex } from "./section-index";
 import { SkillsSection } from "./skills-section";
+import { StarRiverDivider } from "./star-river-divider";
 
 export function PortfolioPage() {
   return (
-    <main className="flex-1 bg-background text-foreground">
+    <main className="painterly-page flex-1 bg-background text-foreground">
       <ScrollProgress />
       <ScrollReveal />
       <SectionIndex />
@@ -28,6 +29,7 @@ export function PortfolioPage() {
           after a long conceptual section. Harness closes as "here's how I
           think about the domain", one beat before Education/Contact. */}
       <FeaturedWorkSection />
+      <StarRiverDivider />
       <HarnessSection />
       <EducationSection />
       <ContactSection />

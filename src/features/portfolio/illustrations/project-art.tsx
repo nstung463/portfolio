@@ -122,7 +122,7 @@ export function ProjectArt({ variant }: { variant: ProjectArtVariant }) {
   }
 
   return (
-    <svg className="h-full w-full" viewBox="0 0 200 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <svg className="project-art h-full w-full" viewBox="0 0 200 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <rect width="200" height="120" fill="#0d1218" />
       {content}
       <text x="10" y="112" fill="#ffffff" fontSize="7" fontFamily="monospace" opacity={0.5}>{label}</text>

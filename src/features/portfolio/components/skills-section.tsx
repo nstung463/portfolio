@@ -5,7 +5,7 @@ import { RevealWords } from "./reveal-words";
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="relative overflow-hidden bg-card">
+    <section id="skills" className="starfield-surface relative overflow-hidden border-y border-border bg-card">
       <SectionBleed text="Stack" />
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-[90px]">
         <SectionLabel n="02" label="Skills" />
@@ -14,13 +14,13 @@ export function SkillsSection() {
         </h2>
         <div data-reveal-stagger className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {skillGroups.map((group) => (
-            <div key={group.label} className="rounded-[10px] border border-border bg-background p-5">
+            <div key={group.label} className="group rounded-[10px] border border-border bg-background/90 p-5 shadow-[0_8px_30px_-24px_rgba(7,21,43,0.8)] backdrop-blur-sm transition-[translate,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-[0_18px_38px_-24px_rgba(7,21,43,0.9)]">
               <p className="font-mono text-xs font-bold tracking-[0.1em] text-primary uppercase">{group.label}</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {group.items.map((item) => (
                   <span
                     key={item}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-border px-2.5 py-1 font-mono text-xs text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/45 px-2.5 py-1 font-mono text-xs text-muted-foreground transition-colors hover:border-primary/60 hover:bg-primary/10 hover:text-foreground"
                   >
                     <SkillIcon
                       name={item}

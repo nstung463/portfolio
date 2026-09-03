@@ -10,11 +10,11 @@ const WORDMARK = "AI ENGINEER".split(" ");
 
 /**
  * The site's mark: the browser-tab favicon's diamond, redrawn as a hollow
- * ring in a single colour instead of white-on-orange. The nav bar is always
- * on the brand-orange background, so a second copy of the favicon's own
- * orange square would just disappear into it — this keeps the same geometry
- * the tab already taught the visitor to recognise, in a form that reads
- * against that background. `fillRule="evenodd"` is what punches the hole:
+ * ring in a single colour instead of white-on-orange. The nav bar sits over
+ * the starry hero image, so a second copy of the favicon's own orange square
+ * would just disappear into it — this keeps the same geometry the tab already
+ * taught the visitor to recognise, in a form that reads against that
+ * background. `fillRule="evenodd"` is what punches the hole:
  * two nested diamond paths in one fill, the inner one carved out of the
  * outer regardless of winding order.
  */
@@ -36,8 +36,22 @@ export function HeroSection() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <section id="top" className="relative flex h-dvh min-h-[440px] flex-col overflow-hidden bg-brand text-white">
-      <div className="intro-drop sticky top-0 z-30 grid shrink-0 grid-cols-[1fr_auto] items-center gap-4 bg-brand px-5 py-3.5 lg:grid-cols-[auto_1fr_auto]">
+    <section id="top" className="relative flex h-dvh min-h-[440px] flex-col overflow-hidden bg-[#07152b] text-white">
+      <Image
+        src="/images/starry-night-hero.webp"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="pointer-events-none object-cover object-center"
+        aria-hidden
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(180deg,rgba(3,12,29,0.28)_0%,rgba(3,12,29,0.08)_42%,rgba(3,12,29,0.7)_100%)]"
+      />
+
+      <div className="intro-drop sticky top-0 z-30 grid shrink-0 grid-cols-[1fr_auto] items-center gap-4 border-b border-[#f4c84a]/15 bg-[#07152b]/72 px-5 py-3.5 backdrop-blur-md lg:grid-cols-[auto_1fr_auto]">
         <a href="#top" className="flex items-center gap-2 font-mono text-[11px] font-bold tracking-[0.18em]">
           <BrandMark className="size-3.5" />
           NST
@@ -71,7 +85,7 @@ export function HeroSection() {
       </div>
 
       {menuOpen && (
-        <div className="relative z-30 flex flex-col gap-5 bg-brand px-5 pt-2 pb-6 font-mono text-xs font-bold tracking-[0.15em] uppercase lg:hidden">
+        <div className="relative z-30 flex flex-col gap-5 border-b border-[#f4c84a]/15 bg-[#07152b]/92 px-5 pt-2 pb-6 font-mono text-xs font-bold tracking-[0.15em] uppercase backdrop-blur-md lg:hidden">
           {navLinks.map((link) => (
             <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>{link.label}</a>
           ))}
@@ -84,7 +98,7 @@ export function HeroSection() {
         {/* Letters resolve one after another out of a blur. `aria-label` on the
             heading already replaces its contents for a screen reader, so the
             split costs nothing in the accessibility tree. */}
-        <h1 aria-label="AI Engineer" className="relative z-20 mt-3 w-full shrink-0 text-center font-[family-name:var(--font-display)] text-[18vw] leading-[0.82] tracking-[-0.025em] text-white dark:text-black select-none">
+        <h1 aria-label="AI Engineer" className="relative z-20 mt-3 w-full shrink-0 text-center font-[family-name:var(--font-display)] text-[18vw] leading-[0.82] tracking-[-0.025em] text-[#f7f0dc] select-none [text-shadow:0_3px_30px_rgba(2,8,20,0.42)]">
           {WORDMARK.map((word, wordIndex) => {
             const priorChars = wordIndex === 0 ? 0 : WORDMARK[0].length + 1;
             return (
@@ -143,12 +157,12 @@ export function HeroSection() {
                 priority
                 sizes="(max-width: 1024px) 100vw, 60vw"
                 className="object-contain"
-                style={{ filter: "drop-shadow(0 0 70px rgba(255,130,50,0.42))" }}
+                style={{ filter: "drop-shadow(0 0 70px rgba(244,200,74,0.22))" }}
               />
             </div>
           </div>
 
-          <div aria-hidden className="pointer-events-none absolute inset-0 z-[15]" style={{ background: "linear-gradient(rgba(255,106,26,0) 65%, rgba(255,106,26,0.3) 88%, rgba(255,106,26,0.7) 100%)" }} />
+          <div aria-hidden className="pointer-events-none absolute inset-0 z-[15]" style={{ background: "linear-gradient(rgba(3,12,29,0) 62%, rgba(3,12,29,0.34) 84%, rgba(3,12,29,0.82) 100%)" }} />
 
           <div className="absolute top-[26%] right-5 z-20 hidden text-right font-mono text-[13px] leading-[1.6] tracking-[0.08em] uppercase intro-rise [--intro-delay:2100ms] [animation-duration:0.55s] lg:block">
             <div>{"// grounded answers, not guesses"}</div>
@@ -162,24 +176,24 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="shrink-0 px-5 pt-2 font-mono text-[11px] font-normal tracking-wide uppercase intro-rise [--intro-delay:2100ms] [animation-duration:0.55s] lg:hidden">
+      <div className="relative z-20 shrink-0 px-5 pt-2 font-mono text-[11px] font-normal tracking-wide uppercase intro-rise [--intro-delay:2100ms] [animation-duration:0.55s] lg:hidden">
         <div>{"// grounded answers, not guesses"}</div>
         <div className="pl-6">not vibes</div>
       </div>
-      <div className="shrink-0 px-5 pt-2 pb-3 font-mono text-xs font-normal tracking-wide uppercase intro-rise [--intro-delay:2250ms] [animation-duration:0.55s] lg:hidden">
+      <div className="relative z-20 shrink-0 px-5 pt-2 pb-3 font-mono text-xs font-normal tracking-wide uppercase intro-rise [--intro-delay:2250ms] [animation-duration:0.55s] lg:hidden">
         <div>{"// I'm Tung — an AI engineer building RAG"}</div>
         <div className="pl-6">pipelines &amp; agent harnesses,</div>
         <div>shipped to production. Open to projects.</div>
       </div>
 
       <div
-        className="intro-band relative z-30 shrink-0 overflow-hidden border-t border-white/25 pt-[22px] pb-[26px] lg:-mt-[68px]"
-        style={{ "--intro-delay": "2450ms", background: "linear-gradient(rgba(255,106,26,0), rgba(255,106,26,0.1))" } as CSSProperties}
+        className="intro-band relative z-30 shrink-0 overflow-hidden border-t border-[#f4c84a]/25 pt-[22px] pb-[26px] lg:-mt-[68px]"
+        style={{ "--intro-delay": "2450ms", background: "linear-gradient(rgba(3,12,29,0.12), rgba(3,12,29,0.78))" } as CSSProperties}
       >
         <div className="flex animate-[marquee_8s_linear_infinite] items-center gap-14 whitespace-nowrap">
           {[...heroTags, ...heroTags].map((tag, index) => (
-            <span key={`${tag}-${index}`} className="flex items-center gap-14 font-[family-name:var(--font-display)] text-[5.5vw] leading-none tracking-[-0.01em] text-white uppercase dark:text-black">
-              <span aria-hidden className="text-[clamp(9px,1.25vw,18px)] leading-none">◆</span>
+            <span key={`${tag}-${index}`} className="flex items-center gap-14 font-[family-name:var(--font-display)] text-[5.5vw] leading-none tracking-[-0.01em] text-[#f7f0dc] uppercase">
+              <span aria-hidden className="text-[clamp(9px,1.25vw,18px)] leading-none text-[#f4c84a]">◆</span>
               {tag}
             </span>
           ))}
