@@ -651,6 +651,18 @@
   transition-delay: calc(var(--reveal-index, 0) * 0.07s);
 }
 
+/* Cool the cut-out's original orange grade so it belongs to the nocturnal
+   hero palette. The blue shadow also separates the silhouette without adding
+   the warm halo that previously pushed the skin further toward orange. */
+.hero-portrait-grade {
+  filter:
+    saturate(0.72)
+    hue-rotate(-4deg)
+    brightness(0.96)
+    contrast(1.05)
+    drop-shadow(0 0 72px rgba(71, 135, 190, 0.3));
+}
+
 @media (width < 48rem) {
   [data-reveal-variant="word"] {
     transition-duration: 0.38s, 0.48s, 0.48s, 0.15s;

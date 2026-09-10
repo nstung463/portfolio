@@ -8,24 +8,6 @@ import { heroTags } from "../data/portfolio-content";
 
 const WORDMARK = "AI ENGINEER".split(" ");
 
-/**
- * The site's mark: the browser-tab favicon's diamond, redrawn as a hollow
- * ring in a single colour instead of white-on-orange. The nav bar sits over
- * the starry hero image, so a second copy of the favicon's own orange square
- * would just disappear into it — this keeps the same geometry the tab already
- * taught the visitor to recognise, in a form that reads against that
- * background. `fillRule="evenodd"` is what punches the hole:
- * two nested diamond paths in one fill, the inner one carved out of the
- * outer regardless of winding order.
- */
-function BrandMark({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 64 64" fill="currentColor" fillRule="evenodd" aria-hidden className={className}>
-      <path d="M32 8 L47 32 L32 56 L17 32 Z M32 19 L38.5 32 L32 45 L25.5 32 Z" />
-    </svg>
-  );
-}
-
 const navLinks = [
   { href: "#more-projects", label: "projects" },
   { href: "#harness", label: "harness" },
@@ -52,9 +34,15 @@ export function HeroSection() {
       />
 
       <div className="intro-drop sticky top-0 z-30 grid shrink-0 grid-cols-[1fr_auto] items-center gap-4 border-b border-[#f4c84a]/15 bg-[#07152b]/72 px-5 py-3.5 backdrop-blur-md lg:grid-cols-[auto_1fr_auto]">
-        <a href="#top" className="flex items-center gap-2 font-mono text-[11px] font-bold tracking-[0.18em]">
-          <BrandMark className="size-3.5" />
-          NST
+        <a href="#top" aria-label="NST — Back to top" className="inline-flex w-fit items-center">
+          <Image
+            src="/images/brand-lockup-starry-v2.png"
+            alt="NST"
+            width={96}
+            height={36}
+            className="h-8 w-auto drop-shadow-[0_0_8px_rgba(86,153,210,0.28)]"
+            priority
+          />
         </a>
         <nav className="hidden gap-6 font-mono text-[11px] font-normal tracking-[0.15em] uppercase lg:flex lg:justify-center">
           {navLinks.map((link) => (
@@ -156,8 +144,7 @@ export function HeroSection() {
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 60vw"
-                className="object-contain"
-                style={{ filter: "drop-shadow(0 0 70px rgba(244,200,74,0.22))" }}
+                className="hero-portrait-grade object-contain"
               />
             </div>
           </div>
