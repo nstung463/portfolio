@@ -33,6 +33,8 @@ export interface ProjectItem {
   stack: string[];
   art: ProjectArtVariant;
   href?: string;
+  /** Real demo footage — shown instead of the animated `art` placeholder, plays on hover. */
+  video?: { src: string; poster: string };
 }
 
 export interface EducationItem {

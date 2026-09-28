@@ -103,6 +103,14 @@ export const featuredWork: FeaturedWorkItem[] = [
 
 export const moreProjects: ProjectItem[] = [
   {
+    date: "2026",
+    title: "Infinity",
+    desc: "Agent harness & sandbox platform — runtime, tool execution, permissions, and human-in-the-loop approvals.",
+    stack: ["Agent Harness", "OpenSandbox", "Tool Permissions"],
+    art: "radar",
+    video: { src: "/videos/infinity-demo.mp4", poster: "/images/infinity-demo-poster.jpg" },
+  },
+  {
     date: "2025",
     title: "AI Buddy",
     desc: "Real-time financial-insights chatbot for KPMG over a continuously crawled knowledge base.",
@@ -115,6 +123,7 @@ export const moreProjects: ProjectItem[] = [
     desc: "Multi-source conversational assistant — part of FPT's IvyChat product line.",
     stack: ["LangChain", "LangGraph", "FastAPI"],
     art: "chat",
+    video: { src: "/videos/ivychat-demo.mp4", poster: "/images/ivychat-demo-poster.jpg" },
   },
   {
     date: "2025",
@@ -122,6 +131,7 @@ export const moreProjects: ProjectItem[] = [
     desc: "LangGraph + GPT + web-crawling agent for automated partner compliance-risk search.",
     stack: ["LangGraph", "FastAPI", "PostgreSQL"],
     art: "radar",
+    video: { src: "/videos/bp-risk-demo.mp4", poster: "/images/bp-risk-demo-poster.jpg" },
   },
   {
     date: "2024",
@@ -129,6 +139,8 @@ export const moreProjects: ProjectItem[] = [
     desc: "Real-time CV system detecting and blurring prohibited imagery during live broadcasts.",
     stack: ["YOLOv8/v9", "CM-GAN", "OpenCV"],
     art: "vision",
+    href: "https://qaidora.com/products/mask",
+    video: { src: "/videos/mask-demo.mp4", poster: "/images/mask-demo-poster.jpg" },
   },
   {
     date: "2024",
@@ -143,6 +155,7 @@ export const moreProjects: ProjectItem[] = [
     desc: "University capstone — CNN + Transformer model translating sign language to text/speech.",
     stack: ["PyTorch", "Mediapipe"],
     art: "hand",
+    video: { src: "/videos/sign-language-demo.mp4", poster: "/images/sign-language-demo-poster.jpg" },
   },
   {
     date: "—",
@@ -151,6 +164,7 @@ export const moreProjects: ProjectItem[] = [
     stack: ["YOLO", "PaddleOCR", "ByteTrack"],
     href: "https://github.com/nstung463/Vietnam_Motorbike_Helmet_Violation_Recognition",
     art: "helmet",
+    video: { src: "/videos/helmet-demo.mp4", poster: "/images/helmet-demo-poster.jpg" },
   },
 ];
 
