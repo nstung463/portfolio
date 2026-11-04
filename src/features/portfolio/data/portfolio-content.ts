@@ -104,8 +104,8 @@ export const featuredWork: FeaturedWorkItem[] = [
 export const moreProjects: ProjectItem[] = [
   {
     date: "2026",
-    title: "Libra Visualizer",
-    desc: "Interactive visualizations that turn answers and data into dynamic, explorable experiences.",
+    title: "ITOCHU GPT",
+    desc: "Multi-agent AI platform for ITOCHU Corporation. Featured: Libra Visualizer, a feature that turns answers and data into interactive visualizations.",
     stack: ["Data Visualization", "Interactive Experiences"],
     art: "radar",
     video: { src: "/videos/libra-demo.mp4", poster: "/images/libra-demo-poster.jpg" },
