@@ -138,12 +138,6 @@ function VideoLightbox({
   poster: string;
   title: string;
 }) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   useEffect(() => {
     if (!open) return;
     const onKeyDown = (event: KeyboardEvent) => {
@@ -157,7 +151,7 @@ function VideoLightbox({
     };
   }, [open, onClose]);
 
-  if (!mounted || !open) return null;
+  if (!open) return null;
 
   return createPortal(
     <div

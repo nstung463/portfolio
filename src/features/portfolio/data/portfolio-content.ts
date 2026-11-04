@@ -104,18 +104,19 @@ export const featuredWork: FeaturedWorkItem[] = [
 export const moreProjects: ProjectItem[] = [
   {
     date: "2026",
+    title: "Libra Visualizer",
+    desc: "Interactive visualizations that turn answers and data into dynamic, explorable experiences.",
+    stack: ["Data Visualization", "Interactive Experiences"],
+    art: "radar",
+    video: { src: "/videos/libra-demo.mp4", poster: "/images/libra-demo-poster.jpg" },
+  },
+  {
+    date: "2026",
     title: "Infinity",
     desc: "Agent harness & sandbox platform — runtime, tool execution, permissions, and human-in-the-loop approvals.",
     stack: ["Agent Harness", "OpenSandbox", "Tool Permissions"],
     art: "radar",
     video: { src: "/videos/infinity-demo.mp4", poster: "/images/infinity-demo-poster.jpg" },
-  },
-  {
-    date: "2025",
-    title: "AI Buddy",
-    desc: "Real-time financial-insights chatbot for KPMG over a continuously crawled knowledge base.",
-    stack: ["Azure OpenAI", "LangGraph", "PostgreSQL"],
-    art: "rag",
   },
   {
     date: "2025",
@@ -165,6 +166,13 @@ export const moreProjects: ProjectItem[] = [
     href: "https://github.com/nstung463/Vietnam_Motorbike_Helmet_Violation_Recognition",
     art: "helmet",
     video: { src: "/videos/helmet-demo.mp4", poster: "/images/helmet-demo-poster.jpg" },
+  },
+  {
+    date: "2025",
+    title: "AI Buddy",
+    desc: "Real-time financial-insights chatbot for KPMG over a continuously crawled knowledge base.",
+    stack: ["Azure OpenAI", "LangGraph", "PostgreSQL"],
+    art: "rag",
   },
 ];
 
