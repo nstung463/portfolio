@@ -21,7 +21,7 @@ export function ProjectsSection() {
                 key={project.title}
                 className={
                   isLastOddCard
-                    ? "h-full sm:col-span-2 sm:w-[calc((100%-1rem)/2)] sm:justify-self-center lg:col-span-1 lg:col-start-2 lg:w-auto"
+                    ? `h-full sm:col-span-2 sm:w-[calc((100%-1rem)/2)] sm:justify-self-center lg:col-span-1 lg:w-auto ${moreProjects.length % 3 === 1 ? "lg:col-start-2" : "lg:col-start-auto"}`
                     : "h-full"
                 }
               >
