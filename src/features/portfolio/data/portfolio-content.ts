@@ -144,13 +144,6 @@ export const moreProjects: ProjectItem[] = [
     video: { src: "/videos/mask-demo.mp4", poster: "/images/mask-demo-poster.jpg" },
   },
   {
-    date: "2024",
-    title: "Query Vision",
-    desc: "LLM system summarizing and answering questions over live AI-camera feeds.",
-    stack: ["Azure OpenAI", "PostgreSQL"],
-    art: "camera",
-  },
-  {
     date: "2023",
     title: "Vietnamese Sign Language Translator",
     desc: "University capstone — CNN + Transformer model translating sign language to text/speech.",
@@ -166,6 +159,13 @@ export const moreProjects: ProjectItem[] = [
     href: "https://github.com/nstung463/Vietnam_Motorbike_Helmet_Violation_Recognition",
     art: "helmet",
     video: { src: "/videos/helmet-demo.mp4", poster: "/images/helmet-demo-poster.jpg" },
+  },
+  {
+    date: "2024",
+    title: "Query Vision",
+    desc: "LLM system summarizing and answering questions over live AI-camera feeds.",
+    stack: ["Azure OpenAI", "PostgreSQL"],
+    art: "camera",
   },
   {
     date: "2025",
