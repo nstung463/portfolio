@@ -1,6 +1,5 @@
 import { contact } from "../data/portfolio-content";
 import { EmailCard, PhoneLink, ResumeLink, SocialLinks } from "./contact-actions";
-import { SectionBleed } from "./section-primitives";
 import { RevealWords } from "./reveal-words";
 
 /**
@@ -12,7 +11,6 @@ import { RevealWords } from "./reveal-words";
 export function ContactSection() {
   return (
     <section id="contact" className="night-surface relative overflow-hidden text-[#f7f0dc]">
-      <SectionBleed text="Contact" tone="light" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 py-24 sm:py-28">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:items-start lg:gap-20">

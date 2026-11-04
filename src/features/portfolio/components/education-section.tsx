@@ -1,12 +1,11 @@
 import { GraduationCap } from "lucide-react";
 import { education } from "../data/portfolio-content";
-import { SectionBleed, SectionLabel } from "./section-primitives";
+import { SectionLabel } from "./section-primitives";
 import { RevealWords } from "./reveal-words";
 
 export function EducationSection() {
   return (
-    <section id="education" className="starfield-surface relative overflow-hidden border-t border-border bg-card">
-      <SectionBleed text="Education" />
+    <section id="education" className="starfield-surface relative overflow-hidden border-t border-border">
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-[90px]">
         <SectionLabel n="07" label="Education & Certs" />
         <h2 className="mt-4 text-3xl font-bold sm:text-5xl">
@@ -18,31 +17,28 @@ export function EducationSection() {
             <div
               key={item.title}
               data-reveal
-              // `translate`, not `transform`: Tailwind v4's `-translate-y-*`
-              // sets the standalone `translate` property, so this has to
-              // name that or the lift jumps instead of easing in.
-              className="group flex flex-col gap-4 rounded-[10px] border border-border bg-background/90 p-5 shadow-[0_8px_28px_-22px_rgba(7,21,43,0.75)] backdrop-blur-sm transition-[translate,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-primary hover:shadow-[0_18px_38px_-20px_rgba(7,21,43,0.9)] sm:flex-row sm:items-center sm:gap-5 sm:p-6"
+              className="liquid-glass liquid-glass-regular liquid-glass-panel flex flex-col gap-4 rounded-[1.35rem] p-5 sm:flex-row sm:items-center sm:gap-5 sm:p-6"
             >
-              <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+              <span className="liquid-glass-plate flex size-12 shrink-0 items-center justify-center rounded-xl text-(--glass-accent)">
                 <GraduationCap aria-hidden className="size-6" />
               </span>
 
               <div className="min-w-0 flex-1">
                 <p className="font-bold text-balance">{item.title}</p>
-                <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
+                <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-foreground/85">
                   <span>{item.org}</span>
                   {item.detail ? (
                     <>
-                      <span aria-hidden className="text-border">
+                      <span aria-hidden>
                         ·
                       </span>
                       <span className="font-semibold text-foreground">{item.detail}</span>
                     </>
                   ) : null}
                   {item.inProgress ? (
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 py-0.5 pr-2.5 pl-2 text-xs font-semibold text-primary">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-foreground/12 bg-foreground/7 py-0.5 pr-2.5 pl-2 text-xs font-semibold text-foreground">
                       <span aria-hidden className="relative flex size-1.5">
-                        <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-70" />
+                        <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-70 motion-reduce:animate-none" />
                         <span className="relative inline-flex size-1.5 rounded-full bg-primary" />
                       </span>
                       In progress
@@ -51,7 +47,7 @@ export function EducationSection() {
                 </div>
               </div>
 
-              <p className="shrink-0 font-mono text-xs font-bold tracking-[0.1em] text-primary uppercase sm:text-right">
+              <p className="shrink-0 font-mono text-xs font-bold tracking-[0.1em] text-foreground/85 uppercase sm:text-right">
                 {item.period}
               </p>
             </div>

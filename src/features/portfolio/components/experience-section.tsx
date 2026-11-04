@@ -57,35 +57,16 @@ export function ExperienceSection() {
                   data-reveal
                   data-reveal-variant={isLeft ? "left" : "right"}
                   className={cn(
-                    // No outline. A 1px border around every block is what made
-                    // this section read as a wireframe; the card separates from
-                    // the page by tone and a shadow instead, which is one less
-                    // line on screen and reads as an object rather than a box.
-                    //
-                    // `overflow-hidden` is what clips the accent edge to the
-                    // radius. The lift is named `translate` in the reveal
-                    // shorthand in globals.css, not here — a `transition-*`
-                    // utility on this element would be discarded by it.
-                    "group relative overflow-hidden rounded-xl border border-border bg-card/90 p-5 shadow-[0_8px_28px_-22px_rgba(7,21,43,0.75)] backdrop-blur-sm hover:-translate-y-1 hover:border-primary/60 hover:shadow-[0_20px_42px_-22px_rgba(7,21,43,0.9)] lg:row-start-1 lg:p-6",
+                    "liquid-glass liquid-glass-regular liquid-glass-panel rounded-[1.35rem] p-5 lg:row-start-1 lg:p-6",
                     isLeft ? "lg:col-start-1" : "lg:col-start-3",
                   )}
                 >
-                  {/* The accent edge. It grows from the top rather than fading
-                      in, so the hover reads as the card being marked rather
-                      than as a colour appearing. `transition-[scale]`, not
-                      `transition-transform`: Tailwind v4 puts `scale-y-*` on
-                      the standalone `scale` property. */}
-                  <span
-                    aria-hidden
-                    className="absolute inset-y-0 left-0 w-[3px] origin-top scale-y-0 bg-primary transition-[scale] duration-300 ease-out group-hover:scale-y-100"
-                  />
-
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-                    <p className="font-mono text-xs font-bold tracking-[0.1em] text-primary uppercase">
+                    <p className="font-mono text-xs font-bold tracking-[0.1em] text-(--glass-accent) uppercase">
                       {job.org}
                     </p>
                     {isCurrent ? (
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 py-0.5 pr-2.5 pl-2 font-mono text-[10px] font-semibold tracking-[0.1em] text-primary uppercase">
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-foreground/12 bg-foreground/7 py-0.5 pr-2.5 pl-2 font-mono text-[10px] font-semibold tracking-[0.1em] text-(--glass-accent) uppercase">
                         <span aria-hidden className="relative flex size-1.5">
                           <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-70" />
                           <span className="relative inline-flex size-1.5 rounded-full bg-primary" />
@@ -109,7 +90,7 @@ export function ExperienceSection() {
                     {facts.map((fact) => (
                       <span
                         key={fact}
-                        className="rounded-full bg-muted px-2.5 py-1 font-mono text-[11px] text-muted-foreground"
+                        className="rounded-full bg-foreground/7 px-2.5 py-1 font-mono text-[11px] text-foreground/85"
                       >
                         {fact}
                       </span>
@@ -119,7 +100,7 @@ export function ExperienceSection() {
                   {/* One rule inside the card, where the border used to be
                       around it: it separates the header from the evidence,
                       which is the split a reader actually needs. */}
-                  <ul className="mt-5 space-y-2.5 border-t border-border pt-5 text-sm leading-6 text-muted-foreground">
+                  <ul className="mt-5 space-y-2.5 border-t border-foreground/12 pt-5 text-sm leading-6 text-foreground/85">
                     {job.points.map((point) => (
                       <li key={point} className="flex gap-3">
                         {/* A rule, not a bullet glyph. `▪` sat on the text
@@ -133,11 +114,11 @@ export function ExperienceSection() {
                   </ul>
 
                   {job.tech ? (
-                    <div className="mt-5 flex flex-wrap gap-1.5 border-t border-border pt-5">
+                    <div className="mt-5 flex flex-wrap gap-1.5 border-t border-foreground/12 pt-5">
                       {job.tech.map((tech) => (
                         <span
                           key={tech}
-                          className="rounded-full border border-border px-2.5 py-1 font-mono text-[11px] text-muted-foreground"
+                          className="rounded-full border border-foreground/12 px-2.5 py-1 font-mono text-[11px] text-foreground/85"
                         >
                           {tech}
                         </span>
