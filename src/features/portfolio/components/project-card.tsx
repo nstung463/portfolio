@@ -8,6 +8,7 @@ import { ProjectArt } from "../illustrations/project-art";
 
 export function ProjectCard({ project, featured = false }: { project: ProjectItem; featured?: boolean }) {
   const Heading = featured ? "h3" : "h4";
+  const FeatureHeading = featured ? "h4" : "h5";
 
   return (
     <article
@@ -18,7 +19,13 @@ export function ProjectCard({ project, featured = false }: { project: ProjectIte
           : "flex flex-col",
       )}
     >
-      <div className={cn("flex flex-col", featured ? "px-1 py-3 sm:px-3" : "grow px-5 pt-5 pb-6")}>
+      <div
+        className={cn(
+          "flex flex-col",
+          featured ? "px-1 py-3 sm:px-3" : "grow px-5 pt-5 pb-6",
+          project.features?.length ? "lg:col-span-2" : undefined,
+        )}
+      >
         <p className="flex min-h-4 flex-wrap items-center gap-2 font-mono text-[11px] font-semibold tracking-widest text-foreground/85 uppercase">
           {featured ? <span className="text-(--glass-accent)">Featured project <span aria-hidden="true">/</span></span> : null}
           {project.date !== "—" ? <span>{project.date}</span> : null}
@@ -43,7 +50,24 @@ export function ProjectCard({ project, featured = false }: { project: ProjectIte
         </ul>
       </div>
 
-      {project.video ? (
+      {project.features?.length ? (
+        <div className="grid min-w-0 gap-6 border-t border-foreground/12 pt-6 sm:grid-cols-2 lg:col-span-2">
+          {project.features.map((feature) => (
+            <section key={feature.title} aria-label={`${project.title} · ${feature.title}`} className="flex min-w-0 flex-col">
+              <ProjectDemo video={feature.video} title={feature.title} featured />
+              <div className="flex grow flex-col px-1 pt-4 pb-2">
+                <FeatureHeading className="text-lg font-semibold tracking-tight sm:text-xl">{feature.title}</FeatureHeading>
+                <p className="mt-1 text-sm leading-relaxed text-foreground/85">{feature.desc}</p>
+                <ul aria-label={`${feature.title} topics`} className="mt-auto flex flex-wrap gap-1.5 pt-3">
+                  {feature.stack.map((item) => (
+                    <li key={item} className="rounded-md bg-foreground/7 px-2 py-1 font-mono text-[11px] text-foreground/85">{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </section>
+          ))}
+        </div>
+      ) : project.video ? (
         <ProjectDemo
           video={project.video}
           title={project.title}

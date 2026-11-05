@@ -26,6 +26,18 @@ export interface FeaturedWorkItem {
   href: string;
 }
 
+export interface ProjectVideo {
+  src: string;
+  poster: string;
+}
+
+export interface ProjectFeature {
+  title: string;
+  desc: string;
+  stack: string[];
+  video: ProjectVideo;
+}
+
 export interface ProjectItem {
   date: string;
   title: string;
@@ -34,7 +46,8 @@ export interface ProjectItem {
   art: ProjectArtVariant;
   href?: string;
   /** Real demo footage — shown instead of the animated `art` placeholder, plays on hover. */
-  video?: { src: string; poster: string };
+  video?: ProjectVideo;
+  features?: ProjectFeature[];
 }
 
 export interface EducationItem {

@@ -4,8 +4,8 @@ import { SectionLabel } from "./section-primitives";
 
 export function ProjectsSection() {
   const [featured, ...projects] = moreProjects;
-  const demos = projects.filter((project) => project.video);
-  const otherWork = projects.filter((project) => !project.video);
+  const demos = projects.filter((project) => project.video || project.features?.length);
+  const otherWork = projects.filter((project) => !project.video && !project.features?.length);
 
   return (
     <section id="more-projects" aria-labelledby="projects-heading" className="starfield-surface relative">

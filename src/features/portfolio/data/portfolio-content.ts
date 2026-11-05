@@ -105,10 +105,23 @@ export const moreProjects: ProjectItem[] = [
   {
     date: "2026",
     title: "ITOCHU GPT",
-    desc: "Multi-agent AI platform for ITOCHU Corporation. Featured: Libra Visualizer, a feature that turns answers and data into interactive visualizations.",
-    stack: ["Data Visualization", "Interactive Experiences"],
+    desc: "Multi-agent AI platform for ITOCHU Corporation. Featured: Libra Visualizer and Video & Audio Analytics.",
+    stack: ["Multi-Agent Platform"],
     art: "radar",
-    video: { src: "/videos/libra-demo.mp4", poster: "/images/libra-demo-poster.jpg" },
+    features: [
+      {
+        title: "Libra Visualizer",
+        desc: "Turn answers and data into interactive visualizations.",
+        stack: ["Data Visualization", "Interactive Experiences"],
+        video: { src: "/videos/libra-demo.mp4", poster: "/images/libra-demo-poster.jpg" },
+      },
+      {
+        title: "Video & Audio Analytics",
+        desc: "Explore video and audio content through natural-language questions.",
+        stack: ["Video Analytics", "Audio Analytics"],
+        video: { src: "/videos/itochu-media-analytics-demo.mp4", poster: "/images/itochu-media-analytics-demo-poster.jpg" },
+      },
+    ],
   },
   {
     date: "2026",
