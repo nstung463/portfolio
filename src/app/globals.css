@@ -64,9 +64,9 @@
   --brand: #0b2347;
 
   --background: #f4edd9;
-  --glass-panel-tint: rgb(255 255 255 / 32%);
-  --glass-panel-border: rgb(16 33 59 / 10%);
-  --glass-panel-shadow: 0 2px 5px rgb(16 33 59 / 3%), 0 12px 28px -12px rgb(16 33 59 / 10%);
+  --glass-panel-tint: rgb(255 255 255 / 82%);
+  --glass-panel-border: rgb(16 33 59 / 16%);
+  --glass-panel-shadow: 0 2px 4px rgb(16 33 59 / 5%), 0 12px 24px -8px rgb(16 33 59 / 16%);
   --foreground: #10213b;
   --card: #e9e0c8;
   --card-foreground: #10213b;
