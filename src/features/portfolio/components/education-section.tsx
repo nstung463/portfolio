@@ -8,7 +8,7 @@ export function EducationSection() {
     <section id="education" className="starfield-surface relative overflow-hidden border-t border-border">
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-[90px]">
         <SectionLabel n="07" label="Education & Certs" />
-        <h2 className="mt-4 text-3xl font-bold sm:text-5xl">
+        <h2 className="section-heading mt-4 text-3xl font-bold sm:text-5xl">
           <RevealWords text="Education" />
         </h2>
 

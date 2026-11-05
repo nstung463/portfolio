@@ -17,7 +17,7 @@ export function ContactSection() {
           <div data-reveal>
             <p className="font-mono text-xs font-bold tracking-[0.15em] text-[#f4c84a] uppercase">08 · Contact</p>
 
-            <h2 className="mt-5 text-4xl font-bold text-balance sm:text-5xl lg:text-6xl">
+            <h2 className="section-heading mt-5 text-4xl font-bold text-balance sm:text-5xl lg:text-6xl">
               <RevealWords text={contact.heading} />
             </h2>
 

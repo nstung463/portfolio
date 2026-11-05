@@ -20,7 +20,7 @@ export function ExperienceSection() {
       <div className="relative z-10 mx-auto max-w-6xl px-5">
         <div data-reveal>
           <SectionLabel n="03" label="Experience" />
-          <h2 className="mt-4 text-3xl font-bold sm:text-5xl">
+          <h2 className="section-heading mt-4 text-3xl font-bold sm:text-5xl">
             <RevealWords text="Recent work" />
           </h2>
         </div>

@@ -15,7 +15,7 @@ export function FeaturedWorkSection() {
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
           <div data-reveal className="lg:sticky lg:top-24 lg:self-start">
             <SectionLabel n="05" label="Work" />
-            <h2 className="mt-4 text-3xl leading-[1.05] font-bold sm:text-5xl lg:text-6xl">
+            <h2 className="section-heading mt-4 text-3xl leading-[1.05] font-bold sm:text-5xl lg:text-6xl">
               <RevealWords text="Proof, not" />
               <br />
               <RevealWords text="adjectives." startDelay={220} />

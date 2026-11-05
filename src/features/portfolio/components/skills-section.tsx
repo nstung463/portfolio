@@ -9,7 +9,7 @@ export function SkillsSection() {
       <SectionBleed text="Stack" />
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-[90px]">
         <SectionLabel n="02" label="Skills" />
-        <h2 className="mt-4 text-3xl font-bold sm:text-5xl">
+        <h2 className="section-heading mt-4 text-3xl font-bold sm:text-5xl">
           <RevealWords text="What I build with" />
         </h2>
         <div data-reveal-stagger className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

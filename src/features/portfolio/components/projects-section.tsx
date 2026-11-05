@@ -12,7 +12,7 @@ export function ProjectsSection() {
       <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
         <header className="mb-8 border-t border-border pt-6 sm:mb-10">
           <SectionLabel n="04" label={`More Projects · ${moreProjects.length} total`} />
-          <h2 id="projects-heading" className="mt-4 max-w-3xl text-4xl leading-tight font-bold tracking-tight text-balance sm:text-6xl">
+          <h2 id="projects-heading" className="section-heading mt-4 max-w-3xl text-4xl leading-tight font-bold tracking-tight text-balance sm:text-6xl">
             Everything else I’ve shipped
           </h2>
         </header>

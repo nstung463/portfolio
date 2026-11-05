@@ -28,7 +28,7 @@ export function HarnessSection() {
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-[90px]">
         <div data-reveal>
           <p className="font-mono text-xs font-bold tracking-[0.15em] text-[#f4c84a] uppercase">06 · Agent stack</p>
-          <h2 className="mt-4 max-w-3xl text-3xl font-bold sm:text-5xl">
+          <h2 className="section-heading mt-4 max-w-3xl text-3xl font-bold sm:text-5xl">
             <RevealWords text="How I think about this stack" />
           </h2>
           <p className="mt-5 max-w-2xl text-sm leading-6 text-white/70 sm:text-base">
