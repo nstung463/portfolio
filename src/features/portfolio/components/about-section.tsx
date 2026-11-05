@@ -29,7 +29,7 @@ export function AboutSection() {
               className="text-[1.06em]"
             />
             <br />
-            <RevealWords text="so humans don’t have to." startDelay={800} />
+            <RevealWords text={"so humans don’t have\u00a0to."} startDelay={800} />
           </h2>
           <p className="mt-7 max-w-2xl leading-7 text-muted-foreground">
             I&apos;m an AI Engineer at FPT Software with 3+ years building production LLM, RAG,

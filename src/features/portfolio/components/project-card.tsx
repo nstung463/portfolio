@@ -29,6 +29,7 @@ export function ProjectCard({ project, featured = false }: { project: ProjectIte
         <p className="flex min-h-4 flex-wrap items-center gap-2 font-mono text-[11px] font-semibold tracking-widest text-foreground/85 uppercase">
           {featured ? <span className="text-(--glass-accent)">Featured project <span aria-hidden="true">/</span></span> : null}
           {project.date !== "—" ? <span>{project.date}</span> : null}
+          <span className="text-[10px] font-normal tracking-normal text-foreground/60">{project.context}</span>
         </p>
         <Heading className={cn("font-semibold tracking-tight text-balance", featured ? "mt-3 text-3xl sm:text-4xl" : "mt-1.5 text-xl")}>
           {project.href ? (

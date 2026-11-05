@@ -105,6 +105,7 @@ export const moreProjects: ProjectItem[] = [
   {
     date: "2026",
     title: "ITOCHU GPT",
+    context: "FPT Software",
     desc: "Multi-agent AI platform for ITOCHU Corporation. Featured: Libra Visualizer and Video & Audio Analytics.",
     stack: ["Multi-Agent Platform"],
     art: "radar",
@@ -126,6 +127,7 @@ export const moreProjects: ProjectItem[] = [
   {
     date: "2026",
     title: "Infinity",
+    context: "FPT Software",
     desc: "Agent harness & sandbox platform — runtime, tool execution, permissions, and human-in-the-loop approvals.",
     stack: ["Agent Harness", "OpenSandbox", "Tool Permissions"],
     art: "radar",
@@ -134,6 +136,7 @@ export const moreProjects: ProjectItem[] = [
   {
     date: "2025",
     title: "Ivy Chatbot",
+    context: "FPT Software",
     desc: "Multi-source conversational assistant — part of FPT's IvyChat product line.",
     stack: ["LangChain", "LangGraph", "FastAPI"],
     art: "chat",
@@ -142,6 +145,7 @@ export const moreProjects: ProjectItem[] = [
   {
     date: "2025",
     title: "BP Risk Search Agent",
+    context: "FPT Software",
     desc: "LangGraph + GPT + web-crawling agent for automated partner compliance-risk search.",
     stack: ["LangGraph", "FastAPI", "PostgreSQL"],
     art: "radar",
@@ -150,6 +154,7 @@ export const moreProjects: ProjectItem[] = [
   {
     date: "2024",
     title: "QaiDora Mask Ads Defender",
+    context: "FPT Software",
     desc: "Real-time CV system detecting and blurring prohibited imagery during live broadcasts.",
     stack: ["YOLOv8/v9", "CM-GAN", "OpenCV"],
     art: "vision",
@@ -159,6 +164,7 @@ export const moreProjects: ProjectItem[] = [
   {
     date: "2023",
     title: "Vietnamese Sign Language Translator",
+    context: "University project",
     desc: "University capstone — CNN + Transformer model translating sign language to text/speech.",
     stack: ["PyTorch", "Mediapipe"],
     art: "hand",
@@ -167,6 +173,7 @@ export const moreProjects: ProjectItem[] = [
   {
     date: "—",
     title: "Helmet Violation Recognition",
+    context: "University project",
     desc: "Detects helmetless motorcyclists using YOLO, PaddleOCR, and ByteTrack.",
     stack: ["YOLO", "PaddleOCR", "ByteTrack"],
     href: "https://github.com/nstung463/Vietnam_Motorbike_Helmet_Violation_Recognition",
@@ -176,6 +183,7 @@ export const moreProjects: ProjectItem[] = [
   {
     date: "2024",
     title: "Query Vision",
+    context: "FPT Software",
     desc: "LLM system summarizing and answering questions over live AI-camera feeds.",
     stack: ["Azure OpenAI", "PostgreSQL"],
     art: "camera",
@@ -183,6 +191,7 @@ export const moreProjects: ProjectItem[] = [
   {
     date: "2025",
     title: "AI Buddy",
+    context: "FPT Software",
     desc: "Real-time financial-insights chatbot for KPMG over a continuously crawled knowledge base.",
     stack: ["Azure OpenAI", "LangGraph", "PostgreSQL"],
     art: "rag",
@@ -197,7 +206,7 @@ export const education: EducationItem[] = [
     inProgress: true,
   },
   {
-    period: "2021 — 2025",
+    period: "2021 — 2024",
     title: "B.Sc. in Artificial Intelligence",
     org: "FPT University",
     detail: "GPA 8.45/10",

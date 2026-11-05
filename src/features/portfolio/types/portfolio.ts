@@ -41,6 +41,7 @@ export interface ProjectFeature {
 export interface ProjectItem {
   date: string;
   title: string;
+  context: string;
   desc: string;
   stack: string[];
   art: ProjectArtVariant;

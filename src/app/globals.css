@@ -68,6 +68,18 @@
   --glass-panel-border: rgb(153 111 30 / 24%);
   --glass-panel-shadow: 0 2px 4px rgb(16 33 59 / 5%), 0 12px 24px -8px rgb(16 33 59 / 16%);
   --section-heading-color: #10213b;
+  --hero-ink: #10213b;
+  --hero-ink-shadow: 0 2px 20px rgba(255, 246, 217, 0.35);
+  --hero-copy: #10213b;
+  --hero-nav-surface: rgba(249, 242, 220, 0.9);
+  --hero-menu-surface: rgba(249, 242, 220, 0.96);
+  --hero-nav-border: rgba(130, 94, 33, 0.2);
+  --hero-veil: linear-gradient(180deg, rgba(250, 245, 229, 0.12) 0%, rgba(250, 245, 229, 0.04) 42%, rgba(239, 226, 190, 0.55) 100%);
+  --hero-portrait-veil: linear-gradient(rgba(244, 237, 217, 0) 62%, rgba(244, 237, 217, 0.22) 84%, rgba(244, 237, 217, 0.85) 100%);
+  --hero-band-surface: linear-gradient(rgba(244, 237, 217, 0.84), rgba(233, 224, 200, 0.97));
+  --hero-watermark-fill: rgba(16, 33, 59, 0.11);
+  --hero-watermark-outline: rgba(16, 33, 59, 0.24);
+  --hero-portrait-halo: rgba(154, 112, 38, 0.2);
   --foreground: #10213b;
   --card: #e9e0c8;
   --card-foreground: #10213b;
@@ -104,6 +116,18 @@
 .dark {
   --background: #07152b;
   --section-heading-color: #f0c24b;
+  --hero-ink: #f7f0dc;
+  --hero-ink-shadow: 0 3px 30px rgba(2, 8, 20, 0.42);
+  --hero-copy: #fff;
+  --hero-nav-surface: rgba(7, 21, 43, 0.72);
+  --hero-menu-surface: rgba(7, 21, 43, 0.92);
+  --hero-nav-border: rgba(244, 200, 74, 0.15);
+  --hero-veil: linear-gradient(180deg, rgba(3, 12, 29, 0.28) 0%, rgba(3, 12, 29, 0.08) 42%, rgba(3, 12, 29, 0.7) 100%);
+  --hero-portrait-veil: linear-gradient(rgba(3, 12, 29, 0) 62%, rgba(3, 12, 29, 0.34) 84%, rgba(3, 12, 29, 0.82) 100%);
+  --hero-band-surface: linear-gradient(rgba(3, 12, 29, 0.12), rgba(3, 12, 29, 0.78));
+  --hero-watermark-fill: rgba(255, 255, 255, 0.3);
+  --hero-watermark-outline: rgba(255, 255, 255, 0.65);
+  --hero-portrait-halo: rgba(71, 135, 190, 0.3);
   --glass-panel-tint: rgb(22 47 78 / 64%);
   --glass-panel-border: rgb(174 202 236 / 22%);
   --glass-panel-shadow: inset 0 -1px 2px rgb(0 0 0 / 26%), 0 4px 10px rgb(0 0 0 / 20%), 0 18px 40px -14px rgb(0 0 0 / 58%);
@@ -146,6 +170,18 @@
   :root:not(.light) {
     --background: #07152b;
     --section-heading-color: #f0c24b;
+    --hero-ink: #f7f0dc;
+    --hero-ink-shadow: 0 3px 30px rgba(2, 8, 20, 0.42);
+    --hero-copy: #fff;
+    --hero-nav-surface: rgba(7, 21, 43, 0.72);
+    --hero-menu-surface: rgba(7, 21, 43, 0.92);
+    --hero-nav-border: rgba(244, 200, 74, 0.15);
+    --hero-veil: linear-gradient(180deg, rgba(3, 12, 29, 0.28) 0%, rgba(3, 12, 29, 0.08) 42%, rgba(3, 12, 29, 0.7) 100%);
+    --hero-portrait-veil: linear-gradient(rgba(3, 12, 29, 0) 62%, rgba(3, 12, 29, 0.34) 84%, rgba(3, 12, 29, 0.82) 100%);
+    --hero-band-surface: linear-gradient(rgba(3, 12, 29, 0.12), rgba(3, 12, 29, 0.78));
+    --hero-watermark-fill: rgba(255, 255, 255, 0.3);
+    --hero-watermark-outline: rgba(255, 255, 255, 0.65);
+    --hero-portrait-halo: rgba(71, 135, 190, 0.3);
     --glass-panel-tint: rgb(22 47 78 / 64%);
     --glass-panel-border: rgb(174 202 236 / 22%);
     --glass-panel-shadow: inset 0 -1px 2px rgb(0 0 0 / 26%), 0 4px 10px rgb(0 0 0 / 20%), 0 18px 40px -14px rgb(0 0 0 / 58%);
@@ -192,6 +228,74 @@
   background-size: 173px 149px, 211px 187px, 100% 100%;
 }
 
+.painterly-page {
+  background-image:
+    linear-gradient(rgba(250, 245, 229, 0.36), rgba(250, 245, 229, 0.44)),
+    url("/images/sunflower-day-v3.webp");
+  background-position: center, center;
+  background-size: 100% 100%, cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.painterly-page .starfield-surface {
+  background-color: transparent;
+  background-image: none;
+}
+
+.hero-day-art {
+  background: url("/images/sunny-morning-hero.webp") center / cover no-repeat;
+}
+
+.hero-shell {
+  background-color: var(--background);
+  color: var(--hero-copy);
+}
+
+.hero-nav,
+.hero-menu {
+  border-color: var(--hero-nav-border);
+}
+
+.hero-nav {
+  background-color: var(--hero-nav-surface);
+}
+
+.hero-menu {
+  background-color: var(--hero-menu-surface);
+}
+
+.hero-veil {
+  background: var(--hero-veil);
+}
+
+.hero-portrait-veil {
+  background: var(--hero-portrait-veil);
+}
+
+.hero-band {
+  background: var(--hero-band-surface);
+  border-color: var(--hero-nav-border);
+  color: var(--hero-ink);
+}
+
+.hero-watermark {
+  color: var(--hero-watermark-fill);
+}
+
+.hero-title {
+  color: var(--hero-ink);
+  text-shadow: var(--hero-ink-shadow);
+}
+
+.hero-side-note {
+  color: var(--hero-ink);
+}
+
+.dark .hero-day-art {
+  display: none;
+}
+
 .dark .painterly-page {
   background-image:
     radial-gradient(circle at 14% 22%, rgba(240, 194, 75, 0.38) 0 1px, transparent 1.7px),
@@ -210,6 +314,10 @@
 }
 
 @media (prefers-color-scheme: dark) {
+  :root:not(.light) .hero-day-art {
+    display: none;
+  }
+
   :root:not(.light) .painterly-page {
     background-image:
       radial-gradient(circle at 14% 22%, rgba(240, 194, 75, 0.38) 0 1px, transparent 1.7px),
@@ -232,6 +340,17 @@
    browsers. A slightly denser veil also keeps long copy legible without
    flattening the brush texture. */
 @media (width < 48rem) {
+  .painterly-page {
+    background-attachment: scroll;
+    background-position: center, left top;
+    background-size: 100% 100%, auto 100svh;
+    background-repeat: no-repeat, repeat-y;
+  }
+
+  .hero-day-art {
+    background-position: 14% center;
+  }
+
   .dark .painterly-page {
     background-image:
       radial-gradient(circle at 14% 22%, rgba(240, 194, 75, 0.32) 0 1px, transparent 1.7px),
@@ -431,12 +550,12 @@
 
 @keyframes watermark-pulse {
   0% {
-    color: rgba(255, 255, 255, 0.3);
+    color: var(--hero-watermark-fill);
     -webkit-text-stroke: 0px transparent;
   }
   100% {
     color: transparent;
-    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.65);
+    -webkit-text-stroke: 2px var(--hero-watermark-outline);
   }
 }
 
@@ -682,7 +801,7 @@
     hue-rotate(-4deg)
     brightness(0.96)
     contrast(1.05)
-    drop-shadow(0 0 72px rgba(71, 135, 190, 0.3));
+    drop-shadow(0 0 72px var(--hero-portrait-halo));
 }
 
 @media (width < 48rem) {
