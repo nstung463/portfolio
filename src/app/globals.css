@@ -843,3 +843,55 @@
     scroll-padding-top: 5rem;
   }
 }
+
+/* The feature sections share the portfolio's warm canvas in light mode. */
+:root {
+  --feature-accent: #79570c;
+  --feature-surface: radial-gradient(ellipse at 50% -10%, #faf3dc, transparent 65%), #eee4ca;
+  --feature-glass-tint: rgb(255 250 235 / 72%);
+  --feature-glass-border: rgb(119 86 30 / 24%);
+  --feature-glass-shadow: 0 8px 24px -12px rgb(65 47 19 / 25%);
+  --feature-plate: rgb(255 255 255 / 48%);
+}
+
+.dark {
+  --feature-accent: #f4c84a;
+  --feature-surface: radial-gradient(circle at 20% 22%, rgba(244, 200, 74, 0.7) 0 1px, transparent 1.8px), radial-gradient(circle at 76% 64%, rgba(244, 200, 74, 0.38) 0 1.2px, transparent 2px), radial-gradient(ellipse at 50% -10%, rgba(40, 91, 148, 0.72), transparent 58%), #07152b;
+  --feature-glass-tint: rgb(15 24 38 / 28%);
+  --feature-glass-border: rgb(255 255 255 / 8%);
+  --feature-glass-shadow: inset 0 -1px 2px rgb(0 0 0 / 26%), 0 2px 5px rgb(0 0 0 / 10%), 0 12px 28px -12px rgb(0 0 0 / 30%);
+  --feature-plate: rgb(255 255 255 / 10%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --feature-accent: #f4c84a;
+    --feature-surface: radial-gradient(circle at 20% 22%, rgba(244, 200, 74, 0.7) 0 1px, transparent 1.8px), radial-gradient(circle at 76% 64%, rgba(244, 200, 74, 0.38) 0 1.2px, transparent 2px), radial-gradient(ellipse at 50% -10%, rgba(40, 91, 148, 0.72), transparent 58%), #07152b;
+    --feature-glass-tint: rgb(15 24 38 / 28%);
+    --feature-glass-border: rgb(255 255 255 / 8%);
+    --feature-glass-shadow: inset 0 -1px 2px rgb(0 0 0 / 26%), 0 2px 5px rgb(0 0 0 / 10%), 0 12px 28px -12px rgb(0 0 0 / 30%);
+    --feature-plate: rgb(255 255 255 / 10%);
+  }
+}
+
+.theme-feature-surface {
+  background: var(--feature-surface);
+  background-size: 181px 157px, 223px 193px, 100% 100%;
+}
+
+.theme-feature-surface .liquid-glass {
+  --glass-tint: var(--feature-glass-tint);
+  border-color: var(--feature-glass-border);
+  box-shadow: var(--feature-glass-shadow);
+}
+
+.theme-feature-surface .liquid-glass-plate {
+  border-color: var(--feature-glass-border);
+  background: var(--feature-plate);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .theme-feature-surface .liquid-glass {
+    background-color: var(--card);
+  }
+}

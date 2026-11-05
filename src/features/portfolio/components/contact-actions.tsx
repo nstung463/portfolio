@@ -35,13 +35,13 @@ export function EmailCard() {
     >
       <div className="flex flex-col gap-2 sm:h-[4.25rem] sm:flex-row sm:items-center">
         <div className="min-w-0 flex-1 px-3.5 py-2.5 text-left sm:py-0">
-          <p className="font-mono text-[0.6875rem] tracking-[0.14em] text-white/70 uppercase">
+          <p className="font-mono text-[0.6875rem] tracking-[0.14em] text-foreground/70 uppercase">
             Email
           </p>
           {/* Same size as the label on every tile beside it — this used to run
               noticeably larger, which made the panel read as a headline
               rather than one entry in the row. */}
-          <p className="mt-0.5 truncate font-mono text-sm font-semibold text-white">
+          <p className="mt-0.5 truncate font-mono text-sm font-semibold text-foreground">
             {siteConfig.email}
           </p>
         </div>
@@ -51,7 +51,7 @@ export function EmailCard() {
             type="button"
             onClick={copy}
             aria-label={copied ? "Email address copied" : "Copy email address"}
-            className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-xl bg-white/[0.045] px-3.5 text-sm font-semibold text-white ring-1 ring-white/25 backdrop-blur-md transition-colors hover:bg-white/15 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none sm:flex-none"
+            className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-xl bg-foreground/[0.045] px-3.5 text-sm font-semibold text-foreground ring-1 ring-foreground/25 backdrop-blur-md transition-colors hover:bg-foreground/15 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none sm:flex-none"
           >
             {copied ? (
               <Check aria-hidden className="size-3.5" />
@@ -63,7 +63,7 @@ export function EmailCard() {
 
           <a
             href={`mailto:${siteConfig.email}`}
-            className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-xl bg-[linear-gradient(145deg,rgba(255,255,255,0.98),rgba(238,231,210,0.9))] px-4 text-sm font-semibold text-[#07152b] shadow-[inset_0_1px_0_white,0_6px_18px_-10px_rgba(1,7,18,0.9)] transition-[translate,filter] hover:-translate-y-px hover:brightness-105 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#07152b] focus-visible:outline-none sm:flex-none"
+            className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-xl bg-[linear-gradient(145deg,rgba(255,255,255,0.98),rgba(238,231,210,0.9))] px-4 text-sm font-semibold text-[#07152b] shadow-[inset_0_1px_0_white,0_6px_18px_-10px_rgba(1,7,18,0.9)] transition-[translate,filter] hover:-translate-y-px hover:brightness-105 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none sm:flex-none"
           >
             <Mail aria-hidden className="size-3.5" />
             Write
@@ -82,7 +82,7 @@ export function EmailCard() {
  * unsettled.
  */
 const tileClass =
-  "liquid-glass liquid-glass-interactive group flex h-full min-h-[4.25rem] items-center gap-3.5 rounded-[1.35rem] px-4 py-3.5 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none";
+  "liquid-glass liquid-glass-interactive group flex h-full min-h-[4.25rem] items-center gap-3.5 rounded-[1.35rem] px-4 py-3.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none";
 
 const plateClass =
   "liquid-glass-plate flex size-10 shrink-0 items-center justify-center rounded-xl";
@@ -110,12 +110,12 @@ export function ResumeLink({
         <FileText aria-hidden className="size-[1.125rem]" />
       </span>
       <span className="min-w-0 flex-1 text-left">
-        <span className="block text-sm font-semibold text-white">{cta}</span>
-        <span className="block text-xs text-white/70">{hint}</span>
+        <span className="block text-sm font-semibold text-foreground">{cta}</span>
+        <span className="block text-xs text-foreground/70">{hint}</span>
       </span>
       <ArrowRight
         aria-hidden
-        className="size-5 shrink-0 text-white/60 transition-transform group-hover:translate-x-1"
+        className="size-5 shrink-0 text-foreground/60 transition-transform group-hover:translate-x-1"
       />
     </a>
   );
@@ -131,8 +131,8 @@ export function PhoneLink({ className }: { className?: string }) {
         <Phone aria-hidden className="size-[1.125rem]" />
       </span>
       <span className="min-w-0 flex-1 text-left">
-        <span className="block font-mono text-sm font-semibold text-white">{siteConfig.phone}</span>
-        <span className="block text-xs text-white/70">{siteConfig.location}</span>
+        <span className="block font-mono text-sm font-semibold text-foreground">{siteConfig.phone}</span>
+        <span className="block text-xs text-foreground/70">{siteConfig.location}</span>
       </span>
     </a>
   );
@@ -185,12 +185,12 @@ export function SocialLinks() {
           <span className={cn(plateClass, "size-9")}>
             <Icon />
           </span>
-          <span className="min-w-0 flex-1 truncate text-[0.8125rem] font-semibold text-white">
+          <span className="min-w-0 flex-1 truncate text-[0.8125rem] font-semibold text-foreground">
             {label}
           </span>
           <ArrowUpRight
             aria-hidden
-            className="size-3.5 shrink-0 text-white/50 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            className="size-3.5 shrink-0 text-foreground/60 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
           />
         </a>
       ))}

@@ -55,7 +55,7 @@ export function HarnessDiagram() {
                   aria-hidden
                   className={cn(
                     "absolute top-1/2 -left-2.5 hidden h-px w-2.5 lg:block",
-                    isPast || isActive ? "bg-[#f4c84a]" : "bg-white/20",
+                    isPast || isActive ? "bg-[#f4c84a]" : "bg-foreground/20",
                   )}
                 />
               )}
@@ -73,16 +73,16 @@ export function HarnessDiagram() {
                 onKeyDown={(event) => onKeyDown(event, index)}
                 className={cn(
                   "group relative flex h-full w-full flex-col items-start gap-1.5 rounded-md border p-3.5 text-left transition-all duration-200 outline-none",
-                  "focus-visible:ring-2 focus-visible:ring-[#f4c84a] focus-visible:ring-offset-2 focus-visible:ring-offset-[#07152b]",
+                  "focus-visible:ring-2 focus-visible:ring-[#f4c84a] focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   isActive
-                    ? "-translate-y-0.5 border-[#f4c84a] bg-[#f4c84a]/12 shadow-[0_10px_30px_-12px_rgba(244,200,74,0.5)]"
-                    : "border-white/15 bg-white/[0.03] hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/[0.06]",
+                    ? "-translate-y-0.5 border-[var(--feature-accent)] bg-primary/12 shadow-[0_10px_30px_-12px_rgba(244,200,74,0.5)]"
+                    : "border-foreground/15 bg-foreground/[0.03] hover:-translate-y-0.5 hover:border-foreground/35 hover:bg-foreground/[0.06]",
                 )}
               >
                 <span
                   className={cn(
                     "font-mono text-[10px] tracking-[0.14em]",
-                    isActive ? "text-[#f4c84a]" : "text-white/45",
+                    isActive ? "text-[var(--feature-accent)]" : "text-foreground/60",
                   )}
                 >
                   {node.step}
@@ -92,7 +92,7 @@ export function HarnessDiagram() {
                   aria-hidden
                   className={cn(
                     "mt-1 h-0.5 w-full origin-left rounded-full transition-transform duration-300",
-                    isActive ? "scale-x-100 bg-[#f4c84a]" : "scale-x-0 bg-white/40 group-hover:scale-x-100",
+                    isActive ? "scale-x-100 bg-[#f4c84a]" : "scale-x-0 bg-foreground/40 group-hover:scale-x-100",
                   )}
                 />
               </button>
@@ -105,18 +105,18 @@ export function HarnessDiagram() {
         id={`${panelId}-panel`}
         role="tabpanel"
         aria-labelledby={`${panelId}-tab-${active.id}`}
-        className="mt-4 grid gap-6 rounded-lg border border-white/12 bg-white/[0.04] p-6 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center"
+        className="mt-4 grid gap-6 rounded-lg border border-foreground/12 bg-foreground/[0.04] p-6 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center"
       >
         <div key={active.id} className="[animation:reveal-fade_0.35s_ease_both]">
-          <p className="font-mono text-[10px] tracking-[0.16em] text-[#f4c84a] uppercase">
+          <p className="font-mono text-[10px] tracking-[0.16em] text-[var(--feature-accent)] uppercase">
             {active.step} · {active.title}
           </p>
           <p className="mt-3 text-xl leading-7 font-semibold sm:text-2xl">{active.short}</p>
-          <p className="mt-3 max-w-xl text-sm leading-6 text-white/70">{active.detail}</p>
+          <p className="mt-3 max-w-xl text-sm leading-6 text-foreground/70">{active.detail}</p>
           <ul className="mt-5 grid gap-2 sm:grid-cols-2">
             {active.bullets.map((bullet) => (
-              <li key={bullet} className="flex items-start gap-2 font-mono text-[11px] tracking-wide text-white/75">
-                <span aria-hidden className="mt-[3px] text-[#f4c84a]">
+              <li key={bullet} className="flex items-start gap-2 font-mono text-[11px] tracking-wide text-foreground/75">
+                <span aria-hidden className="mt-[3px] text-[var(--feature-accent)]">
                   ▪
                 </span>
                 {bullet}
@@ -128,7 +128,7 @@ export function HarnessDiagram() {
         <StackLayerDiagram activeIndex={activeIndex} />
       </div>
 
-      <p className="mt-3 font-mono text-[10px] tracking-[0.14em] text-white/40 uppercase">
+      <p className="mt-3 font-mono text-[10px] tracking-[0.14em] text-foreground/60 uppercase">
         {"// click a layer · arrow keys to step through"}
       </p>
     </div>

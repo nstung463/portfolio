@@ -1,13 +1,9 @@
 import { HarnessDiagram } from "./harness-diagram";
 import { RevealWords } from "./reveal-words";
 
-/**
- * Full-bleed dark band. Deliberately breaks the light card-grid rhythm of the
- * surrounding sections — this is the centrepiece, so it gets its own surface.
- */
 export function HarnessSection() {
   return (
-    <section id="harness" className="night-surface relative overflow-hidden text-[#f7f0dc]">
+    <section id="harness" className="theme-feature-surface relative overflow-hidden text-foreground">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-[0.35]"
@@ -27,11 +23,11 @@ export function HarnessSection() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-[90px]">
         <div data-reveal>
-          <p className="font-mono text-xs font-bold tracking-[0.15em] text-[#f4c84a] uppercase">06 · Agent stack</p>
+          <p className="font-mono text-xs font-bold tracking-[0.15em] text-[var(--feature-accent)] uppercase">06 · Agent stack</p>
           <h2 className="section-heading mt-4 max-w-3xl text-3xl font-bold sm:text-5xl">
             <RevealWords text="How I think about this stack" />
           </h2>
-          <p className="mt-5 max-w-2xl text-sm leading-6 text-white/70 sm:text-base">
+          <p className="mt-5 max-w-2xl text-sm leading-6 text-foreground/70 sm:text-base">
             An LLM is the reasoning engine. An agent adds a loop and tools. A harness gives it
             the runtime to work safely, statefully, and at scale — the mental model behind
             everything in Experience and Work above.
