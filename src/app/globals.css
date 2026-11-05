@@ -64,6 +64,9 @@
   --brand: #0b2347;
 
   --background: #f4edd9;
+  --glass-panel-tint: rgb(255 255 255 / 32%);
+  --glass-panel-border: rgb(16 33 59 / 10%);
+  --glass-panel-shadow: 0 2px 5px rgb(16 33 59 / 3%), 0 12px 28px -12px rgb(16 33 59 / 10%);
   --foreground: #10213b;
   --card: #e9e0c8;
   --card-foreground: #10213b;
@@ -99,6 +102,9 @@
 
 .dark {
   --background: #07152b;
+  --glass-panel-tint: rgb(7 21 43 / 22%);
+  --glass-panel-border: rgb(255 255 255 / 8%);
+  --glass-panel-shadow: inset 0 -1px 2px rgb(0 0 0 / 26%), 0 2px 5px rgb(0 0 0 / 10%), 0 12px 28px -12px rgb(0 0 0 / 30%);
   --foreground: #f4edd9;
   --card: #0d2342;
   --card-foreground: #f4edd9;
@@ -137,6 +143,9 @@
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
     --background: #07152b;
+    --glass-panel-tint: rgb(7 21 43 / 22%);
+    --glass-panel-border: rgb(255 255 255 / 8%);
+    --glass-panel-shadow: inset 0 -1px 2px rgb(0 0 0 / 26%), 0 2px 5px rgb(0 0 0 / 10%), 0 12px 28px -12px rgb(0 0 0 / 30%);
     --foreground: #f4edd9;
     --card: #0d2342;
     --card-foreground: #f4edd9;
@@ -280,8 +289,10 @@
 
 .liquid-glass-panel {
   --glass-blur: 6px;
-  --glass-tint: color-mix(in srgb, var(--background) 22%, transparent);
+  --glass-tint: var(--glass-panel-tint);
   --glass-accent: color-mix(in srgb, var(--primary), var(--foreground) 40%);
+  border-color: var(--glass-panel-border);
+  box-shadow: var(--glass-panel-shadow);
   color: var(--foreground);
 }
 
