@@ -120,7 +120,7 @@ export const moreProjects: ProjectItem[] = [
         title: "Video & Audio Analytics",
         desc: "Explore video and audio content through natural-language questions.",
         stack: ["Video Analytics", "Audio Analytics"],
-        video: { src: "/videos/itochu-media-analytics-demo.mp4", poster: "/images/itochu-media-analytics-demo-poster.jpg" },
+        video: { src: "/videos/itochu-media-analytics-redacted.mp4", poster: "/images/itochu-media-analytics-redacted-poster.webp" },
       },
     ],
   },
